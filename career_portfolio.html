@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>职业发展路径 - 从执行者到多面手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+
+        .personal-traits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .personal-traits {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .personal-traits {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .trait-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trait-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12, #9b59b6, #1abc9c, #e67e22);
+        }
+
+        .trait-card:nth-child(1)::before { background: #3498db; }
+        .trait-card:nth-child(2)::before { background: #e74c3c; }
+        .trait-card:nth-child(3)::before { background: #f39c12; }
+        .trait-card:nth-child(4)::before { background: #9b59b6; }
+        .trait-card:nth-child(5)::before { background: #1abc9c; }
+        .trait-card:nth-child(6)::before { background: #e67e22; }
+
+        .trait-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .trait-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .trait-description {
+            color: #7f8c8d;
+            line-height: 1.8;
+        }
+
+        .career-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .career-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #3498db, #e74c3c);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 30px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid #ecf0f1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12, #9b59b6, #1abc9c, #e67e22);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .timeline-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .timeline-company {
+            color: #3498db;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .timeline-role {
+            color: #e74c3c;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .keyword {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .timeline-description {
+            color: #7f8c8d;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .key-achievements {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .key-achievements h4 {
+            color: #27ae60;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .key-achievements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-achievements li {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .key-achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .development-path {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .path-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .path-stages {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .path-stages {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .path-stage {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .path-stage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .path-stage:nth-child(1)::before { background: #3498db; }
+        .path-stage:nth-child(2)::before { background: #e74c3c; }
+        .path-stage:nth-child(3)::before { background: #f39c12; }
+        .path-stage:nth-child(4)::before { background: #9b59b6; }
+
+        .path-stage:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .stage-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f39c12;
+        }
+
+        .stage-title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .stage-description {
+            font-size: 0.95em;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .current-explorations {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .exploration-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .exploration-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .exploration-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .exploration-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #9b59b6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exploration-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .exploration-item:nth-child(1)::before { background: #9b59b6; }
+        .exploration-item:nth-child(2)::before { background: #e74c3c; }
+        .exploration-item:nth-child(3)::before { background: #f39c12; }
+
+        .exploration-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .exploration-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .exploration-description {
+            color: #7f8c8d;
+            line-height: 1.8;
+        }
+
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .skills-matrix {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category:nth-child(1) { 
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .skill-category:nth-child(2) { 
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .skill-category:nth-child(3) { 
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .skill-category:nth-child(4) { 
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .skill-category:nth-child(5) { 
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .skill-category:nth-child(6) { 
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .skill-category h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-list li {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: background 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 30px !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item::before {
+                left: -10px !important;
+            }
+
+            .career-timeline::before {
+                left: 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>职业发展路径</h1>
+            <p>从财务管理专业到AI行业专家的成长轨迹<br>探索自我兴趣，构建多维度能力，实现从执行者到多面手的蜕变</p>
+        </div>
+
+        <!-- 个人特征分析 -->
+        <div class="section">
+            <h2 class="section-title">核心个人特征</h2>
+            <div class="personal-traits">
+                <div class="trait-card">
+                    <div class="trait-title">🎯 战略思维</div>
+                    <div class="trait-description">具备从宏观到微观的升维思考能力，能够从历史趋势分析未来发展方向，在复杂环境中做出战略决策。</div>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-title">🔄 快速学习</div>
+                    <div class="trait-description">从财务管理跨界到演艺、产品、AI等多个领域，展现强大的学习适应能力和跨界整合能力。</div>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-title">👥 团队领导</div>
+                    <div class="trait-description">相信多元化团队的价值，善于根据个人特性安排业务，建立指令式执行和护栏式探索的合作模式。</div>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-title">🚀 创新驱动</div>
+                    <div class="trait-description">持续探索前沿技术，从短视频到AI社交，始终站在行业创新的前沿，推动产品0-1的孵化。</div>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-title">📊 数据洞察</div>
+                    <div class="trait-description">具备强大的数据分析能力，能够从用户行为数据中洞察需求，指导产品迭代和商业决策。</div>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-title">💡 价值创造</div>
+                    <div class="trait-description">始终关注用户价值与企业价值的双重实现，在快速变化的市场中找到平衡点，创造可持续的商业价值。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 职业发展时间线 -->
+        <div class="section">
+            <h2 class="section-title">职业发展时间线</h2>
+            <div class="career-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-company">大学</div>
+                        <div class="timeline-title">财务管理专业</div>
+                        <div class="timeline-description">建立财务分析基础，培养数据敏感度和商业思维</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-company">凤凰卫视</div>
+                        <div class="timeline-role">演艺-项目管理与运营</div>
+                        <div class="keywords">
+                            <span class="keyword">探索兴趣</span>
+                            <span class="keyword">文化演出</span>
+                            <span class="keyword">资源整合</span>
+                            <span class="keyword">商业变现</span>
+                        </div>
+                        <div class="timeline-description">探索自我兴趣点，在文化演出领域建立资源整合能力，链接艺人、团队、宣发平台，实现商业价值创造。</div>
+                        <div class="key-achievements">
+                            <h4>关键成就</h4>
+                            <ul>
+                                <li>建立文化演出业务模式</li>
+                                <li>与网易音乐等平台建立协同</li>
+                                <li>实现从兴趣到商业的转化</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-company">短视频行业</div>
+                        <div class="timeline-role">产品经理</div>
+                        <div class="keywords">
+                            <span class="keyword">产品思维</span>
+                            <span class="keyword">用户价值</span>
+                            <span class="keyword">数据驱动</span>
+                            <span class="keyword">千团大战</span>
+                        </div>
+                        <div class="timeline-description">入门产品经理角色，学习产品思维，分析功能价值，建立数据反哺迭代的产品视角。</div>
+                        <div class="key-achievements">
+                            <h4>关键成就</h4>
+                            <ul>
+                                <li>建立产品经理核心能力</li>
+                                <li>参与千团答题大战项目</li>
+                                <li>掌握数据驱动产品迭代</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-company">直播行业</div>
+                        <div class="timeline-role">高级产品经理</div>
+                        <div class="keywords">
+                            <span class="keyword">模块负责</span>
+                            <span class="keyword">直播秀场</span>
+                            <span class="keyword">产品定位</span>
+                            <span class="keyword">价值分析</span>
+                        </div>
+                        <div class="timeline-description">负责直播秀场模块，深入理解模块在APP内的定位、价值和发展前景，建立产品反哺能力。</div>
+                        <div class="key-achievements">
+                            <h4>关键成就</h4>
+                            <ul>
+                                <li>深度负责直播秀场产品</li>
+                                <li>建立模块价值分析能力</li>
+                                <li>提升产品反哺意识</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-company">多行业领域</div>
+                        <div class="timeline-role">专家产品+部门负责人</div>
+                        <div class="keywords">
+                            <span class="keyword">宏观分析</span>
+                            <span class="keyword">0-1孵化</span>
+                            <span class="keyword">战略制定</span>
+                            <span class="keyword">团队管理</span>
+                            <span class="keyword">产运结合</span>
+                        </div>
+                        <div class="timeline-description">主导多类型APP孵化，涵盖恋爱、陌生人、熟人社交，AI、元宇宙、地图、视频、音频等多元化产品，建立从宏观到微观的产品战略能力。</div>
+                        <div class="key-achievements">
+                            <h4>关键成就</h4>
+                            <ul>
+                                <li>主导多个APP的0-1孵化</li>
+                                <li>建立产品运营团队管理能力</li>
+                                <li>实现用户价值与企业价值双重实现</li>
+                                <li>建立快速试错和迭代机制</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-company">AI行业</div>
+                        <div class="timeline-role">AI陪伴/社交专家</div>
+                        <div class="keywords">
+                            <span class="keyword">AI陪伴</span>
+                            <span class="keyword">多人多AI</span>
+                            <span class="keyword">数字人格</span>
+                            <span class="keyword">线下打通</span>
+                            <span class="keyword">商业模式</span>
+                        </div>
+                        <div class="timeline-description">专注AI陪伴和社交领域，探索多人多AI的语音房、数字人格分身、AI与线下结合等前沿应用，建立AI+游戏的创新模式。</div>
+                        <div class="key-achievements">
+                            <h4>关键成就</h4>
+                            <ul>
+                                <li>探索AI社交的前沿应用</li>
+                                <li>建立多人多AI协作模式</li>
+                                <li>创新数字人格概念</li>
+                                <li>探索AI与线下的结合</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 能力发展路径 -->
+        <div class="development-path">
+            <h2 class="path-title">能力发展路径</h2>
+            <div class="path-stages">
+                <div class="path-stage">
+                    <div class="stage-number">1</div>
+                    <div class="stage-title">点 - 专业基础</div>
+                    <div class="stage-description">财务管理专业基础，建立数据分析和商业思维</div>
+                </div>
+                <div class="path-stage">
+                    <div class="stage-number">2</div>
+                    <div class="stage-title">线 - 技能拓展</div>
+                    <div class="stage-description">从财务管理到文化演出，探索兴趣与商业结合</div>
+                </div>
+                <div class="path-stage">
+                    <div class="stage-number">3</div>
+                    <div class="stage-title">面 - 产品思维</div>
+                    <div class="stage-description">建立产品经理能力，掌握用户价值与商业价值平衡</div>
+                </div>
+                <div class="path-stage">
+                    <div class="stage-number">4</div>
+                    <div class="stage-title">升维 - 战略领导</div>
+                    <div class="stage-description">从宏观到微观的战略思考，团队管理和创新孵化</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 当前探索 -->
+        <div class="section">
+            <h2 class="section-title">当前个人探索</h2>
+            <div class="current-explorations">
+                <div class="exploration-grid">
+                    <div class="exploration-item">
+                        <div class="exploration-title">🎙️ 播客运营</div>
+                        <div class="exploration-description">通过播客固定自己的信息及知识框架，寻求更多元视角的思考输入，建立个人品牌和影响力。</div>
+                    </div>
+                    <div class="exploration-item">
+                        <div class="exploration-title">📱 小红书内容</div>
+                        <div class="exploration-description">日常单点问题的思考输出，记录个人成长轨迹，帮助他人获得启发，建立内容创作能力。</div>
+                    </div>
+                    <div class="exploration-item">
+                        <div class="exploration-title">💰 金融投资</div>
+                        <div class="exploration-description">利用AI进行金融市场投资，锻炼心性、情绪韧性，培养多元分析评估能力，实现财务自由。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心技能矩阵 -->
+        <div class="section">
+            <h2 class="section-title">核心技能矩阵</h2>
+            <div class="skills-matrix">
+                <div class="skill-category">
+                    <h4>🎯 战略思维</h4>
+                    <ul class="skill-list">
+                        <li>宏观市场分析</li>
+                        <li>趋势预测</li>
+                        <li>战略规划</li>
+                        <li>商业模式设计</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>👥 团队管理</h4>
+                    <ul class="skill-list">
+                        <li>多元化团队建设</li>
+                        <li>人才识别与培养</li>
+                        <li>协作模式设计</li>
+                        <li>激励机制建立</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>🚀 产品创新</h4>
+                    <ul class="skill-list">
+                        <li>0-1产品孵化</li>
+                        <li>用户需求洞察</li>
+                        <li>快速试错迭代</li>
+                        <li>技术前沿探索</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>📊 数据分析</h4>
+                    <ul class="skill-list">
+                        <li>用户行为分析</li>
+                        <li>商业数据洞察</li>
+                        <li>AI模型应用</li>
+                        <li>投资决策支持</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>💡 价值创造</h4>
+                    <ul class="skill-list">
+                        <li>用户价值设计</li>
+                        <li>商业价值实现</li>
+                        <li>资源整合优化</li>
+                        <li>可持续发展</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>🔄 跨界整合</h4>
+                    <ul class="skill-list">
+                        <li>多领域知识融合</li>
+                        <li>技术商业结合</li>
+                        <li>线上线下打通</li>
+                        <li>创新模式探索</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            // 页面加载动画
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    section.style.transition = 'all 0.6s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+
+            // 时间线动画
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+
+            timelineItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = index % 2 === 0 ? 'translateX(-50px)' : 'translateX(50px)';
+                item.style.transition = 'all 0.6s ease';
+                observer.observe(item);
+            });
+        });
+
+        // 添加交互效果
+        document.querySelectorAll('.trait-card, .exploration-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
