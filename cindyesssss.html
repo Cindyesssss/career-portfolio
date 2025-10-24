@@ -60,47 +60,156 @@
     
     <style>
         :root {
-            /* 主色系 - 专业蓝 */
-            --primary-color: #2563EB;
-            --primary-light: #3B82F6;
-            --primary-dark: #1D4ED8;
+            /* 现代品牌色彩系统 */
+            --primary-color: #6366F1;
+            --primary-light: #818CF8;
+            --primary-dark: #4F46E5;
+            --primary-deep: #3730A3;
             
-            /* 辅色系 - 活力橙 */
-            --secondary-color: #F59E0B;
-            --secondary-light: #FBBF24;
-            --secondary-dark: #D97706;
+            --secondary-color: #8B5CF6;
+            --secondary-light: #A78BFA;
+            --secondary-dark: #7C3AED;
             
-            /* 强调色 - 成功绿 */
-            --accent-color: #10B981;
-            --accent-light: #34D399;
-            --accent-dark: #059669;
+            --accent-color: #F59E0B;
+            --accent-light: #FBBF24;
+            --accent-dark: #D97706;
             
-            /* 背景色 */
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --error-color: #EF4444;
+            
+            /* 中性色彩系统 */
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            
+            /* 背景色彩 */
             --bg-primary: #FFFFFF;
-            --bg-secondary: #F8FAFC;
-            --bg-dark: #1E293B;
+            --bg-secondary: #F9FAFB;
+            --bg-tertiary: #F3F4F6;
+            --bg-dark: #111827;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --bg-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             
-            /* 文字颜色 */
-            --text-primary: #1E293B;
-            --text-secondary: #64748B;
-            --text-light: #94A3B8;
+            /* 文本色彩 */
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-tertiary: #9CA3AF;
             --text-white: #FFFFFF;
+            --text-inverse: #F9FAFB;
             
-            /* 字号标准 */
-            --font-size-hero: 3.5rem;
-            --font-size-h1: 2.5rem;
-            --font-size-h2: 2rem;
-            --font-size-h3: 1.5rem;
-            --font-size-body: 1rem;
-            --font-size-small: 0.875rem;
+            /* 阴影系统 */
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
             
-            /* 间距标准 */
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
-            --spacing-xxl: 4rem;
+            /* 字体系统 */
+            --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+            --font-family-serif: 'Playfair Display', 'Times New Roman', serif;
+            
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            --font-size-7xl: 4.5rem;
+            --font-size-8xl: 6rem;
+            --font-size-9xl: 8rem;
+            
+            --font-weight-thin: 100;
+            --font-weight-extralight: 200;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
+            --font-weight-black: 900;
+            
+            --line-height-none: 1;
+            --line-height-tight: 1.25;
+            --line-height-snug: 1.375;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.625;
+            --line-height-loose: 2;
+            
+            /* 圆角系统 */
+            --radius-none: 0;
+            --radius-sm: 0.125rem;
+            --radius-base: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-3xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* 间距系统 */
+            --spacing-0: 0;
+            --spacing-px: 1px;
+            --spacing-0-5: 0.125rem;
+            --spacing-1: 0.25rem;
+            --spacing-1-5: 0.375rem;
+            --spacing-2: 0.5rem;
+            --spacing-2-5: 0.625rem;
+            --spacing-3: 0.75rem;
+            --spacing-3-5: 0.875rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-7: 1.75rem;
+            --spacing-8: 2rem;
+            --spacing-9: 2.25rem;
+            --spacing-10: 2.5rem;
+            --spacing-11: 2.75rem;
+            --spacing-12: 3rem;
+            --spacing-14: 3.5rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            --spacing-24: 6rem;
+            --spacing-28: 7rem;
+            --spacing-32: 8rem;
+            
+            /* 过渡动画 */
+            --transition-none: none;
+            --transition-all: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-default: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-colors: color 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-opacity: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-shadow: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-transform: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* 兼容性变量 */
+            --font-size-hero: var(--font-size-6xl);
+            --font-size-h1: var(--font-size-5xl);
+            --font-size-h2: var(--font-size-4xl);
+            --font-size-h3: var(--font-size-3xl);
+            --font-size-body: var(--font-size-base);
+            --font-size-small: var(--font-size-sm);
+            --spacing-xs: var(--spacing-2);
+            --spacing-sm: var(--spacing-4);
+            --spacing-md: var(--spacing-6);
+            --spacing-lg: var(--spacing-8);
+            --spacing-xl: var(--spacing-12);
+            --spacing-xxl: var(--spacing-16);
         }
 
         * {
@@ -110,9 +219,14 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            line-height: 1.6;
+            font-family: var(--font-family-sans);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-normal);
+            line-height: var(--line-height-normal);
             color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             background: var(--bg-primary);
         }
 
@@ -222,9 +336,14 @@
 
         .hero h1 {
             font-size: var(--font-size-hero);
-            font-weight: 700;
-            margin-bottom: var(--spacing-md);
-            line-height: 1.2;
+            font-weight: var(--font-weight-extrabold);
+            margin-bottom: var(--spacing-6);
+            line-height: var(--line-height-tight);
+            letter-spacing: -0.05em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .subtitle {
@@ -251,14 +370,31 @@
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: var(--spacing-xs);
-            padding: var(--spacing-sm) var(--spacing-lg);
+            gap: var(--spacing-3);
+            padding: var(--spacing-4) var(--spacing-6);
             border: none;
-            border-radius: 50px;
-            font-weight: 600;
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-semibold);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition-all);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
@@ -268,19 +404,22 @@
 
         .btn-primary:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--text-white);
             border: 2px solid var(--text-white);
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
             background: var(--text-white);
             color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
         }
 
         /* 个人信息卡片 */
@@ -352,8 +491,23 @@
 
         .section-title h2 {
             font-size: var(--font-size-h1);
+            font-weight: var(--font-weight-bold);
             color: var(--text-primary);
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-4);
+            letter-spacing: -0.025em;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
         }
 
         .section-title .subtitle {
@@ -438,9 +592,11 @@
             left: 50%;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: var(--primary-color);
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
             transform: translateX(-50%);
+            border-radius: 2px;
+            z-index: 1;
         }
 
         .timeline-item {
@@ -461,10 +617,13 @@
 
         .timeline-content {
             background: var(--bg-primary);
-            padding: var(--spacing-lg);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: var(--spacing-8);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
             position: relative;
+            transition: var(--transition-all);
+            cursor: pointer;
         }
 
         .timeline-content::before {
@@ -524,6 +683,274 @@
             line-height: 1.6;
         }
 
+        /* 产品级时间线增强样式 */
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) 0;
+        }
+
+        /* 时间轴阶段标签 */
+        .timeline-stages {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .timeline-stage {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .stage-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 3;
+        }
+
+        .stage-label {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            margin-top: var(--spacing-xs);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-stage:hover .stage-icon {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-stage:hover .stage-label {
+            background: var(--primary-deep);
+            transform: translateY(-2px);
+        }
+
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item.fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+        }
+
+        .stage-indicator {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stage-indicator.innovation {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .stage-indicator.leadership {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .stage-indicator.specialization {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .stage-indicator.foundation {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .stage-indicator.exploration {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .timeline-content {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .timeline-period {
+            font-size: var(--font-size-small);
+            color: var(--primary-color);
+            font-weight: 600;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .stage-tag {
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .stage-tag.innovation {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .stage-tag.leadership {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .stage-tag.specialization {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .stage-tag.foundation {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .stage-tag.exploration {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .timeline-tags .tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: var(--font-size-small);
+            font-weight: 500;
+        }
+
+        .key-works, .achievements {
+            margin-top: var(--spacing-md);
+        }
+
+        .key-works h5, .achievements h5 {
+            font-size: var(--font-size-small);
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .key-works ul, .achievements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-works li, .achievements li {
+            position: relative;
+            padding-left: var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            line-height: 1.5;
+        }
+
+        .key-works li::before, .achievements li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 亮点文案样式 */
+        .highlight-subtitle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: var(--font-size-h3);
+            font-weight: 700;
+            text-align: center;
+            margin: var(--spacing-md) 0 var(--spacing-xl) 0;
+            position: relative;
+        }
+
+        .highlight-subtitle::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .highlight-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
         /* 技能展示 */
         .skills-grid {
             display: grid;
@@ -533,9 +960,23 @@
 
         .skill-category {
             background: var(--bg-primary);
-            padding: var(--spacing-lg);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: var(--spacing-8);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition-all);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .skill-category h3 {
@@ -571,14 +1012,29 @@
 
         .project-card {
             background: var(--bg-primary);
-            border-radius: 15px;
+            border-radius: var(--radius-2xl);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition-all);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 1;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--primary-color);
         }
 
         .project-image {
@@ -905,6 +1361,27 @@
                 grid-template-columns: 1fr;
                 gap: var(--spacing-sm);
             }
+
+            .highlight-subtitle {
+                font-size: var(--font-size-body);
+                margin: var(--spacing-sm) 0 var(--spacing-lg) 0;
+            }
+
+            .timeline-stages {
+                left: 20px;
+                transform: none;
+            }
+
+            .stage-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .stage-label {
+                font-size: 0.75rem;
+                padding: 2px 8px;
+            }
         }
 
         /* 动画效果 */
@@ -1057,78 +1534,288 @@
         </div>
     </section>
 
-    <!-- 职业发展 -->
+    <!-- 职业发展轨迹 -->
     <section id="experience" class="section">
         <div class="container">
             <div class="section-title">
                 <h2>职业发展轨迹</h2>
-                <p class="subtitle">从单薄执行到全面主导的多面手成长历程</p>
+                <p class="subtitle highlight-subtitle">从单薄执行到全面主导的多面手成长历程</p>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2025.5-至今</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">AI社交创新专家</h3>
-                        <p class="timeline-company">新浪</p>
-                        <p class="timeline-description">
-                            专注AI陪伴/社交产品创新，探索多人多AI互动可能性，构建数字人格生态。
-                            主导AI+游戏、AI宠物等创新项目，推动AI与人类协作边界探索。
-                        </p>
+            
+            <div class="timeline-container">
+                <!-- 时间轴阶段标签 -->
+                <div class="timeline-stages">
+                    <div class="timeline-stage" data-stage="6">
+                        <div class="stage-icon">🤖</div>
+                        <div class="stage-label">阶段6</div>
+                    </div>
+                    <div class="timeline-stage" data-stage="5">
+                        <div class="stage-icon">👥</div>
+                        <div class="stage-label">阶段5</div>
+                    </div>
+                    <div class="timeline-stage" data-stage="4">
+                        <div class="stage-icon">🎥</div>
+                        <div class="stage-label">阶段4</div>
+                    </div>
+                    <div class="timeline-stage" data-stage="3">
+                        <div class="stage-icon">📱</div>
+                        <div class="stage-label">阶段3</div>
+                    </div>
+                    <div class="timeline-stage" data-stage="2">
+                        <div class="stage-icon">📈</div>
+                        <div class="stage-label">阶段2</div>
+                    </div>
+                    <div class="timeline-stage" data-stage="1">
+                        <div class="stage-icon">🎓</div>
+                        <div class="stage-label">阶段1</div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2020-2025</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">多行业产品专家</h3>
-                        <p class="timeline-company">云账户</p>
-                        <p class="timeline-description">
-                            主导多类型APP的0-1孵化，涵盖恋爱、陌生人、熟人社交+AI+元宇宙等复合场景。
-                            负责产品战略规划、团队管理，实现从用户价值到企业价值的双重实现。
-                        </p>
+                
+                <div class="timeline">
+                    <!-- 2025.5-至今: AI社交创新专家 -->
+                    <div class="timeline-item innovation-stage" data-stage="innovation">
+                        <div class="timeline-marker">
+                            <div class="stage-indicator innovation">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-period">2025.5-至今</div>
+                                <div class="stage-tag innovation">创新引领</div>
+                            </div>
+                            <h3>AI社交创新专家</h3>
+                            <h4>新浪</h4>
+                            <div class="timeline-tags">
+                                <span class="tag">AI产品设计</span>
+                                <span class="tag">数字人格</span>
+                                <span class="tag">多模态交互</span>
+                                <span class="tag">战略规划</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>专注AI陪伴/社交产品创新，探索多人多AI互动可能性，构建数字人格生态。主导AI+游戏、AI宠物等创新项目，推动AI与人类协作边界探索。</p>
+                                <div class="key-works">
+                                    <h5>核心工作：</h5>
+                                    <ul>
+                                        <li>构建多人多AI互动平台，实现数字人格生态</li>
+                                        <li>主导AI+游戏、AI宠物等创新项目孵化</li>
+                                        <li>推动AI与人类协作边界探索</li>
+                                    </ul>
+                                </div>
+                                <div class="achievements">
+                                    <h5>关键成就：</h5>
+                                    <ul>
+                                        <li>构建完整的AI社交产品矩阵</li>
+                                        <li>实现从0到1的创新产品孵化</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2018-2020</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">直播高级产品经理</h3>
-                        <p class="timeline-company">爱奇艺</p>
-                        <p class="timeline-description">
-                            负责直播秀场产品模块，深度理解模块在APP内的定位、价值及反哺产品的潜力。
-                            建立产品视角，实现功能价值与战略目标的平衡。
-                        </p>
+                    
+                    <!-- 2020-2025: 多行业产品专家 -->
+                    <div class="timeline-item leadership-stage" data-stage="leadership">
+                        <div class="timeline-marker">
+                            <div class="stage-indicator leadership">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-period">2020-2025</div>
+                                <div class="stage-tag leadership">领导力</div>
+                            </div>
+                            <h3>多行业产品专家</h3>
+                            <h4>云账户</h4>
+                            <div class="timeline-tags">
+                                <span class="tag">产品孵化</span>
+                                <span class="tag">团队管理</span>
+                                <span class="tag">战略规划</span>
+                                <span class="tag">跨行业</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>主导多类型APP的0-1孵化，涵盖恋爱、陌生人、熟人社交+AI+元宇宙等复合场景。负责产品战略规划、团队管理，实现从用户价值到企业价值的双重实现。</p>
+                                <div class="key-works">
+                                    <h5>核心工作：</h5>
+                                    <ul>
+                                        <li>主导多类型APP的0-1孵化，涵盖复合场景</li>
+                                        <li>负责产品战略规划、团队管理</li>
+                                        <li>实现从用户价值到企业价值的双重实现</li>
+                                    </ul>
+                                </div>
+                                <div class="achievements">
+                                    <h5>关键成就：</h5>
+                                    <ul>
+                                        <li>成功孵化15+个产品项目</li>
+                                        <li>建立完整的产品开发流程和团队管理体系</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2017-2018</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">短视频产品经理</h3>
-                        <p class="timeline-company">一下科技</p>
-                        <p class="timeline-description">
-                            参与千团答题大战等创新项目，建立系统性产品思维。
-                            从产运双线视角理解产品经理职责，掌握数据驱动迭代的核心方法。
-                        </p>
+                    
+                    <!-- 2018-2020: 直播高级产品经理 -->
+                    <div class="timeline-item specialization-stage" data-stage="specialization">
+                        <div class="timeline-marker">
+                            <div class="stage-indicator specialization">
+                                <i class="fas fa-video"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-period">2018-2020</div>
+                                <div class="stage-tag specialization">专业深化</div>
+                            </div>
+                            <h3>直播高级产品经理</h3>
+                            <h4>爱奇艺</h4>
+                            <div class="timeline-tags">
+                                <span class="tag">直播技术</span>
+                                <span class="tag">数据分析</span>
+                                <span class="tag">用户体验</span>
+                                <span class="tag">产品优化</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>负责直播秀场产品模块，深度理解模块在APP内的定位、价值及反哺产品的潜力。建立产品视角，实现功能价值与战略目标的平衡。</p>
+                                <div class="key-works">
+                                    <h5>核心工作：</h5>
+                                    <ul>
+                                        <li>负责直播秀场产品模块的深度优化</li>
+                                        <li>建立数据驱动的产品迭代机制</li>
+                                        <li>实现功能价值与战略目标的平衡</li>
+                                    </ul>
+                                </div>
+                                <div class="achievements">
+                                    <h5>关键成就：</h5>
+                                    <ul>
+                                        <li>显著提升用户参与度和商业价值</li>
+                                        <li>建立完整的产品优化方法论</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2016-2017</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">项目管理与运营</h3>
-                        <p class="timeline-company">凤凰卫视</p>
-                        <p class="timeline-description">
-                            负责文化演出项目运营，探索兴趣与商业的结合点。
-                            建立资源整合能力，为后续产品转型奠定基础。
-                        </p>
+                    
+                    <!-- 2017-2018: 短视频产品经理 -->
+                    <div class="timeline-item foundation-stage" data-stage="foundation">
+                        <div class="timeline-marker">
+                            <div class="stage-indicator foundation">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-period">2017-2018</div>
+                                <div class="stage-tag foundation">基础建设</div>
+                            </div>
+                            <h3>短视频产品经理</h3>
+                            <h4>一下科技</h4>
+                            <div class="timeline-tags">
+                                <span class="tag">短视频</span>
+                                <span class="tag">产品思维</span>
+                                <span class="tag">数据驱动</span>
+                                <span class="tag">创新项目</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>参与千团答题大战等创新项目，建立系统性产品思维。从产运双线视角理解产品经理职责，掌握数据驱动迭代的核心方法。</p>
+                                <div class="key-works">
+                                    <h5>核心工作：</h5>
+                                    <ul>
+                                        <li>参与千团答题大战等创新项目</li>
+                                        <li>建立系统性产品思维</li>
+                                        <li>掌握数据驱动的产品迭代方法</li>
+                                    </ul>
+                                </div>
+                                <div class="achievements">
+                                    <h5>关键成就：</h5>
+                                    <ul>
+                                        <li>建立完整的产品思维体系</li>
+                                        <li>掌握数据驱动的产品迭代方法</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2012-2016</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">财务管理基础</h3>
-                        <p class="timeline-company">大学</p>
-                        <p class="timeline-description">
-                            财务管理专业学习，培养数据敏感度和商业思维。
-                            参与社团活动，建立团队协作和沟通能力基础。
-                        </p>
+                    
+                    <!-- 2016-2017: 项目管理与运营 -->
+                    <div class="timeline-item exploration-stage" data-stage="exploration">
+                        <div class="timeline-marker">
+                            <div class="stage-indicator exploration">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-period">2016-2017</div>
+                                <div class="stage-tag exploration">探索转型</div>
+                            </div>
+                            <h3>项目管理与运营</h3>
+                            <h4>凤凰卫视</h4>
+                            <div class="timeline-tags">
+                                <span class="tag">项目管理</span>
+                                <span class="tag">运营</span>
+                                <span class="tag">资源整合</span>
+                                <span class="tag">商业思维</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>负责文化演出项目运营，探索兴趣与商业的结合点。建立资源整合能力，为后续产品转型奠定基础。</p>
+                                <div class="key-works">
+                                    <h5>核心工作：</h5>
+                                    <ul>
+                                        <li>负责文化演出项目运营</li>
+                                        <li>探索兴趣与商业的结合点</li>
+                                        <li>建立资源整合能力</li>
+                                    </ul>
+                                </div>
+                                <div class="achievements">
+                                    <h5>关键成就：</h5>
+                                    <ul>
+                                        <li>建立完整的项目管理能力</li>
+                                        <li>为后续产品转型奠定基础</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2012-2016: 财务管理基础 -->
+                    <div class="timeline-item exploration-stage" data-stage="exploration">
+                        <div class="timeline-marker">
+                            <div class="stage-indicator exploration">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-period">2012-2016</div>
+                                <div class="stage-tag exploration">基础学习</div>
+                            </div>
+                            <h3>财务管理基础</h3>
+                            <h4>大学</h4>
+                            <div class="timeline-tags">
+                                <span class="tag">财务管理</span>
+                                <span class="tag">数据分析</span>
+                                <span class="tag">商业思维</span>
+                                <span class="tag">团队协作</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>财务管理专业学习，培养数据敏感度和商业思维。参与社团活动，建立团队协作和沟通能力基础。</p>
+                                <div class="key-works">
+                                    <h5>核心工作：</h5>
+                                    <ul>
+                                        <li>财务管理专业学习</li>
+                                        <li>培养数据敏感度和商业思维</li>
+                                        <li>参与社团活动，建立团队协作能力</li>
+                                    </ul>
+                                </div>
+                                <div class="achievements">
+                                    <h5>关键成就：</h5>
+                                    <ul>
+                                        <li>建立扎实的财务和数据分析基础</li>
+                                        <li>培养商业思维和团队协作能力</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1382,23 +2069,49 @@
 
         // 滚动动画（优化版）
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('fade-in-up');
+                    // 一旦显示就停止观察，避免重复触发
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
+
+        // 为时间线项目创建单独的观察器
+        const timelineObserverOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('fade-in-up')) {
+                    // 添加延迟，确保动画稳定
+                    setTimeout(() => {
+                        entry.target.classList.add('fade-in-up');
+                    }, 100);
+                    // 一旦显示就停止观察，避免重复触发
+                    timelineObserver.unobserve(entry.target);
+                }
+            });
+        }, timelineObserverOptions);
 
         // 延迟观察，避免阻塞初始渲染
         if ('requestIdleCallback' in window) {
             requestIdleCallback(() => {
                 document.querySelectorAll('.section').forEach(section => {
                     observer.observe(section);
+                });
+                
+                // 观察时间线项目
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    timelineObserver.observe(item);
                 });
             });
         } else {
@@ -1407,8 +2120,87 @@
                 document.querySelectorAll('.section').forEach(section => {
                     observer.observe(section);
                 });
+                
+                // 观察时间线项目
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    timelineObserver.observe(item);
+                });
             }, 100);
         }
+
+        // 时间线交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            // 备用方案：如果Intersection Observer不可用，使用滚动事件
+            if (!window.IntersectionObserver) {
+                let ticking = false;
+                
+                function updateTimelineItems() {
+                    timelineItems.forEach((item, index) => {
+                        const rect = item.getBoundingClientRect();
+                        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                        
+                        if (isVisible && !item.classList.contains('fade-in-up')) {
+                            // 添加延迟，创建依次显示的效果
+                            setTimeout(() => {
+                                item.classList.add('fade-in-up');
+                            }, index * 200);
+                        }
+                    });
+                    ticking = false;
+                }
+                
+                function requestTick() {
+                    if (!ticking) {
+                        requestAnimationFrame(updateTimelineItems);
+                        ticking = true;
+                    }
+                }
+                
+                window.addEventListener('scroll', requestTick);
+                // 初始检查
+                updateTimelineItems();
+            }
+            
+            // 为每个时间线项目添加点击展开/收起功能
+            timelineItems.forEach(item => {
+                const content = item.querySelector('.timeline-content');
+                const keyWorks = item.querySelector('.key-works');
+                const achievements = item.querySelector('.achievements');
+                
+                if (keyWorks || achievements) {
+                    // 初始隐藏详细信息
+                    if (keyWorks) keyWorks.style.display = 'none';
+                    if (achievements) achievements.style.display = 'none';
+                    
+                    // 添加点击事件
+                    content.addEventListener('click', function() {
+                        const isExpanded = keyWorks ? keyWorks.style.display !== 'none' : false;
+                        
+                        if (keyWorks) {
+                            keyWorks.style.display = isExpanded ? 'none' : 'block';
+                        }
+                        if (achievements) {
+                            achievements.style.display = isExpanded ? 'none' : 'block';
+                        }
+                        
+                        // 添加展开/收起动画
+                        content.style.transition = 'all 0.3s ease';
+                        if (!isExpanded) {
+                            content.style.transform = 'scale(1.02)';
+                            setTimeout(() => {
+                                content.style.transform = 'scale(1)';
+                            }, 300);
+                        }
+                    });
+                    
+                    // 添加悬停提示
+                    content.style.cursor = 'pointer';
+                    content.title = '点击查看详细信息';
+                }
+            });
+        });
 
         // 表单提交（优化版）
         document.addEventListener('submit', function(e) {
