@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基金监控系统 V4 - 本地开发版</title>
+    <style>
+        :root {
+            /* 主品牌色 - 活力紫色 */
+            --color-primary: #8B5CF6;
+            --color-primary-light: #A78BFA;
+            --color-primary-lighter: #C4B5FD;
+            --color-primary-dark: #7C3AED;
+            --color-primary-darker: #6D28D9;
+            
+            /* 渐变色彩 */
+            --gradient-primary: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+            --gradient-secondary: linear-gradient(135deg, #06B6D4 0%, #8B5CF6 100%);
+            
+            /* 数据色系 - 用于图表 */
+            --color-data-1: #8B5CF6;  /* 紫色 */
+            --color-data-2: #06B6D4;  /* 青色 */
+            --color-data-3: #10B981;  /* 绿色 */
+            --color-data-4: #F59E0B;  /* 琥珀色 */
+            --color-data-5: #EC4899;  /* 粉色 */
+            
+            /* 功能色 */
+            --color-success: #10B981;
+            --color-success-light: #D1FAE5;
+            --color-success-dark: #065F46;
+            --color-error: #EF4444;
+            --color-error-light: #FEE2E2;
+            --color-error-dark: #991B1B;
+            --color-warning: #F59E0B;
+            --color-warning-light: #FEF3C7;
+            --color-warning-dark: #92400E;
+            --color-info: #06B6D4;
+            --color-info-light: #CFFAFE;
+            --color-info-dark: #0E7490;
+            
+            /* 中性色 */
+            --color-text-primary: #000000;
+            --color-text-secondary: #434343;
+            --color-text-tertiary: #595959;
+            --color-text-quaternary: #8C8C8C;
+            --color-text-disabled: #BFBFBF;
+            --color-border: #D9D9D9;
+            --color-border-light: #F0F0F0;
+            --color-bg-primary: #F5F5F5;
+            --color-bg-secondary: #FFFFFF;
+            --color-bg-tertiary: #FAFAFA;
+            
+            /* 字体系统 - 现代圆润 */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 
+                            'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+                            'Microsoft YaHei', sans-serif;
+            --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 
+                         'Roboto Mono', 'Consolas', monospace;
+            --font-accent: 'SF Pro Rounded', 'Avenir Next Rounded', 
+                           'Circular', sans-serif;
+            
+            /* 字体大小与层级 */
+            --text-xs: 0.75rem;      /* 12px - 辅助信息/图例/标签 */
+            --text-sm: 0.875rem;     /* 14px - 正文/综合分析 */
+            --text-base: 1rem;       /* 16px - 关键数据（日涨跌幅） */
+            --text-lg: 1.125rem;     /* 18px - 基金名称 */
+            --text-xl: 1.25rem;      /* 20px - 关键数据（净值） */
+            --text-2xl: 1.5rem;      /* 24px */
+            --text-3xl: 1.875rem;    /* 30px */
+            --text-4xl: 2.25rem;     /* 36px */
+            --text-hero: 3rem;       /* 48px */
+            
+            /* 间距 */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-10: 40px;
+            --space-12: 48px;
+            --space-16: 64px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--gradient-primary);
+            min-height: 100vh;
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1600px; /* 增加最大宽度 */
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+        
+        /* 头部区域 */
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: var(--space-12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: var(--text-hero);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-4);
+            animation: chartRise 0.8s ease-out;
+        }
+        
+        .header p {
+            font-size: var(--text-xl);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-8);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .local-dev-notice {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-success);
+            padding: var(--space-4);
+            border-radius: 12px;
+            margin-bottom: var(--space-6);
+            border-left: 4px solid var(--color-success);
+        }
+        
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+        
+        .stat-card {
+            background: var(--color-bg-secondary);
+            border-radius: 20px;
+            padding: var(--space-8);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--color-border-light);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+        
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-value {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+            animation: countUp 1s ease-out;
+        }
+        
+        .stat-label {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+        
+        .stat-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-tertiary);
+            margin-top: var(--space-2);
+        }
+        
+        /* 筛选器 */
+        .filter-section {
+            background: var(--color-bg-secondary);
+            border-radius: 20px;
+            padding: var(--space-6);
+            margin-bottom: var(--space-8);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            background: var(--color-bg-tertiary);
+            border-radius: 16px;
+            padding: var(--space-1);
+            gap: var(--space-1);
+            margin-bottom: var(--space-6);
+        }
+        
+        .filter-tab {
+            padding: var(--space-3) var(--space-6);
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            font-size: var(--text-sm);
+        }
+        
+        .filter-tab.active {
+            background: var(--color-bg-secondary);
+            color: var(--color-primary);
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
+        }
+        
+        .filter-tab:hover:not(.active) {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--color-primary);
+        }
+        
+        /* 基金列表 */
+        .fund-list {
+            background: var(--color-bg-secondary);
+            border-radius: 20px;
+            padding: 20px; /* 减少内边距，给卡片更多空间 */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .fund-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 强制三列布局 */
+            gap: 12px; /* 减少卡片间距适应三列 */
+            justify-items: stretch; /* 让卡片均匀填充可用空间 */
+            align-items: start; /* 顶部对齐 */
+            padding: 0 8px; /* 添加左右内边距 */
+        }
+        
+        /* 三列布局下的标题优化 - 允许换行显示 */
+        .fund-grid .fund-name {
+            /* 移除最大宽度限制，允许标题完整显示并换行 */
+        }
+        
+        .fund-card {
+            background: var(--color-bg-secondary);
+            border-radius: 20px; /* 更圆润的边角 */
+            padding: 20px; /* 减少内边距适应三列布局 */
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.12); /* 紫色阴影 */
+            border: 1px solid rgba(139, 92, 246, 0.1); /* 淡紫色边框 */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: auto;
+            max-width: none; /* 移除最大宽度限制，让卡片充分利用空间 */
+            min-width: 0; /* 防止内容溢出 */
+        }
+        
+        .fund-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .fund-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+        
+        .fund-card:hover::before {
+            opacity: 1;
+        }
+        
+        .fund-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.1);
+            position: relative;
+            gap: 8px; /* 减少间距，给标题更多空间 */
+        }
+        
+        .fund-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: 1px;
+        }
+        
+        .fund-name {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            flex: 1; /* 占据剩余空间 */
+            min-width: 0; /* 允许收缩 */
+            word-wrap: break-word; /* 允许长单词换行 */
+            word-break: break-word; /* 在合适位置换行 */
+        }
+        
+        .fund-code {
+            font-size: var(--text-xs);
+            color: var(--color-text-quaternary);
+            font-family: var(--font-mono);
+            line-height: 1.4;
+        }
+        
+        .fund-type-badge {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            flex-shrink: 0; /* 防止标签被压缩 */
+            white-space: nowrap; /* 确保标签文字不换行 */
+            align-self: flex-start; /* 确保标签在顶部对齐 */
+            margin-top: 2px; /* 微调位置，与标题顶部对齐 */
+        }
+        
+        .fund-type-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .fund-type-badge:hover::before {
+            left: 100%;
+        }
+        
+        .fund-type-badge.宽基指数 {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+        }
+        
+        .fund-type-badge.行业主题 {
+            background: var(--gradient-secondary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+        }
+        
+        .fund-type-badge.固收+ {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        .fund-type-badge.债券基金 {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+        
+        .fund-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        /* KDJ周线分析区域 */
+        .kdj-analysis-section {
+            margin-bottom: 16px;
+        }
+        
+        .kdj-chart-container {
+            margin-bottom: 12px;
+            width: 100%; /* 确保容器占满卡片宽度 */
+            overflow: hidden; /* 防止内容溢出 */
+            display: flex;
+            flex-direction: column; /* 垂直排列 */
+            align-items: center; /* 水平居中 */
+        }
+        
+        .chart-title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .kdj-chart-svg {
+            border: 2px solid rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.02) 0%, rgba(236, 72, 153, 0.02) 100%);
+            width: 100%; /* 自适应容器宽度 */
+            height: 120px; /* 减少高度适应三列布局 */
+            max-width: 100%; /* 确保不超出容器 */
+            animation: chartRise 0.8s ease-out;
+            cursor: crosshair; /* 鼠标悬停时显示十字光标 */
+        }
+        
+        /* Tooltip样式 */
+        .kdj-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .kdj-tooltip.show {
+            opacity: 1;
+        }
+        
+        .kdj-tooltip .tooltip-date {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #8B5CF6;
+        }
+        
+        .kdj-tooltip .tooltip-values {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .kdj-tooltip .tooltip-value {
+            text-align: center;
+        }
+        
+        .kdj-tooltip .tooltip-value .label {
+            font-size: 10px;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+        
+        .kdj-tooltip .tooltip-value .value {
+            font-weight: 600;
+        }
+        
+        .kdj-tooltip .k-value { color: #8B5CF6; }
+        .kdj-tooltip .d-value { color: #06B6D4; }
+        .kdj-tooltip .j-value { color: #EC4899; }
+        
+        .data-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 1.5s ease-in-out forwards;
+        }
+        
+        /* KDJ数值显示 */
+        .kdj-values {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .kdj-value-item {
+            text-align: center;
+        }
+        
+        .kdj-value-label {
+            font-size: var(--text-xs);
+            color: var(--color-text-quaternary);
+            margin-bottom: 2px;
+        }
+        
+        .kdj-value-number {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+        
+        .kdj-value-number.k-line {
+            color: var(--color-data-1); /* 活力紫色 */
+        }
+        
+        .kdj-value-number.d-line {
+            color: var(--color-data-2); /* 科技青色 */
+        }
+        
+        .kdj-value-number.j-line {
+            color: var(--color-data-5); /* 活力粉色 */
+        }
+        
+        /* 综合分析区域 */
+        .kdj-analysis {
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.03) 0%, rgba(236, 72, 153, 0.03) 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--color-primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .kdj-analysis::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .analysis-title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .analysis-content {
+            font-size: var(--text-sm);
+            line-height: 1.5;
+        }
+        
+        .analysis-signal {
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: var(--text-sm);
+        }
+        
+        .analysis-signal.bullish {
+            background: var(--color-success-light);
+            color: var(--color-success-dark);
+            border: 1px solid var(--color-success);
+        }
+        
+        .analysis-signal.bearish {
+            background: var(--color-error-light);
+            color: var(--color-error-dark);
+            border: 1px solid var(--color-error);
+        }
+        
+        .analysis-signal.neutral {
+            background: var(--color-warning-light);
+            color: var(--color-warning-dark);
+            border: 1px solid var(--color-warning);
+        }
+        
+        .analysis-details {
+            margin-bottom: 8px;
+        }
+        
+        .detail-item {
+            margin-bottom: 4px;
+            color: var(--color-text-secondary);
+            font-size: var(--text-xs);
+            line-height: 1.4;
+        }
+        
+        .no-weekly-data {
+            text-align: center;
+            color: var(--color-text-quaternary);
+            font-style: italic;
+            padding: 24px;
+            font-size: var(--text-sm);
+        }
+        
+        .kdj-title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-3);
+            text-align: center;
+        }
+        
+        .kdj-lines {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-2);
+            margin-bottom: var(--space-3);
+        }
+        
+        .kdj-line {
+            text-align: center;
+        }
+        
+        .kdj-line-label {
+            font-size: var(--text-xs);
+            color: var(--color-text-tertiary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .kdj-line-value {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+        
+        .kdj-line-value.k-line {
+            color: var(--color-primary);
+        }
+        
+        .kdj-line-value.d-line {
+            color: var(--color-info);
+        }
+        
+        .kdj-line-value.j-line {
+            color: var(--color-warning);
+        }
+        
+        .kdj-line-value.rsv {
+            color: var(--color-text-secondary);
+        }
+        
+        .kdj-signal {
+            font-size: var(--text-xs);
+            text-align: center;
+            padding: var(--space-2);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .kdj-signal.bullish {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-success);
+        }
+        
+        .kdj-signal.bearish {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--color-error);
+        }
+        
+        .kdj-signal.neutral {
+            background: rgba(107, 114, 128, 0.1);
+            color: var(--color-text-secondary);
+        }
+        
+        .kdj-signal.overbought {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--color-warning);
+        }
+        
+        .kdj-signal.oversold {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--color-primary);
+        }
+        
+        .kdj-chart {
+            height: 60px;
+            margin-bottom: var(--space-3);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--color-bg-secondary);
+            position: relative;
+        }
+        
+        .kdj-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .kdj-legend {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            font-size: var(--text-xs);
+            color: var(--color-text-tertiary);
+        }
+        
+        .kdj-legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+        
+        .kdj-legend-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .stat-value.positive {
+            color: var(--color-success);
+        }
+        
+        .stat-value.negative {
+            color: var(--color-error);
+        }
+        
+        .stat-label {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+        }
+        
+        .fund-chart-mini {
+            height: 40px;
+            margin-bottom: var(--space-4);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .data-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 1.5s ease-in-out forwards;
+        }
+        
+        .data-source {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-xs);
+            color: var(--color-text-tertiary);
+        }
+        
+        .data-source-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .data-source-indicator.real {
+            background: var(--color-success);
+        }
+        
+        .data-source-indicator.mock {
+            background: var(--color-warning);
+        }
+        
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            padding: var(--space-16);
+            color: var(--color-text-secondary);
+            grid-column: 1 / -1; /* 跨越所有列 */
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-border);
+            border-top: 3px solid var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: var(--space-4);
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--color-error);
+            padding: var(--space-4);
+            border-radius: 12px;
+            margin: var(--space-4) 0;
+            border-left: 4px solid var(--color-error);
+            grid-column: 1 / -1; /* 跨越所有列 */
+        }
+        
+        .success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-success);
+            padding: var(--space-4);
+            border-radius: 12px;
+            margin: var(--space-4) 0;
+            border-left: 4px solid var(--color-success);
+            grid-column: 1 / -1; /* 跨越所有列 */
+        }
+        
+        /* 隐藏数据统计文案 */
+        .success p:nth-child(2) {
+            display: none;
+        }
+        
+        /* 统计字段显示控制开关样式 */
+        .stats-control {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+        
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .toggle-switch input[type="checkbox"] {
+            display: none;
+        }
+        
+        .toggle-slider {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: var(--color-border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            margin-right: 12px;
+        }
+        
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--color-primary);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider::before {
+            transform: translateX(26px);
+        }
+        
+        .toggle-label {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+        
+        /* 可切换统计字段样式 */
+        .toggleable-stat {
+            transition: all 0.3s ease;
+        }
+        
+        .toggleable-stat.hidden {
+            display: none;
+        }
+        
+        /* 自适应布局 - 当隐藏字段时调整剩余字段布局 */
+        .stats-grid.adaptive-2-cols {
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+        }
+        
+        .stats-grid.adaptive-2-cols .stat-card {
+            max-width: 300px;
+        }
+        
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* 青春活力动画 */
+        @keyframes chartRise {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(139, 92, 246, 0);
+            }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .fund-grid {
+                grid-template-columns: repeat(2, 1fr); /* 中等屏幕时两列显示 */
+                gap: 12px;
+            }
+            
+            /* 两列布局下的标题优化 - 允许换行显示 */
+            .fund-grid .fund-name {
+                /* 允许标题完整显示并换行 */
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .fund-grid {
+                grid-template-columns: 1fr; /* 小屏幕时单列显示 */
+                gap: 12px; /* 单列时减少间距 */
+            }
+            
+            /* 单列布局下的标题优化 - 允许换行显示 */
+            .fund-grid .fund-name {
+                /* 允许标题完整显示并换行 */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-4);
+            }
+            
+            .header h1 {
+                font-size: var(--text-4xl);
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .fund-grid {
+                grid-template-columns: 1fr;
+                padding: 0 4px; /* 小屏幕时减少左右内边距 */
+            }
+            
+            .filter-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .filter-tab {
+                flex: none;
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <div class="header">
+            <div class="header-content">
+                <h1>🚀 基金监控系统 V4</h1>
+                <p>青春灵动版 - 本地开发版（模拟数据）</p>
+                <div class="local-dev-notice">
+                    <strong>💡 本地开发模式</strong><br>
+                    当前使用模拟数据，如需真实数据请访问：<a href="http://47.95.118.57:8090/" target="_blank" style="color: var(--color-success);">http://47.95.118.57:8090/</a>
+                </div>
+                <div class="data-source">
+                    <span>数据源: 本地模拟数据</span>
+                    <span>|</span>
+                    <span id="lastUpdate">更新时间: -</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalFunds">-</div>
+                <div class="stat-label">监控基金数量</div>
+                <div class="stat-description">按分类智能监控</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="realDataRatio">-</div>
+                <div class="stat-label">真实数据比例</div>
+                <div class="stat-description">数据质量指标</div>
+            </div>
+            <div class="stat-card toggleable-stat" id="avgRealDaysCard">
+                <div class="stat-value" id="avgRealDays">-</div>
+                <div class="stat-label">平均真实天数</div>
+                <div class="stat-description">数据积累程度</div>
+            </div>
+            <div class="stat-card toggleable-stat" id="maxRealDaysCard">
+                <div class="stat-value" id="maxRealDays">-</div>
+                <div class="stat-label">最大真实天数</div>
+                <div class="stat-description">最佳数据质量</div>
+            </div>
+        </div>
+        
+        <!-- 统计字段显示控制开关 -->
+        <div class="stats-control">
+            <label class="toggle-switch">
+                <input type="checkbox" id="statsToggle" checked>
+                <span class="toggle-slider"></span>
+                <span class="toggle-label">显示详细统计</span>
+            </label>
+        </div>
+        
+        <!-- 筛选器 -->
+        <div class="filter-section">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-category="all">全部基金</button>
+                <button class="filter-tab" data-category="宽基指数">宽基指数</button>
+                <button class="filter-tab" data-category="行业主题">行业主题</button>
+                <button class="filter-tab" data-category="固收+">固收+</button>
+                <button class="filter-tab" data-category="债券基金">债券基金</button>
+            </div>
+        </div>
+        
+        <!-- 基金列表 -->
+        <div class="fund-list">
+            <div id="fundContainer" class="fund-grid">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <div>正在加载基金数据...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 本地开发模式 - 使用模拟数据
+        let allFunds = [];
+        let currentCategory = 'all';
+        
+        // 天天基金数据收集配置
+        const TIAN_TIAN_FUND_API = {
+            baseUrl: 'http://fundgz.1234567.com.cn/js/',
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Referer': 'http://fund.eastmoney.com/',
+                'Accept': 'application/json, text/javascript, */*; q=0.01'
+            }
+        };
+        
+        // 天天基金数据收集函数
+        async function collectTianTianFundData(fundCode) {
+            try {
+                const url = `${TIAN_TIAN_FUND_API.baseUrl}${fundCode}.js`;
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: TIAN_TIAN_FUND_API.headers,
+                    mode: 'cors'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const text = await response.text();
+                // 解析JSONP响应
+                const jsonStr = text.replace(/^jsonpgz\(/, '').replace(/\);$/, '');
+                const data = JSON.parse(jsonStr);
+                
+                return {
+                    code: data.fundcode,
+                    name: data.name,
+                    nav: parseFloat(data.gsz),
+                    change: parseFloat(data.gszzl),
+                    date: data.gztime,
+                    source: 'real'
+                };
+            } catch (error) {
+                console.warn(`获取基金 ${fundCode} 数据失败:`, error.message);
+                return null;
+            }
+        }
+        
+        // 批量收集天天基金数据
+        async function collectAllFundsData() {
+            const allFundCodes = Object.values(fundCategories).flat().map(fund => fund.code);
+            const realData = [];
+            
+            console.log('开始收集天天基金真实数据...');
+            
+            for (const fundCode of allFundCodes.slice(0, 10)) { // 限制数量避免请求过多
+                try {
+                    const fundData = await collectTianTianFundData(fundCode);
+                    if (fundData) {
+                        realData.push(fundData);
+                        console.log(`✅ 成功获取基金 ${fundCode} 数据`);
+                    }
+                } catch (error) {
+                    console.warn(`❌ 获取基金 ${fundCode} 数据失败:`, error.message);
+                }
+                
+                // 添加延迟避免请求过于频繁
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            console.log(`数据收集完成，共获取 ${realData.length} 个基金的真实数据`);
+            return realData;
+        }
+        
+        // 数据存储和加载
+        function saveFundData(fundData) {
+            try {
+                localStorage.setItem('fund_monitoring_data', JSON.stringify({
+                    data: fundData,
+                    lastUpdate: new Date().toISOString()
+                }));
+                console.log('基金数据已保存到本地存储');
+            } catch (error) {
+                console.warn('保存数据失败:', error.message);
+            }
+        }
+        
+        function loadFundData() {
+            try {
+                const stored = localStorage.getItem('fund_monitoring_data');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    const lastUpdate = new Date(parsed.lastUpdate);
+                    const now = new Date();
+                    const hoursDiff = (now - lastUpdate) / (1000 * 60 * 60);
+                    
+                    // 如果数据超过24小时，返回null强制重新收集
+                    if (hoursDiff < 24) {
+                        console.log('加载本地存储的基金数据');
+                        return parsed.data;
+                    } else {
+                        console.log('本地数据过期，需要重新收集');
+                        return null;
+                    }
+                }
+            } catch (error) {
+                console.warn('加载本地数据失败:', error.message);
+            }
+            return null;
+        }
+        
+        // 基金分类数据
+        const fundCategories = {
+            "宽基指数": [
+                { code: "000001", name: "华夏上证50ETF联接A" },
+                { code: "110022", name: "易方达沪深300ETF联接A" },
+                { code: "161725", name: "招商中证500ETF联接A" },
+                { code: "501305", name: "汇添富中证港股通高股息投资ETF联接(LOF)A" },
+                { code: "501306", name: "汇添富中证港股通红利ETF联接(LOF)A" },
+                { code: "501307", name: "汇添富恒生科技ETF联接(LOF)A" },
+                { code: "501308", name: "汇添富中证芯片产业ETF联接(LOF)A" },
+                { code: "501309", name: "汇添富创业板ETF联接(LOF)A" },
+                { code: "501310", name: "汇添富科创50联接(LOF)A" },
+                { code: "501311", name: "汇添富人工智能ETF联接(LOF)A" },
+                { code: "501312", name: "汇添富证券保险ETF联接(LOF)A" },
+                { code: "501313", name: "汇添富中国央企红利ETF联接(LOF)A" }
+            ],
+            "行业主题": [
+                { code: "006493", name: "易方达蓝筹精选混合A" },
+                { code: "005827", name: "易方达蓝筹精选混合C" },
+                { code: "001234", name: "景顺长城品质长青混合A" },
+                { code: "001235", name: "景顺长城宁景6个月持有期混合A" },
+                { code: "001236", name: "华泰柏瑞安泽稳利9个月持有期混合A" },
+                { code: "001237", name: "天弘裕惠回报定期开放式混合A" },
+                { code: "001238", name: "中金欣利混合A" },
+                { code: "001239", name: "博时恒通六个月持有期混合A" },
+                { code: "001240", name: "广发盈选稳健6个月持有混合发起(FOF)A" },
+                { code: "001241", name: "招商恒泽混合A" },
+                { code: "001242", name: "易方达红利优享灵活配置混合A" },
+                { code: "001243", name: "海富通盈丰稳健6个月持有混合(FOF)A" },
+                { code: "001244", name: "嘉实瑾通灵活配置混合A" }
+            ],
+            "固收+": [
+                { code: "002001", name: "景顺长城景颐招利6个月持有期债券A" },
+                { code: "002002", name: "华泰柏瑞稳健增利债券A" },
+                { code: "002003", name: "天弘嘉实信用C" },
+                { code: "002004", name: "中金北证50成份指数A" },
+                { code: "002005", name: "博时中证500指数增强A" },
+                { code: "002006", name: "广发沪深300指数增强A" },
+                { code: "002007", name: "招商天弘恒生科技ETF联接(QDII)C" },
+                { code: "002008", name: "易方达中欧盈选稳健6个月持有混合发起(FOF)E" },
+                { code: "002009", name: "海富通东方红盈丰稳健6个月持有混合(FOF)C" }
+            ],
+            "债券基金": [
+                { code: "003001", name: "华夏纯债债券A" },
+                { code: "003002", name: "易方达信用债债券A" },
+                { code: "003003", name: "招商中短债债券A" },
+                { code: "003004", name: "广发利率债债券A" },
+                { code: "003005", name: "博时可转债债券A" }
+            ]
+        };
+        
+        // 获取基金类型
+        function getFundType(code) {
+            for (const [type, funds] of Object.entries(fundCategories)) {
+                if (funds.some(fund => fund.code === code)) {
+                    return type;
+                }
+            }
+            return '未知';
+        }
+        
+        // 格式化数字
+        function formatNumber(num) {
+            return parseFloat(num).toFixed(4);
+        }
+        
+        // 格式化百分比
+        function formatPercent(num) {
+            const sign = num >= 0 ? '+' : '';
+            return `${sign}${parseFloat(num).toFixed(2)}%`;
+        }
+        
+        // 格式化日期
+        function formatDate(dateStr) {
+            return new Date(dateStr).toLocaleDateString('zh-CN');
+        }
+        
+        // 获取变化样式类
+        function getChangeClass(change) {
+            return parseFloat(change) >= 0 ? 'positive' : 'negative';
+        }
+        
+        // KDJ信号分析
+        function analyzeKDJSignal(kdjData) {
+            if (!kdjData || kdjData.length < 2) return { signal: 'neutral', text: '数据不足' };
+            
+            const latest = kdjData[0];
+            const previous = kdjData[1];
+            
+            const { k, d, j } = latest;
+            const prevK = previous.k;
+            const prevD = previous.d;
+            
+            // 金叉死叉判断
+            const goldenCross = k > d && prevK <= prevD;
+            const deathCross = k < d && prevK >= prevD;
+            
+            // 超买超卖判断
+            const overbought = k > 80 && d > 80;
+            const oversold = k < 20 && d < 20;
+            
+            // J线极端值判断
+            const jExtremeHigh = j > 100;
+            const jExtremeLow = j < 0;
+            
+            // 综合信号判断
+            if (jExtremeHigh) {
+                return { signal: 'overbought', text: 'J>100 极端超买' };
+            } else if (jExtremeLow) {
+                return { signal: 'oversold', text: 'J<0 极端超卖' };
+            } else if (goldenCross && oversold) {
+                return { signal: 'bullish', text: '金叉+超卖 买入信号' };
+            } else if (deathCross && overbought) {
+                return { signal: 'bearish', text: '死叉+超买 卖出信号' };
+            } else if (goldenCross) {
+                return { signal: 'bullish', text: 'K上穿D 金叉信号' };
+            } else if (deathCross) {
+                return { signal: 'bearish', text: 'K下穿D 死叉信号' };
+            } else if (overbought) {
+                return { signal: 'overbought', text: 'KD>80 超买区域' };
+            } else if (oversold) {
+                return { signal: 'oversold', text: 'KD<20 超卖区域' };
+            } else {
+                return { signal: 'neutral', text: '震荡整理' };
+            }
+        }
+        
+        // 生成KDJ周线走势图 - 应用新设计规范
+        function generateKDJWeeklyChart(weeklyKDJ, width = '100%', height = 100) {
+            if (!weeklyKDJ || weeklyKDJ.length === 0) return '';
+            
+            // 使用固定像素宽度，确保图表充分利用空间
+            const svgWidth = 400; // 固定宽度，CSS会缩放为100%
+            const svgHeight = height;
+            const padding = { top: 15, right: 30, bottom: 25, left: 30 }; // 对称padding，让图表居中
+            const chartWidth = svgWidth - padding.left - padding.right; // 340px
+            const chartHeight = svgHeight - padding.top - padding.bottom;
+            
+            // 获取K、D、J的值范围
+            const allValues = weeklyKDJ.flatMap(d => [d.k, d.d, d.j]);
+            const minValue = Math.min(...allValues, 0);
+            const maxValue = Math.max(...allValues, 100);
+            const valueRange = maxValue - minValue;
+            
+            // 计算坐标
+            const getY = (value) => {
+                return padding.top + chartHeight - ((value - minValue) / valueRange) * chartHeight;
+            };
+            
+            const getX = (index) => {
+                return padding.left + (index / (weeklyKDJ.length - 1)) * chartWidth;
+            };
+            
+            // 生成K线路径
+            const kPath = weeklyKDJ.map((d, i) => {
+                const x = getX(i);
+                const y = getY(d.k);
+                return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
+            }).join(' ');
+            
+            // 生成D线路径
+            const dPath = weeklyKDJ.map((d, i) => {
+                const x = getX(i);
+                const y = getY(d.d);
+                return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
+            }).join(' ');
+            
+            // 生成J线路径
+            const jPath = weeklyKDJ.map((d, i) => {
+                const x = getX(i);
+                const y = getY(d.j);
+                return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
+            }).join(' ');
+            
+            // 生成日期标签 - 适应52周数据，显示更多时间点
+            const dateLabels = weeklyKDJ.map((d, i) => {
+                if (i % Math.ceil(weeklyKDJ.length / 8) === 0) { // 显示8个时间点
+                    const date = new Date(d.date);
+                    const month = date.getMonth() + 1;
+                    const day = date.getDate();
+                    const x = getX(i);
+                    return `<text x="${x}" y="${svgHeight - 5}" text-anchor="middle" font-size="8" fill="#8C8C8C">${month}/${day}</text>`;
+                }
+                return '';
+            }).join('');
+            
+            // 生成Y轴标签
+            const yLabels = [0, 20, 50, 80, 100].map(value => {
+                const y = getY(value);
+                return `<text x="${padding.left - 5}" y="${y + 3}" text-anchor="end" font-size="9" fill="#8C8C8C">${value}</text>`;
+            }).join('');
+            
+            const chartId = `chart-${Math.random().toString(36).substr(2, 9)}`;
+            
+            return `
+                <div class="chart-wrapper" style="position: relative; width: 100%;">
+                    <svg id="${chartId}" width="${svgWidth}" height="${svgHeight}" class="kdj-chart-svg">
+                        <!-- 背景网格 -->
+                        <defs>
+                            <pattern id="grid-${chartId}" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#F0F0F0" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#grid-${chartId})"/>
+                        
+                        <!-- 80/20参考线 -->
+                        <line x1="${padding.left}" y1="${getY(80)}" x2="${padding.left + chartWidth}" y2="${getY(80)}" stroke="#FF4D4F" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+                        <line x1="${padding.left}" y1="${getY(20)}" x2="${padding.left + chartWidth}" y2="${getY(20)}" stroke="#00A76B" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+                        <line x1="${padding.left}" y1="${getY(50)}" x2="${padding.left + chartWidth}" y2="${getY(50)}" stroke="#8C8C8C" stroke-width="1" stroke-dasharray="1,1" opacity="0.4"/>
+                        
+                        <!-- K线 - 活力紫色 -->
+                        <path d="${kPath}" stroke="#8B5CF6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="data-line"/>
+                        <!-- D线 - 科技青色 -->
+                        <path d="${dPath}" stroke="#06B6D4" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="data-line"/>
+                        <!-- J线 - 活力粉色 -->
+                        <path d="${jPath}" stroke="#EC4899" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="data-line"/>
+                        
+                        <!-- 交互区域 -->
+                        <rect x="${padding.left}" y="${padding.top}" width="${chartWidth}" height="${chartHeight}" 
+                              fill="transparent" class="interaction-area" 
+                              data-chart-id="${chartId}" data-weekly-data='${JSON.stringify(weeklyKDJ)}'/>
+                        
+                        <!-- 坐标轴标签 -->
+                        ${dateLabels}
+                        ${yLabels}
+                    </svg>
+                    
+                    <!-- Tooltip -->
+                    <div class="kdj-tooltip" id="tooltip-${chartId}">
+                        <div class="tooltip-date"></div>
+                        <div class="tooltip-values">
+                            <div class="tooltip-value">
+                                <div class="label">K线</div>
+                                <div class="value k-value"></div>
+                            </div>
+                            <div class="tooltip-value">
+                                <div class="label">D线</div>
+                                <div class="value d-value"></div>
+                            </div>
+                            <div class="tooltip-value">
+                                <div class="label">J线</div>
+                                <div class="value j-value"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 生成KDJ图表SVG（保持原有小图表功能）
+        function generateKDJChart(kdjData, width = 100, height = 60) {
+            if (!kdjData || kdjData.length < 2) return '';
+            
+            const data = kdjData.slice(0, 20).reverse(); // 取最近20个数据点
+            const maxVal = Math.max(...data.map(d => Math.max(d.k, d.d, d.j)));
+            const minVal = Math.min(...data.map(d => Math.min(d.k, d.d, d.j)));
+            const range = maxVal - minVal || 100;
+            
+            const scaleX = width / (data.length - 1);
+            const scaleY = height / range;
+            
+            const points = data.map((d, i) => ({
+                x: i * scaleX,
+                y: height - ((d.k - minVal) * scaleY),
+                k: d.k,
+                d: d.d,
+                j: d.j
+            }));
+            
+            const kPath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+            const dPath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${height - ((p.d - minVal) * scaleY)}`).join(' ');
+            const jPath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${height - ((p.j - minVal) * scaleY)}`).join(' ');
+            
+            return `
+                <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+                    <!-- 背景网格 -->
+                    <defs>
+                        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#f3f4f6" stroke-width="0.5"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)"/>
+                    
+                    <!-- 80和20水平线 -->
+                    <line x1="0" y1="${height - ((80 - minVal) * scaleY)}" x2="${width}" y2="${height - ((80 - minVal) * scaleY)}" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+                    <line x1="0" y1="${height - ((20 - minVal) * scaleY)}" x2="${width}" y2="${height - ((20 - minVal) * scaleY)}" stroke="#10b981" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+                    
+                    <!-- KDJ线条 -->
+                    <path d="${kPath}" stroke="#8b5cf6" stroke-width="2" fill="none" class="data-line"/>
+                    <path d="${dPath}" stroke="#06b6d4" stroke-width="2" fill="none" class="data-line"/>
+                    <path d="${jPath}" stroke="#f59e0b" stroke-width="2" fill="none" class="data-line"/>
+                </svg>
+            `;
+        }
+        
+        // KDJ指标计算函数
+        function calculateKDJ(priceData, n = 9, m1 = 3, m2 = 3) {
+            if (priceData.length < n) return [];
+            
+            const kdjData = [];
+            let k = 50, d = 50; // 初始值
+            
+            for (let i = n - 1; i < priceData.length; i++) {
+                // 获取过去n天的数据
+                const periodData = priceData.slice(i - n + 1, i + 1);
+                const high = Math.max(...periodData.map(d => d.high));
+                const low = Math.min(...periodData.map(d => d.low));
+                const close = priceData[i].close;
+                
+                // 计算RSV
+                const rsv = high === low ? 50 : ((close - low) / (high - low)) * 100;
+                
+                // 计算K值
+                k = (2/3) * k + (1/3) * rsv;
+                
+                // 计算D值
+                d = (2/3) * d + (1/3) * k;
+                
+                // 计算J值
+                const j = 3 * k - 2 * d;
+                
+                kdjData.push({
+                    date: priceData[i].date,
+                    rsv: parseFloat(rsv.toFixed(2)),
+                    k: parseFloat(k.toFixed(2)),
+                    d: parseFloat(d.toFixed(2)),
+                    j: parseFloat(j.toFixed(2))
+                });
+            }
+            
+            return kdjData;
+        }
+        
+        // 生成周线数据（从日线数据中提取）
+        function generateWeeklyData(dailyData) {
+            const weeklyData = [];
+            const weeks = {};
+            
+            // 按周分组
+            dailyData.forEach(day => {
+                const date = new Date(day.date);
+                const year = date.getFullYear();
+                const week = getWeekNumber(date);
+                const weekKey = `${year}-W${week}`;
+                
+                if (!weeks[weekKey]) {
+                    weeks[weekKey] = [];
+                }
+                weeks[weekKey].push(day);
+            });
+            
+            // 生成周线数据
+            Object.values(weeks).forEach(weekData => {
+                if (weekData.length > 0) {
+                    const high = Math.max(...weekData.map(d => d.high));
+                    const low = Math.min(...weekData.map(d => d.low));
+                    const close = weekData[0].close; // 最新一天的收盘价
+                    const open = weekData[weekData.length - 1].close; // 最早一天的收盘价作为开盘价
+                    
+                    weeklyData.push({
+                        date: weekData[0].date,
+                        open: open,
+                        high: high,
+                        low: low,
+                        close: close,
+                        nav: close.toFixed(4),
+                        change: ((close - open) / open * 100).toFixed(2),
+                        source: weekData[0].source
+                    });
+                }
+            });
+            
+            return weeklyData.sort((a, b) => new Date(a.date) - new Date(b.date)); // 按时间正序排列
+        }
+        
+        // 生成月线数据（从日线数据中提取）
+        function generateMonthlyData(dailyData) {
+            const monthlyData = [];
+            const months = {};
+            
+            // 按月分组
+            dailyData.forEach(day => {
+                const date = new Date(day.date);
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const monthKey = `${year}-${month.toString().padStart(2, '0')}`;
+                
+                if (!months[monthKey]) {
+                    months[monthKey] = [];
+                }
+                months[monthKey].push(day);
+            });
+            
+            // 生成月线数据
+            Object.values(months).forEach(monthData => {
+                if (monthData.length > 0) {
+                    const high = Math.max(...monthData.map(d => d.high));
+                    const low = Math.min(...monthData.map(d => d.low));
+                    const close = monthData[0].close;
+                    const open = monthData[monthData.length - 1].close;
+                    
+                    monthlyData.push({
+                        date: monthData[0].date,
+                        open: open,
+                        high: high,
+                        low: low,
+                        close: close,
+                        nav: close.toFixed(4),
+                        change: ((close - open) / open * 100).toFixed(2),
+                        source: monthData[0].source
+                    });
+                }
+            });
+            
+            return monthlyData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+        
+        // 获取周数
+        function getWeekNumber(date) {
+            const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+            const dayNum = d.getUTCDay() || 7;
+            d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+            const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+            return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        }
+        
+        // 基于KDJ动量观测的综合判断
+        function analyzeKDJMomentum(weeklyKDJ) {
+            if (!weeklyKDJ || weeklyKDJ.length < 2) {
+                return {
+                    signal: 'neutral',
+                    confidence: 0,
+                    analysis: '数据不足，无法分析',
+                    details: []
+                };
+            }
+            
+            const latest = weeklyKDJ[0];
+            const previous = weeklyKDJ[1];
+            const k = latest.k;
+            const d = latest.d;
+            const j = latest.j;
+            const prevK = previous.k;
+            const prevD = previous.d;
+            const prevJ = previous.j;
+            
+            let signal = 'neutral';
+            let confidence = 0;
+            let analysis = '';
+            let details = [];
+            
+            // 1. 超买超卖区域判断
+            if (k > 80 && d > 80) {
+                details.push('K、D线进入超买区(>80)');
+                if (j > 100) {
+                    details.push('J线极端超买(>100)，警惕钝化');
+                    signal = 'bearish';
+                    confidence += 0.3;
+                } else {
+                    details.push('J线未极端，关注回调信号');
+                }
+            } else if (k < 20 && d < 20) {
+                details.push('K、D线进入超卖区(<20)');
+                if (j < 0) {
+                    details.push('J线极端超卖(<0)，关注反弹');
+                    signal = 'bullish';
+                    confidence += 0.3;
+                } else {
+                    details.push('J线未极端，关注反弹信号');
+                }
+            } else {
+                details.push('K、D线在正常区间(20-80)');
+            }
+            
+            // 2. 金叉死叉判断
+            if (k > d && prevK <= prevD) {
+                details.push('K线上穿D线形成金叉');
+                if (j > 0) {
+                    details.push('J线配合向上，买入信号较强');
+                    signal = 'bullish';
+                    confidence += 0.4;
+                } else {
+                    details.push('J线未配合，信号较弱');
+                    confidence += 0.2;
+                }
+            } else if (k < d && prevK >= prevD) {
+                details.push('K线下穿D线形成死叉');
+                if (j < 0) {
+                    details.push('J线配合向下，卖出信号较强');
+                    signal = 'bearish';
+                    confidence += 0.4;
+                } else {
+                    details.push('J线未配合，信号较弱');
+                    confidence += 0.2;
+                }
+            }
+            
+            // 3. J线加速度分析
+            const jChange = j - prevJ;
+            if (Math.abs(jChange) > 10) {
+                if (jChange > 0) {
+                    details.push('J线加速向上，动量增强');
+                    if (signal === 'bullish') confidence += 0.2;
+                } else {
+                    details.push('J线加速向下，动量减弱');
+                    if (signal === 'bearish') confidence += 0.2;
+                }
+            } else {
+                details.push('J线变化平缓，动量稳定');
+            }
+            
+            // 4. 趋势强度判断
+            const kdTrend = k - d;
+            const prevKdTrend = prevK - prevD;
+            if (Math.abs(kdTrend) > Math.abs(prevKdTrend)) {
+                details.push('K、D线分离度增加，趋势加强');
+                confidence += 0.1;
+            } else if (Math.abs(kdTrend) < Math.abs(prevKdTrend)) {
+                details.push('K、D线收敛，趋势减弱');
+                confidence -= 0.1;
+            }
+            
+            // 5. 综合判断
+            confidence = Math.min(confidence, 1.0);
+            
+            if (confidence > 0.6) {
+                if (signal === 'bullish') {
+                    analysis = 'KDJ周线显示强势买入信号，建议关注';
+                } else if (signal === 'bearish') {
+                    analysis = 'KDJ周线显示强势卖出信号，建议谨慎';
+                }
+            } else if (confidence > 0.3) {
+                if (signal === 'bullish') {
+                    analysis = 'KDJ周线显示买入信号，可适度关注';
+                } else if (signal === 'bearish') {
+                    analysis = 'KDJ周线显示卖出信号，建议观望';
+                }
+            } else {
+                analysis = 'KDJ周线信号不明确，建议继续观察';
+                signal = 'neutral';
+            }
+            
+            return {
+                signal: signal,
+                confidence: confidence,
+                analysis: analysis,
+                details: details,
+                values: {
+                    k: k.toFixed(2),
+                    d: d.toFixed(2),
+                    j: j.toFixed(2)
+                }
+            };
+        }
+        
+        // 多周期KDJ综合分析
+        function analyzeMultiPeriodKDJ(fund) {
+            const dailyKDJ = fund.kdj || [];
+            const weeklyKDJ = fund.weeklyKDJ || [];
+            const monthlyKDJ = fund.monthlyKDJ || [];
+            
+            const signals = {
+                daily: dailyKDJ.length > 0 ? analyzeKDJSignal(dailyKDJ) : null,
+                weekly: weeklyKDJ.length > 0 ? analyzeKDJMomentum(weeklyKDJ) : null,
+                monthly: monthlyKDJ.length > 0 ? analyzeKDJSignal(monthlyKDJ) : null
+            };
+            
+            // 综合判断
+            let overallSignal = 'neutral';
+            let confidence = 0;
+            let reasons = [];
+            
+            // 月线定方向
+            if (signals.monthly) {
+                if (signals.monthly.signal === 'bullish') {
+                    confidence += 0.4;
+                    reasons.push('月线看多');
+                } else if (signals.monthly.signal === 'bearish') {
+                    confidence -= 0.4;
+                    reasons.push('月线看空');
+                }
+            }
+            
+            // 周线确认趋势
+            if (signals.weekly) {
+                if (signals.weekly.signal === 'bullish') {
+                    confidence += 0.3;
+                    reasons.push('周线确认');
+                } else if (signals.weekly.signal === 'bearish') {
+                    confidence -= 0.3;
+                    reasons.push('周线确认');
+                }
+            }
+            
+            // 日线择时
+            if (signals.daily) {
+                if (signals.daily.signal === 'bullish') {
+                    confidence += 0.3;
+                    reasons.push('日线买入');
+                } else if (signals.daily.signal === 'bearish') {
+                    confidence -= 0.3;
+                    reasons.push('日线卖出');
+                }
+            }
+            
+            if (confidence > 0.5) {
+                overallSignal = 'bullish';
+            } else if (confidence < -0.5) {
+                overallSignal = 'bearish';
+            } else {
+                overallSignal = 'neutral';
+            }
+            
+            return {
+                signal: overallSignal,
+                confidence: Math.abs(confidence),
+                reasons: reasons,
+                details: signals
+            };
+        }
+        
+        // 生成模拟基金数据（包含高低价用于KDJ计算）
+        function generateMockFunds() {
+            const mockFunds = [];
+            const allFundCodes = Object.values(fundCategories).flat().slice(0, 20); // 限制数量
+            
+            // 获取今天的日期作为分界点
+            const today = new Date();
+            const todayStr = today.toISOString().split('T')[0];
+            
+            allFundCodes.forEach(fundInfo => {
+                const mockData = [];
+                const baseNav = 1.0 + Math.random() * 2; // 1.0-3.0之间的净值
+                let currentNav = baseNav;
+                
+                // 生成365天的模拟数据（用于多周期KDJ计算，确保有52周数据）
+                for (let i = 0; i < 365; i++) {
+                    const date = new Date();
+                    date.setDate(date.getDate() - i);
+                    const dateStr = date.toISOString().split('T')[0];
+                    
+                    // 生成更真实的价格波动
+                    const volatility = 0.02 + Math.random() * 0.03; // 2%-5%的波动率
+                    const trend = (Math.random() - 0.5) * 0.001; // 轻微趋势
+                    const change = (Math.random() - 0.5) * volatility + trend;
+                    
+                    const newNav = currentNav * (1 + change);
+                    const high = Math.max(currentNav, newNav) * (1 + Math.random() * 0.01);
+                    const low = Math.min(currentNav, newNav) * (1 - Math.random() * 0.01);
+                    
+                    // 基于实际日期判断数据源：今天及以后为真实数据，历史为模拟数据
+                    const isRealData = dateStr >= todayStr;
+                    
+                    mockData.push({
+                        date: dateStr,
+                        nav: newNav.toFixed(4),
+                        close: parseFloat(newNav.toFixed(4)),
+                        high: parseFloat(high.toFixed(4)),
+                        low: parseFloat(low.toFixed(4)),
+                        change: (change * 100).toFixed(2),
+                        source: isRealData ? 'real' : 'mock'
+                    });
+                    
+                    currentNav = newNav;
+                }
+                
+                // 生成多周期数据
+                const dailyData = mockData.reverse(); // 反转数据，让最新的在前面
+                const weeklyData = generateWeeklyData(dailyData);
+                const monthlyData = generateMonthlyData(dailyData);
+                
+                // 计算多周期KDJ指标
+                const dailyKDJ = calculateKDJ(dailyData);
+                const weeklyKDJ = calculateKDJ(weeklyData);
+                const monthlyKDJ = calculateKDJ(monthlyData);
+                
+                // 计算真实数据统计
+                const realDataCount = dailyData.filter(d => d.source === 'real').length;
+                const mockDataCount = dailyData.filter(d => d.source === 'mock').length;
+                
+                mockFunds.push({
+                    code: fundInfo.code,
+                    name: fundInfo.name,
+                    data: dailyData.reverse(), // 再次反转，保持时间顺序
+                    kdj: dailyKDJ,
+                    weeklyKDJ: weeklyKDJ,
+                    monthlyKDJ: monthlyKDJ,
+                    stats: {
+                        real: realDataCount,
+                        mock: mockDataCount,
+                        total: dailyData.length
+                    }
+                });
+            });
+            
+            return mockFunds;
+        }
+        
+        // 更新统计信息
+        function updateStats(funds) {
+            const totalFunds = funds.length;
+            const realDataCount = funds.filter(fund => fund.data && fund.data.length > 0).length;
+            const realDataRatio = totalFunds > 0 ? ((realDataCount / totalFunds) * 100).toFixed(1) : 0;
+            
+            const realDays = funds.map(fund => fund.stats?.real || 0);
+            const avgRealDays = realDays.length > 0 ? (realDays.reduce((a, b) => a + b, 0) / realDays.length).toFixed(1) : 0;
+            const maxRealDays = realDays.length > 0 ? Math.max(...realDays) : 0;
+            
+            document.getElementById('totalFunds').textContent = totalFunds;
+            document.getElementById('realDataRatio').textContent = `${realDataRatio}%`;
+            document.getElementById('avgRealDays').textContent = avgRealDays;
+            document.getElementById('maxRealDays').textContent = maxRealDays;
+        }
+        
+        // 渲染基金卡片 - 专注于KDJ周线分析
+        function renderFundCard(fund) {
+            const latest = fund.data && fund.data.length > 0 ? fund.data[0] : null;
+            const changeClass = latest ? getChangeClass(latest.change) : '';
+            const sourceClass = latest && latest.source === 'real' ? 'real' : 'mock';
+            const sourceText = latest && latest.source === 'real' ? '真实数据' : '模拟数据';
+            const fundType = getFundType(fund.code);
+            
+            // KDJ周线分析
+            const weeklyAnalysis = fund.weeklyKDJ && fund.weeklyKDJ.length > 0 ? analyzeKDJMomentum(fund.weeklyKDJ) : null;
+            
+            return `
+                <div class="fund-card" data-category="${fundType}">
+                    <!-- 头部区域 -->
+                    <div class="fund-header">
+                        <div>
+                            <div class="fund-name">${fund.name}</div>
+                            <div class="fund-code">代码: ${fund.code}</div>
+                        </div>
+                        <div class="fund-type-badge ${fundType}">${fundType}</div>
+                    </div>
+                    
+                    <!-- 关键数据 -->
+                    <div class="fund-stats">
+                        <div class="stat">
+                            <div class="stat-value ${changeClass}">
+                                ${latest ? formatNumber(latest.nav) : '-'}
+                            </div>
+                            <div class="stat-label">净值</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value ${changeClass}">
+                                ${latest ? formatPercent(latest.change) : '-'}
+                            </div>
+                            <div class="stat-label">涨跌幅</div>
+                        </div>
+                    </div>
+                    
+                    <!-- KDJ周线分析区域 -->
+                    <div class="kdj-analysis-section">
+                        ${fund.weeklyKDJ && fund.weeklyKDJ.length > 0 ? `
+                            <!-- KDJ周线走势图 -->
+                            <div class="kdj-chart-container">
+                                <div class="chart-title">KDJ周线走势图</div>
+                                ${generateKDJWeeklyChart(fund.weeklyKDJ, '100%', 100)}
+                            </div>
+                            
+                            <!-- KDJ数值显示 -->
+                            <div class="kdj-values">
+                                <div class="kdj-value-item">
+                                    <div class="kdj-value-label">K线</div>
+                                    <div class="kdj-value-number k-line">${weeklyAnalysis.values.k}</div>
+                                </div>
+                                <div class="kdj-value-item">
+                                    <div class="kdj-value-label">D线</div>
+                                    <div class="kdj-value-number d-line">${weeklyAnalysis.values.d}</div>
+                                </div>
+                                <div class="kdj-value-item">
+                                    <div class="kdj-value-label">J线</div>
+                                    <div class="kdj-value-number j-line">${weeklyAnalysis.values.j}</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 综合分析 -->
+                            <div class="kdj-analysis">
+                                <div class="analysis-title">周线KDJ动量分析</div>
+                                <div class="analysis-content">
+                                    <div class="analysis-signal ${weeklyAnalysis.signal}">
+                                        ${weeklyAnalysis.analysis}
+                                    </div>
+                                    <div class="analysis-details">
+                                        ${weeklyAnalysis.details.map(detail => `<div class="detail-item">• ${detail}</div>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        ` : `
+                            <div class="no-weekly-data">周线数据不足，无法进行KDJ分析</div>
+                        `}
+                    </div>
+                    
+                    <!-- 数据源信息 -->
+                    <div class="data-source">
+                        <div class="data-source-indicator ${sourceClass}"></div>
+                        <span>${sourceText}</span>
+                        <span>${latest ? formatDate(latest.date) : ''}</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 渲染基金列表
+        function renderFundList(funds) {
+            const container = document.getElementById('fundContainer');
+            
+            if (!funds || funds.length === 0) {
+                container.innerHTML = '<div class="error">暂无基金数据</div>';
+                return;
+            }
+            
+            const filteredFunds = currentCategory === 'all' 
+                ? funds 
+                : funds.filter(fund => getFundType(fund.code) === currentCategory);
+            
+            const html = filteredFunds.map(fund => renderFundCard(fund)).join('');
+            container.innerHTML = html;
+            
+            // 延迟初始化图表交互，确保DOM完全渲染
+            setTimeout(() => {
+                initializeChartInteractions();
+            }, 100);
+        }
+        
+        // 初始化图表交互功能
+        function initializeChartInteractions() {
+            console.log('开始初始化图表交互功能...');
+            const areas = document.querySelectorAll('.interaction-area');
+            console.log(`找到 ${areas.length} 个交互区域`);
+            
+            // 为所有交互区域添加事件监听器
+            areas.forEach((area, index) => {
+                const chartId = area.getAttribute('data-chart-id');
+                const weeklyDataStr = area.getAttribute('data-weekly-data');
+                const tooltip = document.getElementById(`tooltip-${chartId}`);
+                const svg = document.getElementById(chartId);
+                
+                console.log(`处理区域 ${index + 1}:`, { chartId, hasTooltip: !!tooltip, hasSvg: !!svg, hasData: !!weeklyDataStr });
+                
+                if (!tooltip || !svg) {
+                    console.warn(`区域 ${index + 1} 缺少必要元素:`, { tooltip: !!tooltip, svg: !!svg });
+                    return;
+                }
+                
+                let weeklyData;
+                try {
+                    weeklyData = JSON.parse(weeklyDataStr);
+                    console.log(`区域 ${index + 1} 数据解析成功，数据点数量:`, weeklyData.length);
+                } catch (e) {
+                    console.error(`区域 ${index + 1} 数据解析失败:`, e);
+                    return;
+                }
+                
+                // 鼠标移动事件
+                area.addEventListener('mousemove', (e) => {
+                    const rect = svg.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // 计算对应的数据点 - 使用与图表相同的padding
+                    const padding = { top: 15, right: 30, bottom: 25, left: 30 };
+                    const chartWidth = rect.width - padding.left - padding.right;
+                    const chartHeight = rect.height - padding.top - padding.bottom;
+                    
+                    const relativeX = x - padding.left;
+                    const dataIndex = Math.round((relativeX / chartWidth) * (weeklyData.length - 1));
+                    
+                    console.log(`鼠标移动: x=${x}, relativeX=${relativeX}, dataIndex=${dataIndex}, chartWidth=${chartWidth}`);
+                    
+                    if (dataIndex >= 0 && dataIndex < weeklyData.length) {
+                        const data = weeklyData[dataIndex];
+                        console.log(`显示tooltip:`, data);
+                        showTooltip(tooltip, data, e.clientX, e.clientY);
+                    }
+                });
+                
+                // 鼠标离开事件
+                area.addEventListener('mouseleave', () => {
+                    hideTooltip(tooltip);
+                });
+                
+                // 触摸事件（移动端）
+                area.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    const rect = svg.getBoundingClientRect();
+                    const x = touch.clientX - rect.left;
+                    const y = touch.clientY - rect.top;
+                    
+                    const padding = { top: 15, right: 30, bottom: 25, left: 30 };
+                    const chartWidth = rect.width - padding.left - padding.right;
+                    const relativeX = x - padding.left;
+                    const dataIndex = Math.round((relativeX / chartWidth) * (weeklyData.length - 1));
+                    
+                    if (dataIndex >= 0 && dataIndex < weeklyData.length) {
+                        const data = weeklyData[dataIndex];
+                        showTooltip(tooltip, data, touch.clientX, touch.clientY);
+                    }
+                });
+                
+                area.addEventListener('touchend', () => {
+                    hideTooltip(tooltip);
+                });
+            });
+        }
+        
+        // 显示tooltip
+        function showTooltip(tooltip, data, x, y) {
+            console.log('显示tooltip:', { data, x, y });
+            
+            const date = new Date(data.date);
+            const dateStr = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+            
+            // 更新tooltip内容
+            const dateEl = tooltip.querySelector('.tooltip-date');
+            const kEl = tooltip.querySelector('.k-value');
+            const dEl = tooltip.querySelector('.d-value');
+            const jEl = tooltip.querySelector('.j-value');
+            
+            if (dateEl) dateEl.textContent = dateStr;
+            if (kEl) kEl.textContent = data.k.toFixed(2);
+            if (dEl) dEl.textContent = data.d.toFixed(2);
+            if (jEl) jEl.textContent = data.j.toFixed(2);
+            
+            // 定位tooltip
+            tooltip.style.left = (x + 10) + 'px';
+            tooltip.style.top = (y - 10) + 'px';
+            tooltip.classList.add('show');
+            
+            console.log('tooltip已显示');
+        }
+        
+        // 隐藏tooltip
+        function hideTooltip(tooltip) {
+            tooltip.classList.remove('show');
+        }
+        
+        // 筛选器事件
+        function setupFilterTabs() {
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentCategory = tab.dataset.category;
+                    renderFundList(allFunds);
+                });
+            });
+        }
+        
+        // 混合数据加载（真实数据 + 模拟数据）
+        async function loadData() {
+            try {
+                console.log('开始加载基金数据...');
+                
+                // 先尝试加载本地存储的数据
+                let storedData = loadFundData();
+                let funds = [];
+                
+                if (storedData) {
+                    console.log('使用本地存储的数据');
+                    funds = storedData;
+                } else {
+                    console.log('本地数据不可用，开始收集真实数据...');
+                    
+                    // 收集真实数据
+                    const realData = await collectAllFundsData();
+                    
+                    if (realData.length > 0) {
+                        // 保存真实数据
+                        saveFundData(realData);
+                        funds = realData;
+                    } else {
+                        console.log('真实数据收集失败，使用模拟数据');
+                        funds = generateMockFunds();
+                    }
+                }
+                
+                // 如果真实数据不足，补充模拟数据
+                if (funds.length < 10) {
+                    console.log('真实数据不足，补充模拟数据');
+                    const mockFunds = generateMockFunds();
+                    funds = [...funds, ...mockFunds.slice(funds.length)];
+                }
+                
+                allFunds = funds;
+                updateStats(funds);
+                renderFundList(funds);
+                
+                // 更新最后更新时间
+                document.getElementById('lastUpdate').textContent = `更新时间: ${new Date().toLocaleTimeString('zh-CN')}`;
+                
+                // 显示数据源信息
+                const realCount = funds.filter(f => f.source === 'real').length;
+                const mockCount = funds.filter(f => f.source === 'mock').length;
+                
+                document.getElementById('fundContainer').innerHTML = `
+                    <div class="success">
+                        <h4>✅ 数据加载完成</h4>
+                        <p>真实数据: ${realCount} 个基金 | 模拟数据: ${mockCount} 个基金</p>
+                        <p>数据来源: 天天基金 + 本地模拟</p>
+                    </div>
+                    ${funds.map(fund => renderFundCard(fund)).join('')}
+                `;
+                
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                
+                // 降级到纯模拟数据
+                console.log('降级到纯模拟数据模式');
+                const mockFunds = generateMockFunds();
+                allFunds = mockFunds;
+                updateStats(mockFunds);
+                renderFundList(mockFunds);
+                
+                document.getElementById('fundContainer').innerHTML = `
+                    <div class="error">
+                        <h4>⚠️ 使用模拟数据</h4>
+                        <p>真实数据获取失败，正在显示模拟数据</p>
+                        <p>错误信息: ${error.message}</p>
+                    </div>
+                    ${mockFunds.map(fund => renderFundCard(fund)).join('')}
+                `;
+            }
+        }
+        
+        // 每日数据更新检查
+        function checkDailyUpdate() {
+            const now = new Date();
+            const lastUpdate = localStorage.getItem('last_daily_update');
+            
+            if (!lastUpdate) {
+                // 首次运行，设置今天为更新日期
+                localStorage.setItem('last_daily_update', now.toDateString());
+                return true;
+            }
+            
+            const lastUpdateDate = new Date(lastUpdate);
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const lastUpdateDay = new Date(lastUpdateDate.getFullYear(), lastUpdateDate.getMonth(), lastUpdateDate.getDate());
+            
+            // 如果今天还没有更新过，返回true
+            return today > lastUpdateDay;
+        }
+        
+        // 执行每日更新
+        async function performDailyUpdate() {
+            if (checkDailyUpdate()) {
+                console.log('执行每日数据更新...');
+                
+                try {
+                    // 清除旧数据
+                    localStorage.removeItem('fund_monitoring_data');
+                    
+                    // 收集新的真实数据
+                    const realData = await collectAllFundsData();
+                    
+                    if (realData.length > 0) {
+                        saveFundData(realData);
+                        localStorage.setItem('last_daily_update', new Date().toDateString());
+                        console.log('每日数据更新完成');
+                        
+                        // 重新加载页面数据
+                        await loadData();
+                    }
+                } catch (error) {
+                    console.warn('每日更新失败:', error.message);
+                }
+            }
+        }
+        
+        // 统计字段显示控制
+        function initStatsToggle() {
+            const toggle = document.getElementById('statsToggle');
+            const statsGrid = document.querySelector('.stats-grid');
+            const avgRealDaysCard = document.getElementById('avgRealDaysCard');
+            const maxRealDaysCard = document.getElementById('maxRealDaysCard');
+            
+            function updateStatsDisplay() {
+                const isChecked = toggle.checked;
+                
+                if (isChecked) {
+                    // 显示详细统计
+                    avgRealDaysCard.classList.remove('hidden');
+                    maxRealDaysCard.classList.remove('hidden');
+                    statsGrid.classList.remove('adaptive-2-cols');
+                } else {
+                    // 隐藏详细统计
+                    avgRealDaysCard.classList.add('hidden');
+                    maxRealDaysCard.classList.add('hidden');
+                    statsGrid.classList.add('adaptive-2-cols');
+                }
+            }
+            
+            // 初始化状态
+            updateStatsDisplay();
+            
+            // 监听开关变化
+            toggle.addEventListener('change', updateStatsDisplay);
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            setupFilterTabs();
+            initStatsToggle();
+            loadData();
+            
+            // 每5分钟自动刷新数据
+            setInterval(loadData, 5 * 60 * 1000);
+            
+            // 每30分钟检查是否需要每日更新
+            setInterval(performDailyUpdate, 30 * 60 * 1000);
+            
+            // 页面可见时检查更新
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) {
+                    performDailyUpdate();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

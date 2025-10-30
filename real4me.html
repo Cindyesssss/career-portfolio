@@ -1,0 +1,4356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real4Me - 加缪的荒谬 当下的此刻</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* genAI_main_start */
+        :root {
+            /* 主渐变 - 荒诞哲学 */
+            --gradient-absurd: linear-gradient(135deg, 
+                #8B5CF6 0%,    /* 哲学紫 */
+                #EC4899 25%,   /* 存在粉 */ 
+                #06B6D4 50%,   /* 理性蓝 */
+                #10B981 75%,   /* 生命绿 */
+                #F59E0B 100%   /* 荒诞橙 */
+            );
+            
+            /* 动态色彩变量 */
+            --color-primary: #8B5CF6;
+            --color-secondary: #EC4899;
+            --color-accent: #06B6D4;
+            --color-highlight: #F59E0B;
+            
+            /* 思考状态 */
+            --color-thinking: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.8), 
+                rgba(6, 182, 212, 0.6)
+            );
+            
+            /* 记录状态 */
+            --color-writing: linear-gradient(135deg, 
+                rgba(236, 72, 153, 0.8), 
+                rgba(139, 92, 246, 0.6)
+            );
+            
+            /* 反思状态 */
+            --color-reflecting: linear-gradient(135deg, 
+                rgba(16, 185, 129, 0.8), 
+                rgba(6, 182, 212, 0.6)
+            );
+            
+            /* AI反馈状态 */
+            --color-ai-response: linear-gradient(135deg, 
+                rgba(245, 158, 11, 0.8), 
+                rgba(236, 72, 153, 0.6)
+            );
+            
+            /* 浅色模式 - 纯净思考 */
+            --color-bg-primary: #FAF8FF;
+            --color-bg-secondary: #FFFFFF;
+            --color-bg-glass: rgba(255, 255, 255, 0.8);
+            
+            --color-text-primary: #1A1B25;
+            --color-text-secondary: #4A4B5A;
+            --color-text-muted: #8B8C9C;
+            
+            /* 字体系统 */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 
+                          'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+                          'Microsoft YaHei', sans-serif;
+            
+            /* 字体大小 - 黄金比例 */
+            --text-xs: 0.75rem;      /* 12px - 标签、元数据 */
+            --text-sm: 0.875rem;     /* 14px - 辅助文本 */
+            --text-base: 1rem;       /* 16px - 正文 */
+            --text-lg: 1.125rem;     /* 18px - 强调正文 */
+            --text-xl: 1.25rem;      /* 20px - 小标题 */
+            --text-2xl: 1.5rem;      /* 24px - 区块标题 */
+            --text-3xl: 1.875rem;    /* 30px - 页面标题 */
+            --text-4xl: 2.25rem;     /* 36px - 英雄标题 */
+            --text-hero: 3.5rem;     /* 56px - 格言展示 */
+            
+            /* 字重 - 情感表达 */
+            --font-light: 300;
+            --font-normal: 400;
+            --font-medium: 500;
+            --font-semibold: 600;
+            --font-bold: 700;
+            --font-extrabold: 800;
+            
+            /* 行高 - 阅读节奏 */
+            --leading-tight: 1.2;
+            --leading-snug: 1.3;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.7;
+            --leading-loose: 2;
+        }
+
+        /* 深色模式 */
+        [data-theme="dark"] {
+            --color-bg-primary: #0F0F1A;
+            --color-bg-secondary: #1A1B25;
+            --color-bg-glass: rgba(26, 27, 37, 0.8);
+            
+            --color-text-primary: #F0F2FF;
+            --color-text-secondary: #B8BAC7;
+            --color-text-muted: #6B6C7C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: var(--leading-normal);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 毛玻璃效果 */
+        .glass-morphism {
+            background: var(--color-bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 深色模式下的毛玻璃效果优化 */
+        [data-theme="dark"] .glass-morphism {
+            background: rgba(26, 27, 37, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+                        0 4px 16px rgba(139, 92, 246, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hero区域 */
+        .hero-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .particle-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-absurd);
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        .quote-card {
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: quoteAppear 1.5s ease-out;
+            max-width: 800px;
+            text-align: center;
+            border: none;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1), 
+                rgba(255, 255, 255, 0.05)
+            );
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes quoteAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .daily-quote {
+            font-size: var(--text-hero);
+            font-weight: var(--font-bold);
+            line-height: var(--leading-tight);
+            color: #FFFFFF;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .daily-quote::before, .daily-quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--color-primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .daily-quote::before {
+            top: -1rem;
+            left: -2rem;
+        }
+
+        .daily-quote::after {
+            bottom: -2rem;
+            right: -2rem;
+        }
+
+        .quote-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* 浮动装饰形状 */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-absurd);
+            animation: shapeFloat 8s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            top: -30px;
+            right: 50px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 60px;
+            height: 60px;
+            bottom: -20px;
+            left: 80px;
+            animation-delay: 2s;
+        }
+
+        @keyframes shapeFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg) scale(1.1);
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg) scale(0.9);
+            }
+        }
+
+        /* 记录按钮 */
+        .record-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-absurd);
+            border: none;
+            color: white;
+            font-size: var(--text-xl);
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .record-button:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.6);
+        }
+
+        .record-button.pulsing {
+            animation: recordPulse 2s infinite;
+        }
+
+        @keyframes recordPulse {
+            0%, 100% {
+                box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 32px rgba(139, 92, 246, 0.8), 
+                            0 0 0 10px rgba(139, 92, 246, 0.2);
+            }
+        }
+
+        /* 记录面板 */
+        .record-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            border-radius: 20px;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1001;
+            overflow-y: auto;
+        }
+
+        .record-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .panel-header h3 {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-semibold);
+            color: var(--color-text-primary);
+        }
+
+        .close-panel {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-panel:hover {
+            color: var(--color-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .title-input, .tags-input, .content-textarea {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: var(--text-lg);
+            color: var(--color-text-primary);
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            font-family: var(--font-primary);
+        }
+
+        .title-input:focus, .tags-input:focus, .content-textarea:focus {
+            outline: none;
+            border-bottom-color: var(--color-primary);
+        }
+
+        .content-textarea {
+            resize: none;
+            line-height: var(--leading-relaxed);
+            min-height: 200px;
+        }
+
+        .char-counter {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+
+        .tags-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag-pill {
+            background: var(--gradient-absurd);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+            animation: tagAppear 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        @keyframes tagAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: var(--text-base);
+            font-weight: var(--font-medium);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-absurd);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-text-muted);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-text-muted);
+            color: white;
+        }
+
+        .btn-loading {
+            display: none;
+        }
+
+        .btn.loading .btn-text {
+            display: none;
+        }
+
+        .btn.loading .btn-loading {
+            display: flex;
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .loading-dots .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: dotBounce 1.4s infinite ease-in-out;
+        }
+
+        .loading-dots .dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes dotBounce {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 思考记录展示 */
+        .thoughts-section {
+            padding: 4rem 0;
+        }
+
+        /* 天气信息显示 */
+        .weather-info {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.1), 
+                rgba(6, 182, 212, 0.1)
+            );
+        }
+
+        /* 深色模式下的天气信息优化 */
+        [data-theme="dark"] .weather-info {
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.2), 
+                rgba(6, 182, 212, 0.2)
+            );
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 
+                        0 4px 16px rgba(139, 92, 246, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .weather-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .weather-main {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .weather-icon {
+            font-size: 2rem;
+            animation: weatherFloat 3s infinite ease-in-out;
+        }
+
+        @keyframes weatherFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(5deg);
+            }
+        }
+
+        .weather-temp {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+            color: var(--color-text-primary);
+        }
+
+        .weather-desc {
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            font-weight: var(--font-medium);
+        }
+
+        .lunar-date {
+            text-align: right;
+        }
+
+        .lunar-text {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            font-weight: var(--font-medium);
+            background: var(--gradient-absurd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .weather-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .weather-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(139, 92, 246, 0.6);
+            border-radius: 50%;
+            animation: weatherParticleFloat 6s infinite ease-in-out;
+        }
+
+        @keyframes weatherParticleFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .section-title {
+            font-size: var(--text-4xl);
+            font-weight: var(--font-bold);
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-absurd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .thought-card {
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thought-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-absurd);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .thought-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .thought-card:hover::before {
+            opacity: 1;
+        }
+
+        /* 深色模式下的思考卡片优化 */
+        [data-theme="dark"] .thought-card {
+            background: rgba(26, 27, 37, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 
+                        0 4px 16px rgba(139, 92, 246, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="dark"] .thought-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 
+                        0 8px 24px rgba(139, 92, 246, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .thought-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .thought-title {
+            font-size: var(--text-xl);
+            font-weight: var(--font-semibold);
+            color: var(--color-text-primary);
+            margin: 0;
+        }
+
+        .thought-time {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            white-space: nowrap;
+        }
+
+        .thought-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .thought-content {
+            font-size: var(--text-base);
+            line-height: var(--leading-relaxed);
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* AI反馈区域 */
+        .ai-response {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, 
+                rgba(245, 158, 11, 0.1), 
+                rgba(236, 72, 153, 0.05)
+            );
+            border-radius: 12px;
+            border-left: 4px solid var(--color-highlight);
+            animation: responseReveal 0.6s ease-out;
+        }
+
+        @keyframes responseReveal {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .response-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ai-avatar {
+            font-size: 1.5rem;
+            animation: flowerBlink 3s infinite;
+        }
+
+        @keyframes flowerBlink {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+
+        .response-label {
+            font-size: var(--text-sm);
+            font-weight: var(--font-semibold);
+            color: var(--color-highlight);
+        }
+
+        .response-content {
+            font-size: var(--text-base);
+            line-height: var(--leading-relaxed);
+            color: var(--color-text-secondary);
+        }
+
+        /* 随机浮动动画 */
+        .random-float {
+            animation: randomFloat 8s infinite ease-in-out;
+        }
+
+        @keyframes randomFloat {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(5px, -8px) rotate(2deg);
+            }
+            50% {
+                transform: translate(-3px, 4px) rotate(-1deg);
+            }
+            75% {
+                transform: translate(7px, 2px) rotate(3deg);
+            }
+        }
+
+        /* 底部提示区域 */
+        .bottom-section {
+            padding: 4rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .bottom-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bottom-message {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .bottom-text {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            font-weight: var(--font-medium);
+            line-height: var(--leading-relaxed);
+            margin: 0;
+        }
+
+        /* 响应式设计 */
+        
+        /* 大屏幕优化 */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+            }
+            
+            .quote-card {
+                max-width: 900px;
+            }
+        }
+        
+        /* 平板优化 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 90%;
+            }
+            
+            .thoughts-timeline {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .weather-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            /* 基础布局调整 */
+            .container {
+                padding: 0 1rem;
+            }
+            
+            /* Hero区域移动端优化 */
+            .hero-section {
+                padding: 1.5rem 0;
+                min-height: 50vh;
+            }
+            
+            .quote-card {
+                padding: 2rem 1.5rem;
+                margin: 0 1rem;
+            }
+            
+            .daily-quote {
+                font-size: var(--text-2xl);
+                line-height: 1.3;
+                margin-bottom: 1.5rem;
+            }
+            
+            .daily-quote::before, .daily-quote::after {
+                font-size: 2.5rem;
+            }
+            
+            .quote-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+                font-size: var(--text-base);
+            }
+            
+            /* 浮动装饰形状移动端隐藏 */
+            .floating-shape {
+                display: none;
+            }
+            
+            
+            /* 思考区域移动端优化 */
+            .thoughts-section {
+                padding: 2rem 0;
+            }
+            
+            .section-title {
+                font-size: var(--text-3xl);
+                margin-bottom: 2rem;
+            }
+            
+            /* 天气信息移动端优化 */
+            .weather-info {
+                margin-bottom: 2rem;
+                padding: 1.5rem;
+            }
+            
+            .weather-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .weather-main {
+                justify-content: center;
+                gap: 0.8rem;
+            }
+            
+            .weather-icon {
+                font-size: 1.5rem;
+            }
+            
+            .weather-temp {
+                font-size: var(--text-xl);
+            }
+            
+            .lunar-text {
+                font-size: var(--text-base);
+            }
+            
+            /* 思考卡片移动端优化 */
+            .thought-card {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .thought-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .thought-title {
+                font-size: var(--text-lg);
+            }
+            
+            .thought-tags {
+                margin-bottom: 0.8rem;
+            }
+            
+            .tag-pill {
+                font-size: var(--text-xs);
+                padding: 0.2rem 0.6rem;
+            }
+            
+            .thought-content {
+                font-size: var(--text-sm);
+                line-height: 1.6;
+            }
+            
+            /* AI反馈移动端优化 */
+            .ai-response {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .response-content {
+                font-size: var(--text-sm);
+            }
+            
+            /* 记录面板移动端优化 */
+            .record-panel {
+                width: 95%;
+                max-width: none;
+                padding: 1.5rem;
+                margin: 0 1rem;
+                max-height: 90vh;
+            }
+            
+            .panel-header h3 {
+                font-size: var(--text-xl);
+            }
+            
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            
+            .title-input, .tags-input, .content-textarea {
+                font-size: var(--text-base);
+            }
+            
+            .content-textarea {
+                min-height: 150px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 0.8rem 1.5rem;
+            }
+            
+            /* 按钮移动端优化 */
+            .record-button {
+                width: 60px;
+                height: 60px;
+                bottom: 1rem;
+                right: 1rem;
+                font-size: var(--text-lg);
+            }
+            
+            .music-button {
+                width: 45px;
+                height: 45px;
+                bottom: 7rem;
+                right: 1rem;
+                font-size: var(--text-base);
+            }
+            
+            /* 移动端按钮系统 */
+            .button-system {
+                bottom: 1rem;
+                right: 1rem;
+                gap: 0.8rem;
+            }
+            
+            .more-button, .music-button, .record-button {
+                width: 45px;
+                height: 45px;
+                font-size: var(--text-base);
+            }
+            
+            .record-button {
+                width: 50px;
+                height: 50px;
+            }
+            
+            /* 移动端操作按钮 */
+            .action-button {
+                width: 28px;
+                height: 28px;
+                font-size: var(--text-base);
+            }
+            
+            .action-menu {
+                min-width: 100px;
+                right: 0.5rem !important;
+            }
+            
+            .menu-item {
+                padding: 0.6rem 0.8rem;
+                font-size: var(--text-xs);
+            }
+            
+            /* 底部提示移动端优化 */
+            .bottom-section {
+                padding: 2rem 0;
+            }
+            
+            .bottom-message {
+                padding: 1.5rem;
+            }
+            
+            .bottom-text {
+                font-size: var(--text-base);
+            }
+        }
+        
+        /* 小屏幕手机优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.8rem;
+            }
+            
+            .hero-section {
+                padding: 1rem 0;
+                min-height: 45vh;
+            }
+            
+            .quote-card {
+                padding: 1.5rem 1rem;
+                margin: 0 0.5rem;
+            }
+            
+            .daily-quote {
+                font-size: var(--text-xl);
+            }
+            
+            .daily-quote::before, .daily-quote::after {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: var(--text-2xl);
+            }
+            
+            .weather-info {
+                padding: 1rem;
+            }
+            
+            .thought-card {
+                padding: 1rem;
+            }
+            
+            .record-panel {
+                width: 98%;
+                padding: 1rem;
+                margin: 0 0.5rem;
+            }
+            
+            .button-system {
+                bottom: 0.8rem;
+                right: 0.8rem;
+                gap: 0.6rem;
+            }
+            
+            .more-button, .music-button, .record-button {
+                width: 40px;
+                height: 40px;
+                font-size: var(--text-sm);
+            }
+            
+            .record-button {
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
+        /* 横屏模式优化 */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-section {
+                min-height: 60vh;
+                padding: 1rem 0;
+            }
+            
+            .quote-card {
+                padding: 1.5rem;
+            }
+            
+            .daily-quote {
+                font-size: var(--text-2xl);
+            }
+            
+            .thoughts-section {
+                padding: 1.5rem 0;
+            }
+        }
+        
+        /* 移动端触摸优化 */
+        @media (max-width: 768px) {
+            /* 触摸友好的按钮大小 */
+            .record-button, .music-button, .more-button {
+                min-width: 44px;
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+            
+            /* 防止双击缩放 */
+            .record-button, .music-button, .more-button {
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            
+            /* 输入框移动端优化 */
+            .title-input, .tags-input, .content-textarea {
+                -webkit-appearance: none;
+                appearance: none;
+                border-radius: 8px;
+                font-size: 16px; /* 防止iOS缩放 */
+            }
+            
+            /* 滚动优化 */
+            .record-panel {
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+            }
+            
+            .thoughts-timeline {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* 模态框移动端优化 */
+            .history-modal {
+                padding: 1rem;
+            }
+            
+            .history-content {
+                max-height: 90vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        
+        /* 高分辨率屏幕优化 */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .weather-particle, .particle {
+                transform: scale(0.5);
+            }
+        }
+        
+        /* 深色模式移动端优化 */
+        @media (max-width: 768px) and (prefers-color-scheme: dark) {
+            .glass-morphism {
+                background: rgba(26, 27, 37, 0.9);
+                backdrop-filter: blur(20px);
+            }
+            
+            .weather-info {
+                background: linear-gradient(135deg, 
+                    rgba(139, 92, 246, 0.2), 
+                    rgba(6, 182, 212, 0.2)
+                );
+            }
+        }
+
+        /* 按钮系统 */
+        .button-system {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        /* 更多按钮 */
+        .more-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1), 
+                rgba(255, 255, 255, 0.05)
+            );
+            border: none;
+            color: var(--color-text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .more-button:hover {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.2), 
+                rgba(255, 255, 255, 0.1)
+            );
+            color: var(--color-text);
+            transform: scale(1.1);
+        }
+
+        /* 音乐播放器按钮 */
+        .music-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.6), 
+                rgba(6, 182, 212, 0.4)
+            );
+            border: none;
+            color: white;
+            font-size: var(--text-lg);
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            backdrop-filter: blur(10px);
+        }
+
+        .music-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            opacity: 1;
+        }
+
+        .music-button.playing {
+            animation: musicRotate 3s linear infinite;
+            opacity: 1;
+        }
+
+        @keyframes musicRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes musicPulse {
+            0%, 100% {
+                box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 16px rgba(139, 92, 246, 0.6), 
+                            0 0 0 8px rgba(139, 92, 246, 0.1);
+            }
+        }
+
+        /* 移动端专用动画 */
+        @keyframes refreshToast {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            20% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            80% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+        }
+
+        @keyframes mobileSlideIn {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes mobileSlideOut {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+
+        /* 移动端触摸反馈 */
+        .mobile-touch-feedback {
+            animation: mobileTouchFeedback 0.2s ease-out;
+        }
+
+        @keyframes mobileTouchFeedback {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* 播放指示器动画 */
+        @keyframes playingIndicatorSlide {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 音乐播放时的页面效果 */
+        .music-playing .particle {
+            animation-duration: 4s;
+        }
+
+        .music-playing .weather-particle {
+            animation-duration: 3s;
+        }
+
+        /* 思考记录操作按钮 */
+        .thought-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .thought-title-time {
+            flex: 1;
+        }
+
+        .thought-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .action-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--color-text-muted);
+            font-size: var(--text-lg);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--color-text);
+            transform: scale(1.1);
+        }
+
+        .action-dots {
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        /* 操作菜单 */
+        .action-menu {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            min-width: 120px;
+            animation: menuSlideIn 0.2s ease-out;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border: none;
+            background: none;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: var(--text-sm);
+            color: var(--color-text);
+        }
+
+        .menu-item:hover {
+            background: var(--color-bg-muted);
+        }
+
+        .edit-item:hover {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .delete-item:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        /* 深色模式下的操作菜单 */
+        [data-theme="dark"] .action-menu {
+            background: var(--color-bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .menu-item {
+            color: var(--color-text-primary);
+        }
+
+        [data-theme="dark"] .menu-item:hover {
+            background: var(--color-bg-muted);
+        }
+
+        [data-theme="dark"] .edit-item:hover {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        [data-theme="dark"] .delete-item:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .menu-icon {
+            margin-right: 0.5rem;
+            font-size: var(--text-base);
+        }
+
+        .menu-text {
+            font-weight: var(--font-medium);
+        }
+
+        /* 编辑模式按钮样式 */
+        .save-button.edit-mode {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            animation: editModePulse 2s infinite;
+        }
+
+        @keyframes menuSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes editModePulse {
+            0%, 100% {
+                box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 16px rgba(34, 197, 94, 0.8), 
+                            0 0 0 4px rgba(34, 197, 94, 0.2);
+            }
+        }
+
+        @keyframes deleteSuccessFade {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            20% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes hideSuccessFade {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            20% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* 更多按钮菜单 */
+        .more-menu {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            min-width: 140px;
+            animation: moreMenuSlideIn 0.3s ease-out;
+            backdrop-filter: blur(20px);
+        }
+
+        .more-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.2rem;
+            border: none;
+            background: none;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: var(--text-sm);
+            color: var(--color-text);
+            text-align: left;
+        }
+
+        .more-menu-item:hover {
+            background: var(--color-bg-muted);
+        }
+
+        .more-menu-item .menu-emoji {
+            margin-right: 0.8rem;
+            font-size: var(--text-lg);
+        }
+
+        .more-menu-item .menu-text {
+            font-weight: var(--font-medium);
+        }
+
+        /* 深色模式下的更多按钮菜单样式 */
+        [data-theme="dark"] .more-menu {
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .more-menu-item {
+            color: var(--color-text-primary);
+        }
+
+        [data-theme="dark"] .more-menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 深色模式下的格言历史面板样式 */
+        [data-theme="dark"] .history-content {
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+        }
+
+        [data-theme="dark"] .history-item {
+            background: var(--color-bg-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes moreMenuSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* 隐藏内容面板 */
+        .hidden-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            background: var(--color-bg-secondary);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 1003;
+            overflow: hidden;
+            animation: hiddenPanelSlideIn 0.4s ease-out;
+            border: none;
+        }
+
+        .hidden-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--gradient-absurd);
+            color: white;
+        }
+
+        .hidden-panel-header h3 {
+            margin: 0;
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+        }
+
+        .close-hidden-panel {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .close-hidden-panel:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hidden-content {
+            padding: 2rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .hidden-thought-card {
+            background: var(--color-bg-muted);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hidden-thought-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .hidden-thought-header h4 {
+            margin: 0;
+            color: var(--color-text);
+            font-size: var(--text-lg);
+        }
+
+        .hidden-time {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+        }
+
+        .hidden-thought-content {
+            margin-bottom: 1rem;
+        }
+
+        .hidden-thought-content p {
+            margin: 0;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .hidden-ai-response {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        @keyframes hiddenPanelSlideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* 深色模式下的秘密花园面板样式 */
+        [data-theme="dark"] .hidden-panel {
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+        }
+
+        [data-theme="dark"] .hidden-panel-header {
+            background: var(--gradient-absurd);
+            color: white;
+        }
+
+        [data-theme="dark"] .hidden-content {
+            background: var(--color-bg-secondary);
+        }
+
+        [data-theme="dark"] .hidden-thought-card {
+            background: var(--color-bg-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .hidden-thought-header h4 {
+            color: var(--color-text-primary);
+            font-weight: var(--font-semibold);
+        }
+
+        [data-theme="dark"] .hidden-time {
+            color: var(--color-text-secondary);
+            font-weight: var(--font-medium);
+        }
+
+        [data-theme="dark"] .hidden-thought-content p {
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+
+        [data-theme="dark"] .hidden-ai-response {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .hidden-ai-response .response-content p {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        @keyframes regenerateSuccessFade {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            20% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            80% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes musicUpdateSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        /* genAI_main_end */
+    </style>
+</head>
+<body>
+    <!-- genAI_main_start -->
+    <!-- 按钮系统 -->
+    <div class="button-system">
+        <!-- 更多按钮 -->
+        <button class="more-button" id="moreBtn">⋯</button>
+        
+        <!-- 音乐播放器按钮 -->
+        <button class="music-button" id="musicBtn">🎵</button>
+        
+        <!-- 记录按钮 -->
+        <button class="record-button pulsing" id="recordBtn">✍️</button>
+    </div>
+
+    <!-- Hero区域 -->
+    <section class="hero-section">
+        <div class="particle-background" id="particleCanvas"></div>
+        <div class="container">
+            <div class="quote-card glass-morphism">
+                <div class="quote-content">
+                    <blockquote class="daily-quote" id="dailyQuote">
+                        "在荒谬的世界中，唯一真实的答案就是当下的感受与选择。"
+                    </blockquote>
+                    <div class="quote-meta">
+                        <span class="quote-author" id="quoteAuthor">阿尔贝·加缪</span>
+                        <span class="quote-discipline" id="quoteDiscipline">哲学 · 存在主义</span>
+                    </div>
+                </div>
+                <div class="quote-decoration">
+                    <div class="floating-shape shape-1"></div>
+                    <div class="floating-shape shape-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 自我对话区域 -->
+    <section class="thoughts-section">
+        <div class="container">
+            <h2 class="section-title">此刻值得！写下所思</h2>
+            
+            <!-- 天气和日期显示 -->
+            <div class="weather-info glass-morphism" id="weatherInfo">
+                <div class="weather-content">
+                    <div class="weather-main">
+                        <span class="weather-icon" id="weatherIcon">☀️</span>
+                        <span class="weather-temp" id="weatherTemp">22°C</span>
+                        <span class="weather-desc" id="weatherDesc">晴朗</span>
+                    </div>
+                    <div class="lunar-date" id="lunarDate">
+                        <span class="lunar-text">农历腊月初八</span>
+                    </div>
+                </div>
+                <div class="weather-particles" id="weatherParticles"></div>
+            </div>
+            
+            <div class="thoughts-timeline" id="thoughtsContainer">
+                <!-- 思考记录将在这里动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部提示区域 -->
+    <section class="bottom-section" id="bottomSection">
+        <div class="container">
+            <div class="bottom-message glass-morphism">
+                <p class="bottom-text">只要你说 我就愿意共担！</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 记录面板 -->
+    <div class="record-panel glass-morphism" id="recordPanel">
+        <div class="panel-header">
+            <h3>记录此刻思考</h3>
+            <button class="close-panel" id="closePanel">×</button>
+        </div>
+        
+        <form class="record-form" id="recordForm">
+            <div class="form-group">
+                <input type="text" class="title-input" id="titleInput" placeholder="思考标题..." maxlength="50">
+                <div class="char-counter" id="charCounter">0/50</div>
+            </div>
+            
+            <div class="form-group">
+                <div class="tags-input-container">
+                    <input type="text" class="tags-input" id="tagsInput" placeholder="#标签 用空格分隔">
+                    <div class="tags-preview" id="tagsPreview">
+                        <!-- 动态生成的标签预览 -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <textarea class="content-textarea" id="contentInput" placeholder="自由书写你的思考..." rows="8"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancelBtn">取消</button>
+                <button type="submit" class="btn btn-primary" id="saveBtn">
+                    <span class="btn-text">保存思考</span>
+                    <div class="btn-loading">
+                        <div class="loading-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!-- genAI_main_end -->
+
+    <script>
+        /* genAI_main_start */
+        // 粒子系统
+        class ParticleSystem {
+            constructor(container) {
+                this.container = container;
+                this.particles = [];
+                this.init();
+            }
+            
+            init() {
+                this.createParticles(30);
+                this.animate();
+            }
+            
+            createParticles(count) {
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    // 随机属性
+                    const size = Math.random() * 6 + 2;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.background = this.getRandomGradient();
+                    
+                    this.container.appendChild(particle);
+                    this.particles.push(particle);
+                }
+            }
+            
+            getRandomGradient() {
+                const colors = [
+                    'rgba(139, 92, 246, 0.8)',
+                    'rgba(236, 72, 153, 0.8)', 
+                    'rgba(6, 182, 212, 0.8)',
+                    'rgba(16, 185, 129, 0.8)',
+                    'rgba(245, 158, 11, 0.8)'
+                ];
+                
+                const color1 = colors[Math.floor(Math.random() * colors.length)];
+                const color2 = colors[Math.floor(Math.random() * colors.length)];
+                
+                return `radial-gradient(circle, ${color1} 0%, ${color2} 100%)`;
+            }
+            
+            animate() {
+                // 粒子动画循环
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // 思考记录系统
+        class ThoughtRecorder {
+            constructor() {
+                try {
+                    const stored = localStorage.getItem('thoughts');
+                    this.records = stored ? JSON.parse(stored) : [];
+                    // 确保records是数组
+                    if (!Array.isArray(this.records)) {
+                        this.records = [];
+                    }
+                } catch (error) {
+                    console.error('读取思考记录失败:', error);
+                    this.records = [];
+                }
+                this.timeFormatter = new TimeFormatter();
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+                this.renderRecords();
+                this.resetButtonState();
+            }
+            
+            resetButtonState() {
+                // 确保保存按钮初始状态正确
+                const saveBtn = document.getElementById('saveBtn');
+                saveBtn.classList.remove('loading');
+            }
+            
+            bindEvents() {
+                // 记录按钮点击
+                document.getElementById('recordBtn').addEventListener('click', () => {
+                    this.openRecordPanel();
+                });
+                
+                // 关闭面板
+                document.getElementById('closePanel').addEventListener('click', () => {
+                    this.closeRecordPanel();
+                });
+                
+                document.getElementById('cancelBtn').addEventListener('click', () => {
+                    this.closeRecordPanel();
+                });
+                
+                // 表单提交
+                document.getElementById('recordForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.saveThought();
+                });
+                
+                // 标题字符计数
+                document.getElementById('titleInput').addEventListener('input', (e) => {
+                    const counter = document.getElementById('charCounter');
+                    counter.textContent = `${e.target.value.length}/50`;
+                });
+                
+                // 标签实时预览
+                document.getElementById('tagsInput').addEventListener('input', (e) => {
+                    this.updateTagsPreview(e.target.value);
+                    this.saveDraft();
+                });
+                
+                // 自动保存草稿
+                document.getElementById('titleInput').addEventListener('input', () => {
+                    this.saveDraft();
+                });
+                
+                document.getElementById('contentInput').addEventListener('input', () => {
+                    this.saveDraft();
+                });
+            }
+            
+            openRecordPanel() {
+                const panel = document.getElementById('recordPanel');
+                panel.classList.add('active');
+                
+                // 恢复草稿内容
+                this.restoreDraft();
+                
+                // 添加打开动画
+                panel.style.animation = 'panelAppear 0.5s ease-out';
+            }
+            
+            restoreDraft() {
+                const draft = JSON.parse(localStorage.getItem('thoughtDraft')) || {};
+                
+                if (draft.title) {
+                    document.getElementById('titleInput').value = draft.title;
+                    document.getElementById('charCounter').textContent = `${draft.title.length}/50`;
+                }
+                
+                if (draft.content) {
+                    document.getElementById('contentInput').value = draft.content;
+                }
+                
+                if (draft.tags) {
+                    document.getElementById('tagsInput').value = draft.tags;
+                    this.updateTagsPreview(draft.tags);
+                }
+            }
+            
+            saveDraft() {
+                const draft = {
+                    title: document.getElementById('titleInput').value,
+                    content: document.getElementById('contentInput').value,
+                    tags: document.getElementById('tagsInput').value
+                };
+                
+                // 只有当有内容时才保存草稿
+                if (draft.title.trim() || draft.content.trim() || draft.tags.trim()) {
+                    localStorage.setItem('thoughtDraft', JSON.stringify(draft));
+                } else {
+                    localStorage.removeItem('thoughtDraft');
+                }
+            }
+            
+            closeRecordPanel() {
+                const panel = document.getElementById('recordPanel');
+                panel.classList.remove('active');
+                
+                // 重置保存按钮状态
+                const saveBtn = document.getElementById('saveBtn');
+                saveBtn.classList.remove('loading');
+                
+                // 重置编辑状态
+                this.editingIndex = null;
+                saveBtn.textContent = '保存';
+                saveBtn.classList.remove('edit-mode');
+                
+                // 清空表单
+                document.getElementById('recordForm').reset();
+                document.getElementById('charCounter').textContent = '0/50';
+                document.getElementById('tagsPreview').innerHTML = '';
+            }
+            
+            updateTagsPreview(tagString) {
+                const preview = document.getElementById('tagsPreview');
+                const tags = this.parseTags(tagString);
+                
+                preview.innerHTML = tags.map(tag => `
+                    <span class="tag-pill">#${tag}</span>
+                `).join('');
+            }
+            
+            saveThought() {
+                const title = document.getElementById('titleInput').value;
+                const content = document.getElementById('contentInput').value;
+                const tags = this.parseTags(document.getElementById('tagsInput').value);
+                
+                if (!title.trim() || !content.trim()) {
+                    alert('请填写标题和内容');
+                    return;
+                }
+                
+                const saveBtn = document.getElementById('saveBtn');
+                
+                // 防止重复提交
+                if (saveBtn.classList.contains('loading')) {
+                    return;
+                }
+                
+                saveBtn.classList.add('loading');
+                
+                // 模拟保存延迟
+                setTimeout(() => {
+                    try {
+                        if (this.editingIndex !== null) {
+                            // 编辑模式：检查内容是否有变化
+                            const thought = this.records[this.editingIndex];
+                            
+                            // 检查thought是否存在
+                            if (!thought) {
+                                console.error('编辑的记录不存在，索引:', this.editingIndex);
+                                this.editingIndex = null;
+                                saveBtn.textContent = '保存';
+                                saveBtn.classList.remove('edit-mode');
+                                return;
+                            }
+                            
+                            const hasChanges = thought.title !== title || 
+                                             thought.content !== content || 
+                                             JSON.stringify(thought.tags) !== JSON.stringify(tags);
+                            
+                            if (hasChanges) {
+                                // 有变化时才更新
+                                thought.title = title;
+                                thought.content = content;
+                                thought.tags = tags;
+                                // 保持原有时间戳，不改变展示顺序
+                                thought.aiResponse = this.generateAIResponse(content);
+                                
+                                // 保存到存储
+                                this.saveToStorage();
+                                // 重新渲染记录
+                                this.renderRecords();
+                            }
+                            
+                            // 重置编辑状态
+                            this.editingIndex = null;
+                            saveBtn.textContent = '保存';
+                            saveBtn.classList.remove('edit-mode');
+                        } else {
+                            // 新建模式：添加新记录
+                            const thought = {
+                                id: Date.now(),
+                                title,
+                                content, 
+                                tags,
+                                timestamp: new Date().toISOString(),
+                                aiResponse: this.generateAIResponse(content)
+                            };
+                            
+                            // 确保records是数组
+                            if (!Array.isArray(this.records)) {
+                                this.records = [];
+                            }
+                            this.records.unshift(thought);
+                        }
+                        
+                        this.saveToStorage();
+                        this.renderRecords();
+                        
+                        // 清除草稿
+                        localStorage.removeItem('thoughtDraft');
+                        
+                        this.closeRecordPanel();
+                        
+                        // 显示成功动画
+                        this.showSaveSuccess();
+                    } catch (error) {
+                        console.error('保存失败:', error);
+                        alert('保存失败，请重试');
+                    } finally {
+                        // 确保loading状态被移除
+                        saveBtn.classList.remove('loading');
+                    }
+                }, 1500);
+            }
+            
+            parseTags(tagString) {
+                if (!tagString || typeof tagString !== 'string') {
+                    return [];
+                }
+                return tagString.split(' ')
+                    .filter(tag => tag.startsWith('#'))
+                    .map(tag => tag.slice(1));
+            }
+            
+            generateAIResponse(content) {
+                try {
+                    // 根据内容特征选择AI模型进行多维度分析
+                    const analysisType = this.analyzeContentType(content);
+                    
+                    // 生成基于内容的唯一标识，确保每次分析都不同
+                    const contentHash = this.generateContentHash(content);
+                    const timestamp = Date.now();
+                    
+                    switch(analysisType) {
+                        case 'philosophical':
+                            return this.callPhilosophyAI(content, contentHash, timestamp);
+                        case 'social':
+                            return this.callSociologyAI(content, contentHash, timestamp);
+                        case 'psychological':
+                            return this.callPsychologyAI(content, contentHash, timestamp);
+                        case 'political':
+                            return this.callPoliticalAI(content, contentHash, timestamp);
+                        case 'religious':
+                            return this.callReligiousAI(content, contentHash, timestamp);
+                        default:
+                            return this.callComprehensiveAI(content, contentHash, timestamp);
+                    }
+                } catch (error) {
+                    console.error('生成AI响应失败:', error);
+                    // 返回基于内容的默认响应
+                    return this.generateFallbackResponse(content);
+                }
+            }
+            
+            generateContentHash(content) {
+                // 生成基于内容的简单哈希，用于确保响应多样性
+                let hash = 0;
+                for (let i = 0; i < content.length; i++) {
+                    const char = content.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash; // 转换为32位整数
+                }
+                return Math.abs(hash);
+            }
+            
+            generateFallbackResponse(content) {
+                // 基于内容生成个性化的默认响应
+                const contentLength = content.length;
+                const hasQuestion = content.includes('？') || content.includes('?');
+                const hasEmotion = /[喜怒哀乐爱恨恐惧焦虑]/g.test(content);
+                
+                let response = `【深度洞察】从你的${contentLength > 100 ? '深度' : '简洁'}思考中，我感受到了${hasEmotion ? '丰富的情感层次' : '理性的思辨精神'}。`;
+                
+                if (hasQuestion) {
+                    response += `你的疑问体现了对真理的渴望，这种求索本身就是一种智慧的表现。`;
+                } else {
+                    response += `你的表达展现了独特的思考角度，这种独特性正是人类精神世界的珍贵财富。`;
+                }
+                
+                response += `\n\n【深层探索引导】继续深入思考：你的这个想法背后隐藏着什么？它如何与你的价值观产生共鸣？当你面对类似的思考时，什么会给你最大的启发？`;
+                
+                return response;
+            }
+            
+            analyzeContentFeatures(content) {
+                return {
+                    length: content.length,
+                    hasQuestion: content.includes('？') || content.includes('?'),
+                    hasEmotion: /[喜怒哀乐爱恨恐惧焦虑]/g.test(content),
+                    hasSelf: content.includes('我') || content.includes('自己'),
+                    hasTime: /[时间|过去|现在|未来|曾经|将来]/g.test(content),
+                    hasRelationship: /[关系|他人|朋友|家人|社会]/g.test(content),
+                    hasAbstract: /[存在|意义|本质|真理|现实|虚无]/g.test(content),
+                    wordCount: content.split(/\s+/).length
+                };
+            }
+            
+            extractPhilosophicalThemes(content) {
+                const themes = [];
+                const philosophicalKeywords = ['存在', '意义', '真理', '本质', '自由', '选择', '死亡', '时间', '空间', '意识', '自我', '现实', '虚无', '荒谬', '理性', '感性'];
+                
+                philosophicalKeywords.forEach(keyword => {
+                    if (content.includes(keyword)) {
+                        themes.push(keyword);
+                    }
+                });
+                
+                return themes;
+            }
+            
+            generateUniquePsychologicalAngle(content, contentHash) {
+                const angles = [
+                    `从认知心理学的角度来看，你的思考过程体现了信息加工的复杂性。你的文字展现了独特的认知模式，这种模式正是你个性特征的体现。每一次思考都是对认知结构的重新组织，这种重组本身就是学习的过程。`,
+                    `从发展心理学的角度分析，你的思考体现了心理发展的阶段性特征。你的表达方式反映了当前的心理发展水平，每一次反思都是对自我认知的深化。这种对自我的探索，正是心理成熟的重要标志。`,
+                    `从社会心理学的角度来看，你的思考体现了社会认知的复杂性。你的文字既有对个体心理的洞察，又有对社会现象的思考，这种平衡本身就是社会适应能力的体现。`,
+                    `从人本主义心理学的角度分析，你的思考体现了自我实现的需求。马斯洛告诉我们每个人都有实现潜能的渴望，而你的文字正是这种渴望的表达。每一次思考都是对自我潜能的探索。`
+                ];
+                
+                // 基于内容哈希选择角度，确保不同内容有不同的角度
+                const angleIndex = contentHash % angles.length;
+                return angles[angleIndex];
+            }
+            
+            generateExplorationQuestions(content, analysisType) {
+                const questionSets = {
+                    philosophical: [
+                        "你的这个思考背后隐藏着什么哲学问题？它如何与你的世界观产生共鸣？",
+                        "当你面对类似的哲学困惑时，什么会给你最大的启发？你的思考如何影响你的人生选择？",
+                        "这个想法如何与你的价值观产生对话？它揭示了什么关于你内心深处的真相？"
+                    ],
+                    social: [
+                        "你的这个观察如何反映了社会现象的本质？它揭示了什么社会规律？",
+                        "当你面对类似的社会问题时，你会如何行动？你的思考如何影响你与他人的关系？",
+                        "这个想法如何与你的社会角色产生共鸣？它如何塑造你的社会认知？"
+                    ],
+                    psychological: [
+                        "你的这个思考反映了什么心理状态？它如何影响你的情绪和行为？",
+                        "当你面对类似的内心冲突时，你会如何应对？你的思考如何促进心理成长？",
+                        "这个想法如何与你的内心世界产生对话？它揭示了什么关于你心理结构的真相？"
+                    ],
+                    political: [
+                        "你的这个思考如何反映了权力关系的本质？它揭示了什么政治规律？",
+                        "当你面对类似的政治问题时，你会如何选择？你的思考如何影响你的政治立场？",
+                        "这个想法如何与你的政治价值观产生共鸣？它如何塑造你的公民意识？"
+                    ],
+                    religious: [
+                        "你的这个思考如何体现了对精神世界的探索？它揭示了什么关于生命本质的真相？",
+                        "当你面对类似的灵性困惑时，你会如何寻求答案？你的思考如何促进精神成长？",
+                        "这个想法如何与你的信仰体系产生对话？它如何深化你对生命意义的理解？"
+                    ],
+                    comprehensive: [
+                        "你的这个思考如何体现了多维度的人生智慧？它如何影响你的整体人生观？",
+                        "当你面对类似的复杂问题时，你会如何整合不同的视角？你的思考如何促进全面发展？",
+                        "这个想法如何与你的核心价值观产生共鸣？它如何塑造你的人生选择？"
+                    ]
+                };
+                
+                const questions = questionSets[analysisType] || questionSets.comprehensive;
+                const questionIndex = content.length % questions.length;
+                return questions[questionIndex];
+            }
+            
+            analyzeContentType(content) {
+                const philosophicalKeywords = ['存在', '意义', '真理', '本质', '自由', '选择', '死亡', '时间', '空间', '意识', '自我', '现实', '虚无', '荒谬', '理性', '感性'];
+                const socialKeywords = ['社会', '群体', '文化', '传统', '制度', '关系', '互动', '交流', '合作', '冲突', '和谐', '秩序', '变革', '发展', '进步'];
+                const psychologicalKeywords = ['情感', '感受', '内心', '心理', '情绪', '压力', '焦虑', '快乐', '痛苦', '爱', '恨', '恐惧', '希望', '梦想', '记忆'];
+                const politicalKeywords = ['权力', '政治', '政府', '民主', '自由', '平等', '正义', '法律', '制度', '改革', '革命', '领导', '管理', '决策', '政策'];
+                const religiousKeywords = ['佛', '道', '禅', '修行', '觉悟', '慈悲', '智慧', '因果', '轮回', '解脱', '涅槃', '道', '德', '仁', '义'];
+                
+                const contentLower = content.toLowerCase();
+                
+                let maxScore = 0;
+                let detectedType = 'comprehensive';
+                
+                const types = [
+                    { name: 'philosophical', keywords: philosophicalKeywords },
+                    { name: 'social', keywords: socialKeywords },
+                    { name: 'psychological', keywords: psychologicalKeywords },
+                    { name: 'political', keywords: politicalKeywords },
+                    { name: 'religious', keywords: religiousKeywords }
+                ];
+                
+                types.forEach(type => {
+                    const score = type.keywords.reduce((acc, keyword) => {
+                        return acc + (contentLower.includes(keyword) ? 1 : 0);
+                    }, 0);
+                    
+                    if (score > maxScore) {
+                        maxScore = score;
+                        detectedType = type.name;
+                    }
+                });
+                
+                return detectedType;
+            }
+            
+            callPhilosophyAI(content, contentHash, timestamp) {
+                // 基于内容特征生成独特的哲学分析
+                const contentAnalysis = this.analyzeContentFeatures(content);
+                const philosophicalThemes = this.extractPhilosophicalThemes(content);
+                
+                let response = `【哲学维度】`;
+                
+                // 根据内容特征选择哲学视角
+                if (philosophicalThemes.includes('存在')) {
+                    response += `从存在主义的角度来看，你的思考触及了存在的根本问题。正如海德格尔所说"此在"总是在世界中存在，你的文字体现了对存在状态的深度反思。每一次思考都是对"我是谁"这个根本问题的探索，这种追问本身就是哲学思考的精髓。`;
+                } else if (philosophicalThemes.includes('自由')) {
+                    response += `从自由意志的角度分析，你的思考体现了对自由本质的深度探索。萨特告诉我们"存在先于本质"，而你的文字正是这种自由选择的体现。每一次决定都是对自我本质的重新定义，这种自主性正是人类尊严的源泉。`;
+                } else if (philosophicalThemes.includes('真理')) {
+                    response += `从认识论的角度来看，你的思考体现了对真理本质的深度追问。柏拉图告诉我们真理是理念世界的反映，而你的文字正是这种理念探索的表达。每一次思考都是对真理的接近，这种求索本身就是智慧的表现。`;
+                } else {
+                    response += `从哲学思辨的角度来看，你的思考体现了对根本问题的深度探索。正如苏格拉底所说"未经审视的人生不值得过"，你的文字承载着对生命意义的追问。每一次思考都是对存在本质的重新理解，这种反思正是哲学思考的起点。`;
+                }
+                
+                // 添加心理学维度（避免重复）
+                const psychAngle = this.generateUniquePsychologicalAngle(content, contentHash);
+                response += `\n\n【心理学维度】${psychAngle}`;
+                
+                // 添加深层探索引导
+                const explorationQuestions = this.generateExplorationQuestions(content, 'philosophical');
+                response += `\n\n【深层探索引导】${explorationQuestions}`;
+                
+                return response;
+            }
+            
+            callSociologyAI(content, contentHash, timestamp) {
+                // 基于内容特征生成独特的社会学分析
+                const contentAnalysis = this.analyzeContentFeatures(content);
+                const socialThemes = this.extractSocialThemes(content);
+                
+                let response = `【社会维度】`;
+                
+                // 根据内容特征选择社会学视角
+                if (socialThemes.includes('关系') || socialThemes.includes('互动')) {
+                    response += `从社会关系的角度来看，你的思考触及了人际互动的本质。正如米德所说，自我是在社会互动中形成的，而你的文字正是这种社会性自我的体现。每一次思考都是对社会关系的重新理解，这种理解本身就是社会认知的深化。`;
+                } else if (socialThemes.includes('文化') || socialThemes.includes('传统')) {
+                    response += `从文化社会学的角度分析，你的思考体现了对文化现象的深度理解。文化不仅是外在的符号系统，更是内在的意义世界。你的文字承载着对文化传承与变革的思考，这种思考本身就是文化创造的一部分。`;
+                } else if (socialThemes.includes('权力') || socialThemes.includes('制度')) {
+                    response += `从权力社会学的角度来看，你的思考触及了权力与自由的核心议题。福柯告诉我们，权力不仅是压制性的，更是生产性的。你的分析体现了对权力运作机制的深刻理解，这种洞察本身就是一种社会智慧。`;
+                } else {
+                    response += `从社会学的角度来看，你的思考体现了对社会现象的敏锐洞察。正如涂尔干所说，社会事实具有客观性，而你的思考正是对这种客观性的主观理解。每一个社会现象背后都有其深层逻辑，你的分析触及了这些逻辑的核心。`;
+                }
+                
+                // 添加心理学维度（避免重复）
+                const psychAngle = this.generateUniquePsychologicalAngle(content, contentHash + 1);
+                response += `\n\n【心理学维度】${psychAngle}`;
+                
+                // 添加深层探索引导
+                const explorationQuestions = this.generateExplorationQuestions(content, 'social');
+                response += `\n\n【深层探索引导】${explorationQuestions}`;
+                
+                return response;
+            }
+            
+            extractSocialThemes(content) {
+                const themes = [];
+                const socialKeywords = ['社会', '群体', '文化', '传统', '制度', '关系', '互动', '交流', '合作', '冲突', '和谐', '秩序', '变革', '发展', '进步', '权力', '权威', '自由', '平等'];
+                
+                socialKeywords.forEach(keyword => {
+                    if (content.includes(keyword)) {
+                        themes.push(keyword);
+                    }
+                });
+                
+                return themes;
+            }
+            
+            callPsychologyAI(content, contentHash, timestamp) {
+                // 基于内容特征生成独特的心理学分析
+                const contentAnalysis = this.analyzeContentFeatures(content);
+                const psychologicalThemes = this.extractPsychologicalThemes(content);
+                
+                let response = `【心理维度】`;
+                
+                // 根据内容特征选择心理学视角
+                if (psychologicalThemes.includes('情感') || psychologicalThemes.includes('情绪')) {
+                    response += `从情感心理学的角度来看，你的思考体现了高度的情感智慧。情感不仅是心理现象，更是人类存在的基本方式。你的文字既有理性的分析，又有感性的表达，这种平衡本身就是一种心理健康的标志。每一次情感的表达都是对内心世界的探索。`;
+                } else if (psychologicalThemes.includes('自我') || psychologicalThemes.includes('内心')) {
+                    response += `从自我心理学的角度分析，你的思考体现了对自我认知的深度探索。正如荣格所说，每个人都有其独特的心理类型，而你的文字正是这种独特性的体现。每一次内省都是对自我认知的深化，这种深化本身就是心理成长的过程。`;
+                } else if (psychologicalThemes.includes('成长') || psychologicalThemes.includes('发展')) {
+                    response += `从发展心理学的角度来看，你的思考体现了心理发展的阶段性特征。马斯洛告诉我们每个人都有实现潜能的渴望，而你的文字正是这种渴望的表达。这种对自我实现的追求，正是人类心理发展的最高境界。`;
+                } else {
+                    response += `从心理学的角度来看，你的思考体现了内心世界的丰富与复杂。你的文字展现了独特的心理模式，这种模式正是你个性特征的体现。每一次思考都是对心理结构的重新组织，这种重组本身就是学习的过程。`;
+                }
+                
+                // 添加哲学维度（避免重复）
+                const philosophyAngle = this.generateUniquePhilosophyAngle(content, contentHash + 2);
+                response += `\n\n【哲学维度】${philosophyAngle}`;
+                
+                // 添加深层探索引导
+                const explorationQuestions = this.generateExplorationQuestions(content, 'psychological');
+                response += `\n\n【深层探索引导】${explorationQuestions}`;
+                
+                return response;
+            }
+            
+            extractPsychologicalThemes(content) {
+                const themes = [];
+                const psychologicalKeywords = ['情感', '感受', '内心', '心理', '情绪', '压力', '焦虑', '快乐', '痛苦', '爱', '恨', '恐惧', '希望', '梦想', '记忆', '自我', '成长', '发展', '潜能', '实现'];
+                
+                psychologicalKeywords.forEach(keyword => {
+                    if (content.includes(keyword)) {
+                        themes.push(keyword);
+                    }
+                });
+                
+                return themes;
+            }
+            
+            generateUniquePhilosophyAngle(content, contentHash) {
+                const angles = [
+                    `从存在主义的角度来看，你的思考触及了存在的根本问题。萨特告诉我们"存在先于本质"，而你的文字正是这种存在状态的真实写照。每一次思考都是对自我存在的确认，这种确认本身就是哲学思考的精髓。`,
+                    `从认识论的角度分析，你的思考体现了对真理本质的深度追问。柏拉图告诉我们真理是理念世界的反映，而你的文字正是这种理念探索的表达。每一次思考都是对真理的接近，这种接近本身就是智慧的表现。`,
+                    `从伦理学的角度来看，你的思考体现了对道德问题的深度反思。康德告诉我们道德律令是理性的产物，而你的文字正是这种理性思考的体现。每一次思考都是对道德本质的重新理解。`,
+                    `从美学的角度分析，你的思考体现了对美的本质的深度探索。黑格尔告诉我们美是理念的感性显现，而你的文字正是这种美的表达。每一次思考都是对美的重新定义。`
+                ];
+                
+                // 基于内容哈希选择角度，确保不同内容有不同的角度
+                const angleIndex = contentHash % angles.length;
+                return angles[angleIndex];
+            }
+            
+            callPoliticalAI(content, contentHash, timestamp) {
+                // 基于内容特征生成独特的政治学分析
+                const contentAnalysis = this.analyzeContentFeatures(content);
+                const politicalThemes = this.extractPoliticalThemes(content);
+                
+                let response = `【政治维度】`;
+                
+                // 根据内容特征选择政治学视角
+                if (politicalThemes.includes('权力') || politicalThemes.includes('权威')) {
+                    response += `从权力政治学的角度来看，你的思考触及了权力结构的深层问题。正如福柯所说，权力不仅是压制性的，更是生产性的。你的分析体现了对权力运作机制的深刻理解，这种洞察本身就是一种政治智慧。`;
+                } else if (politicalThemes.includes('民主') || politicalThemes.includes('自由')) {
+                    response += `从民主理论的角度分析，你的思考体现了对民主理念的深度理解。民主不仅是制度安排，更是一种生活方式。你的文字展现了公民意识的高度，这种意识正是民主社会的基础。`;
+                } else if (politicalThemes.includes('正义') || politicalThemes.includes('平等')) {
+                    response += `从政治哲学的角度来看，你的思考体现了对正义问题的深刻反思。罗尔斯告诉我们，正义是社会制度的首要价值，而你的思考正是对这种价值的探索。这种对正义的追求，正是政治哲学的核心议题。`;
+                } else {
+                    response += `从政治学的角度来看，你的思考体现了对政治现象的敏锐洞察。你的分析触及了政治运作的深层逻辑，这种洞察本身就是一种政治智慧。`;
+                }
+                
+                // 添加心理学维度（避免重复）
+                const psychAngle = this.generateUniquePsychologicalAngle(content, contentHash + 3);
+                response += `\n\n【心理学维度】${psychAngle}`;
+                
+                // 添加深层探索引导
+                const explorationQuestions = this.generateExplorationQuestions(content, 'political');
+                response += `\n\n【深层探索引导】${explorationQuestions}`;
+                
+                return response;
+            }
+            
+            extractPoliticalThemes(content) {
+                const themes = [];
+                const politicalKeywords = ['权力', '政治', '政府', '民主', '自由', '平等', '正义', '法律', '制度', '改革', '革命', '领导', '管理', '决策', '政策', '权威', '公民', '权利', '义务'];
+                
+                politicalKeywords.forEach(keyword => {
+                    if (content.includes(keyword)) {
+                        themes.push(keyword);
+                    }
+                });
+                
+                return themes;
+            }
+            
+            callReligiousAI(content, contentHash, timestamp) {
+                // 基于内容特征生成独特的宗教学分析
+                const contentAnalysis = this.analyzeContentFeatures(content);
+                const religiousThemes = this.extractReligiousThemes(content);
+                
+                let response = `【佛学维度】`;
+                
+                // 根据内容特征选择宗教学视角
+                if (religiousThemes.includes('佛') || religiousThemes.includes('禅')) {
+                    response += `从佛学的角度来看，你的思考体现了对佛学智慧的深度理解。正如佛陀所说"一切众生皆具佛性"，你的文字正是这种佛性的体现。每一次思考都是对内心佛性的唤醒，每一次记录都是对智慧的开显。`;
+                } else if (religiousThemes.includes('道') || religiousThemes.includes('自然')) {
+                    response += `从道学的角度来看，你的思考体现了道家的核心思想。老子告诉我们"道法自然"，而你的文字正是这种自然之道的表达。在无为而治的智慧中，你找到了属于自己的修行之路。`;
+                } else if (religiousThemes.includes('修行') || religiousThemes.includes('觉悟')) {
+                    response += `从修行学的角度来看，你的思考体现了对精神世界的深度探索。每一次思考都是对内心世界的净化，每一次记录都是对生命意义的重新定义。这种对精神成长的追求，正是宗教修行的精髓。`;
+                } else {
+                    response += `从宗教学的角度来看，你的思考体现了对精神世界的深度探索。你的文字承载着对生命意义的追问，这种追问本身就是宗教思考的起点。每一次思考都是对存在本质的重新理解。`;
+                }
+                
+                // 添加心理学维度（避免重复）
+                const psychAngle = this.generateUniquePsychologicalAngle(content, contentHash + 4);
+                response += `\n\n【心理学维度】${psychAngle}`;
+                
+                // 添加深层探索引导
+                const explorationQuestions = this.generateExplorationQuestions(content, 'religious');
+                response += `\n\n【深层探索引导】${explorationQuestions}`;
+                
+                return response;
+            }
+            
+            extractReligiousThemes(content) {
+                const themes = [];
+                const religiousKeywords = ['佛', '道', '禅', '修行', '觉悟', '慈悲', '智慧', '因果', '轮回', '解脱', '涅槃', '道', '德', '仁', '义', '自然', '无为', '清净', '慈悲', '智慧'];
+                
+                religiousKeywords.forEach(keyword => {
+                    if (content.includes(keyword)) {
+                        themes.push(keyword);
+                    }
+                });
+                
+                return themes;
+            }
+            
+            callComprehensiveAI(content, contentHash, timestamp) {
+                // 基于内容特征生成独特的综合分析
+                const contentAnalysis = this.analyzeContentFeatures(content);
+                const allThemes = [
+                    ...this.extractPhilosophicalThemes(content),
+                    ...this.extractSocialThemes(content),
+                    ...this.extractPsychologicalThemes(content),
+                    ...this.extractPoliticalThemes(content),
+                    ...this.extractReligiousThemes(content)
+                ];
+                
+                let response = `【多维度分析】从你的思考中，我看到了多维度的人生智慧。你的文字体现了对复杂问题的深度理解，这种理解本身就是一种综合思维能力的体现。`;
+                
+                // 根据内容特征选择主要维度
+                if (allThemes.includes('存在') || allThemes.includes('意义')) {
+                    response += `\n\n【哲学维度】从存在主义的角度来看，你的思考触及了存在的根本问题。正如海德格尔所说"此在"总是在世界中存在，你的文字体现了对存在状态的深度反思。每一次思考都是对"我是谁"这个根本问题的探索，这种追问本身就是哲学思考的精髓。`;
+                } else if (allThemes.includes('关系') || allThemes.includes('社会')) {
+                    response += `\n\n【社会维度】从社会关系的角度来看，你的思考触及了人际互动的本质。正如米德所说，自我是在社会互动中形成的，而你的文字正是这种社会性自我的体现。每一次思考都是对社会关系的重新理解，这种理解本身就是社会认知的深化。`;
+                } else if (allThemes.includes('情感') || allThemes.includes('内心')) {
+                    response += `\n\n【心理维度】从情感心理学的角度来看，你的思考体现了高度的情感智慧。情感不仅是心理现象，更是人类存在的基本方式。你的文字既有理性的分析，又有感性的表达，这种平衡本身就是一种心理健康的标志。`;
+                } else {
+                    response += `\n\n【哲学维度】从哲学思辨的角度来看，你的思考体现了对根本问题的深度探索。正如苏格拉底所说"未经审视的人生不值得过"，你的文字承载着对生命意义的追问。每一次思考都是对存在本质的重新理解，这种反思正是哲学思考的起点。`;
+                }
+                
+                // 添加第二个维度（避免重复）
+                const secondDimension = this.generateSecondDimension(content, contentHash);
+                response += `\n\n${secondDimension}`;
+                
+                // 添加深层探索引导
+                const explorationQuestions = this.generateExplorationQuestions(content, 'comprehensive');
+                response += `\n\n【深层探索引导】${explorationQuestions}`;
+                
+                return response;
+            }
+            
+            generateSecondDimension(content, contentHash) {
+                const dimensions = [
+                    `【心理学维度】从认知心理学的角度来看，你的思考过程体现了信息加工的复杂性。你的文字展现了独特的认知模式，这种模式正是你个性特征的体现。每一次思考都是对认知结构的重新组织，这种重组本身就是学习的过程。`,
+                    `【社会维度】从社会学的角度来看，你的思考体现了对社会现象的敏锐洞察。正如涂尔干所说，社会事实具有客观性，而你的思考正是对这种客观性的主观理解。每一个社会现象背后都有其深层逻辑，你的分析触及了这些逻辑的核心。`,
+                    `【佛学维度】从佛学的角度来看，你的思考体现了对内心佛性的探索。佛陀告诉我们"一切众生皆具佛性"，你的文字正是这种佛性的体现。每一次思考都是对内心佛性的唤醒，每一次记录都是对智慧的开显。`,
+                    `【政治维度】从政治学的角度来看，你的思考体现了对政治现象的敏锐洞察。你的分析触及了政治运作的深层逻辑，这种洞察本身就是一种政治智慧。`
+                ];
+                
+                // 基于内容哈希选择维度，确保不同内容有不同的维度组合
+                const dimensionIndex = (contentHash + content.length) % dimensions.length;
+                return dimensions[dimensionIndex];
+            }
+            
+            saveToStorage() {
+                try {
+                    // 确保records是数组
+                    if (!Array.isArray(this.records)) {
+                        this.records = [];
+                    }
+                    localStorage.setItem('thoughts', JSON.stringify(this.records));
+                } catch (error) {
+                    console.error('保存思考记录失败:', error);
+                }
+            }
+            
+            // 重新生成所有现有思考记录的解语花内容
+            regenerateAllAIResponses() {
+                if (!Array.isArray(this.records)) {
+                    console.log('没有思考记录需要重新生成');
+                    return;
+                }
+                
+                let updatedCount = 0;
+                this.records.forEach((thought, index) => {
+                    if (thought.content) {
+                        const newAIResponse = this.generateAIResponse(thought.content);
+                        if (newAIResponse && newAIResponse !== thought.aiResponse) {
+                            thought.aiResponse = newAIResponse;
+                            thought.regeneratedAt = new Date().toISOString();
+                            updatedCount++;
+                        }
+                    }
+                });
+                
+                if (updatedCount > 0) {
+                    this.saveToStorage();
+                    this.renderRecords();
+                    console.log(`已重新生成 ${updatedCount} 条思考记录的解语花内容`);
+                } else {
+                    console.log('所有解语花内容已是最新版本');
+                }
+            }
+            
+            showRegenerateSuccess(count) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--gradient-absurd);
+                    color: white;
+                    padding: 1.5rem 2.5rem;
+                    border-radius: 16px;
+                    font-size: var(--text-base);
+                    font-weight: var(--font-medium);
+                    z-index: 1002;
+                    animation: regenerateSuccessFade 3s ease-out forwards;
+                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+                    text-align: center;
+                `;
+                notification.innerHTML = `
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌸</div>
+                    <div>已重新生成 ${count} 条解语花内容</div>
+                    <div style="font-size: var(--text-sm); opacity: 0.8; margin-top: 0.5rem;">多维度深度分析已更新</div>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 3000);
+            }
+            
+            renderRecords() {
+                const container = document.getElementById('thoughtsContainer');
+                
+                // 安全检查：确保records是数组
+                if (!this.records || !Array.isArray(this.records)) {
+                    this.records = [];
+                }
+                
+                if (this.records.length === 0) {
+                    container.innerHTML = `
+                        <div class="thought-card glass-morphism" style="text-align: center; padding: 3rem;">
+                            <h3 style="color: var(--color-text-muted); margin-bottom: 1rem; font-size: var(--text-xl); font-weight: var(--font-medium);">你的每一天都值得过</h3>
+                            <p style="color: var(--color-text-muted); font-size: var(--text-base);">点击右下角的按钮开始记录你的思考吧</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // 过滤掉隐藏的内容
+                const visibleRecords = this.records.filter(thought => !thought.hidden);
+                
+                container.innerHTML = visibleRecords.map((thought, index) => {
+                    // 找到原始索引
+                    const originalIndex = this.records.indexOf(thought);
+                    return `
+                    <div class="thought-card glass-morphism random-float" data-index="${originalIndex}">
+                        <div class="thought-header">
+                            <div class="thought-title-section">
+                                <h3 class="thought-title">${thought.title}</h3>
+                                <div class="thought-tags">
+                                    ${(thought.tags && Array.isArray(thought.tags) ? thought.tags : []).map(tag => `
+                                        <span class="tag-pill">#${tag}</span>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <div class="thought-actions">
+                                <span class="thought-time">${this.formatTime(thought.timestamp, thought.title)}</span>
+                                <button class="action-button" onclick="thoughtRecorder.showActionMenu(${originalIndex})">
+                                    <span class="action-dots">⋯</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="thought-content">
+                            <p>${thought.content.replace(/\n/g, '<br>')}</p>
+                        </div>
+                        
+                        <div class="ai-response">
+                            <div class="response-header">
+                                <div class="ai-avatar">🌸</div>
+                                <span class="response-label">解语花</span>
+                            </div>
+                            <div class="response-content">
+                                <p>${thought.aiResponse}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                }).join('');
+            }
+            
+            formatTime(timestamp, title = '') {
+                // 检查是否为AI使用心得内容
+                if (title && (title.includes('AI使用心得') || title.includes('AI的使用心得'))) {
+                    return '不久前';
+                }
+                
+                const timeInfo = this.timeFormatter.format(timestamp);
+                return timeInfo.display;
+            }
+            
+            showActionMenu(index) {
+                // 隐藏其他菜单
+                document.querySelectorAll('.action-menu').forEach(menu => {
+                    menu.remove();
+                });
+                
+                const thoughtCard = document.querySelector(`[data-index="${index}"]`);
+                const actionButton = thoughtCard.querySelector('.action-button');
+                
+                // 创建操作菜单
+                const menu = document.createElement('div');
+                menu.className = 'action-menu';
+                
+                // 检查当前主题
+                const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+                
+                menu.innerHTML = `
+                    <button class="menu-item edit-item" onclick="thoughtRecorder.editThought(${index})">
+                        <span class="menu-icon">✏️</span>
+                        <span class="menu-text">修改</span>
+                    </button>
+                    <button class="menu-item hide-item" onclick="thoughtRecorder.hideThought(${index})">
+                        <span class="menu-icon">👁️</span>
+                        <span class="menu-text">隐藏</span>
+                    </button>
+                    <button class="menu-item delete-item" onclick="thoughtRecorder.deleteThought(${index})">
+                        <span class="menu-icon">🗑️</span>
+                        <span class="menu-text">删除</span>
+                    </button>
+                `;
+                
+                // 定位菜单
+                const rect = actionButton.getBoundingClientRect();
+                const baseStyles = `
+                    position: fixed;
+                    top: ${rect.bottom + 5}px;
+                    right: ${window.innerWidth - rect.right}px;
+                    z-index: 1001;
+                `;
+                
+                if (isDarkMode) {
+                    menu.style.cssText = baseStyles + `
+                        background: var(--color-bg-secondary);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                    `;
+                } else {
+                    menu.style.cssText = baseStyles;
+                }
+                
+                document.body.appendChild(menu);
+                
+                // 点击外部关闭菜单
+                const closeMenu = (e) => {
+                    if (!menu.contains(e.target) && !actionButton.contains(e.target)) {
+                        menu.remove();
+                        document.removeEventListener('click', closeMenu);
+                    }
+                };
+                
+                setTimeout(() => {
+                    document.addEventListener('click', closeMenu);
+                }, 100);
+            }
+            
+            editThought(index) {
+                // 获取原始索引（从data-index属性）
+                const thoughtElement = document.querySelector(`[data-index="${index}"]`);
+                if (!thoughtElement) {
+                    console.error('找不到对应的思考记录元素');
+                    return;
+                }
+                
+                const originalIndex = parseInt(thoughtElement.getAttribute('data-index'));
+                const thought = this.records[originalIndex];
+                
+                if (!thought) {
+                    console.error('找不到对应的思考记录，索引:', originalIndex);
+                    return;
+                }
+                
+                // 打开记录面板
+                this.openRecordPanel();
+                
+                // 填充表单
+                document.getElementById('titleInput').value = thought.title;
+                document.getElementById('contentInput').value = thought.content;
+                document.getElementById('tagsInput').value = thought.tags ? thought.tags.join(' ') : '';
+                
+                // 更新字符计数
+                document.getElementById('charCounter').textContent = `${thought.title.length}/50`;
+                
+                // 更新标签预览
+                this.updateTagsPreview(thought.tags ? thought.tags.join(' ') : '');
+                
+                // 设置编辑模式标记（使用原始索引）
+                this.editingIndex = originalIndex;
+                
+                // 更新保存按钮文本
+                const saveBtn = document.getElementById('saveBtn');
+                saveBtn.textContent = '更新';
+                saveBtn.classList.add('edit-mode');
+                
+                // 隐藏菜单
+                document.querySelectorAll('.action-menu').forEach(menu => menu.remove());
+            }
+            
+            hideThought(index) {
+                // 获取原始索引（从data-index属性）
+                const thoughtElement = document.querySelector(`[data-index="${index}"]`);
+                if (!thoughtElement) {
+                    console.error('找不到对应的思考记录元素');
+                    return;
+                }
+                
+                const originalIndex = parseInt(thoughtElement.getAttribute('data-index'));
+                const thought = this.records[originalIndex];
+                
+                if (!thought) {
+                    console.error('找不到对应的思考记录，索引:', originalIndex);
+                    return;
+                }
+                
+                if (confirm('确定要隐藏这条思考记录吗？')) {
+                    thought.hidden = true;
+                    thought.hiddenAt = new Date().toISOString();
+                    
+                    this.saveToStorage();
+                    this.renderRecords();
+                    
+                    // 显示隐藏成功提示
+                    this.showHideSuccess();
+                }
+                
+                // 隐藏菜单
+                document.querySelectorAll('.action-menu').forEach(menu => menu.remove());
+            }
+            
+            deleteThought(index) {
+                // 获取原始索引（从data-index属性）
+                const thoughtElement = document.querySelector(`[data-index="${index}"]`);
+                if (!thoughtElement) {
+                    console.error('找不到对应的思考记录元素');
+                    return;
+                }
+                
+                const originalIndex = parseInt(thoughtElement.getAttribute('data-index'));
+                const thought = this.records[originalIndex];
+                
+                if (!thought) {
+                    console.error('找不到对应的思考记录，索引:', originalIndex);
+                    return;
+                }
+                
+                if (confirm('确定要删除这条思考记录吗？')) {
+                    this.records.splice(originalIndex, 1);
+                    this.saveToStorage();
+                    this.renderRecords();
+                    
+                    // 显示删除成功提示
+                    this.showDeleteSuccess();
+                }
+                
+                // 隐藏菜单
+                document.querySelectorAll('.action-menu').forEach(menu => menu.remove());
+            }
+            
+            showHideSuccess() {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--gradient-absurd);
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 12px;
+                    font-size: var(--text-base);
+                    font-weight: var(--font-medium);
+                    z-index: 1002;
+                    animation: hideSuccessFade 2s ease-out forwards;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                `;
+                notification.textContent = '👁️ 已隐藏';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 2000);
+            }
+            
+            showDeleteSuccess() {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--gradient-absurd);
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 12px;
+                    font-size: var(--text-base);
+                    font-weight: var(--font-medium);
+                    z-index: 1002;
+                    animation: deleteSuccessFade 2s ease-out forwards;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                `;
+                notification.textContent = '🗑️ 删除成功';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 2000);
+            }
+            
+            showHiddenThoughts() {
+                const hiddenThoughts = this.records.filter(thought => thought.hidden);
+                
+                if (hiddenThoughts.length === 0) {
+                    alert('没有隐藏的思考记录');
+                    return;
+                }
+                
+                // 创建隐藏内容面板
+                const panel = document.createElement('div');
+                panel.className = 'hidden-panel glass-morphism';
+                panel.innerHTML = `
+                    <div class="hidden-panel-header">
+                        <h3>秘密花园 🌸</h3>
+                        <button class="close-hidden-panel" onclick="this.parentElement.parentElement.remove()">×</button>
+                    </div>
+                    <div class="hidden-content">
+                        ${hiddenThoughts.map(thought => `
+                            <div class="hidden-thought-card glass-morphism" style="margin-bottom: 1.5rem; padding: 1.5rem; border-radius: 16px; position: relative; overflow: hidden;">
+                                <div class="hidden-thought-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                    <h4 style="margin: 0; color: var(--color-text-primary); font-size: var(--text-lg); font-weight: var(--font-semibold);">${thought.title}</h4>
+                                    <span class="hidden-time" style="color: var(--color-text-muted); font-size: var(--text-sm); font-weight: var(--font-medium);">${this.formatTime(thought.timestamp, thought.title)}</span>
+                                </div>
+                                <div class="hidden-thought-content" style="margin-bottom: 1rem;">
+                                    <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6; font-size: var(--text-base);">${thought.content.replace(/\n/g, '<br>')}</p>
+                                </div>
+                                <div class="hidden-ai-response" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(236, 72, 153, 0.05)); border-radius: 12px; padding: 1rem; border-left: 4px solid var(--color-highlight);">
+                                    <div class="response-header" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                        <div class="ai-avatar" style="font-size: 1.5rem; animation: flowerBlink 3s infinite;">🌸</div>
+                                        <span class="response-label" style="font-size: var(--text-sm); font-weight: var(--font-semibold); color: var(--color-highlight);">解语花</span>
+                                    </div>
+                                    <div class="response-content">
+                                        <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6; font-size: var(--text-base);">${thought.aiResponse}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                document.body.appendChild(panel);
+            }
+            
+            showSaveSuccess() {
+                // 创建成功提示
+                const success = document.createElement('div');
+                success.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--gradient-absurd);
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    z-index: 1002;
+                    animation: successPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                `;
+                success.textContent = '思考已保存 ✨';
+                document.body.appendChild(success);
+                
+                setTimeout(() => {
+                    success.remove();
+                }, 2000);
+            }
+        }
+
+        // 主题切换
+        class ThemeManager {
+            constructor() {
+                this.currentTheme = localStorage.getItem('theme') || 'light';
+                this.init();
+            }
+            
+            init() {
+                this.applyTheme();
+                this.bindEvents();
+            }
+            
+            bindEvents() {
+                // 主题切换事件已移至更多按钮菜单中
+            }
+            
+            toggleTheme() {
+                this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                this.applyTheme();
+                localStorage.setItem('theme', this.currentTheme);
+            }
+            
+            applyTheme() {
+                const body = document.body;
+                
+                if (this.currentTheme === 'dark') {
+                    body.setAttribute('data-theme', 'dark');
+                } else {
+                    body.removeAttribute('data-theme');
+                }
+            }
+        }
+
+        // 格言系统
+        class QuoteManager {
+            constructor() {
+                this.quotes = [
+                    {
+                        text: "在荒谬的世界中，唯一真实的答案就是当下的感受与选择。",
+                        author: "阿尔贝·加缪",
+                        discipline: "哲学 · 存在主义"
+                    },
+                    {
+                        text: "存在先于本质，人首先存在，然后才定义自己。",
+                        author: "让-保罗·萨特",
+                        discipline: "哲学 · 存在主义"
+                    },
+                    {
+                        text: "我思故我在，但更重要的是我在故我思。",
+                        author: "勒内·笛卡尔",
+                        discipline: "哲学 · 理性主义"
+                    },
+                    {
+                        text: "真正的智慧是知道自己一无所知。",
+                        author: "苏格拉底",
+                        discipline: "哲学 · 古典哲学"
+                    },
+                    {
+                        text: "人生而自由，却无往不在枷锁之中。",
+                        author: "让-雅克·卢梭",
+                        discipline: "政治学 · 社会契约"
+                    },
+                    {
+                        text: "时间是最好的老师，但遗憾的是，它杀死了所有的学生。",
+                        author: "海因里希·海涅",
+                        discipline: "文学 · 浪漫主义"
+                    },
+                    {
+                        text: "生活就像骑自行车，要保持平衡，就必须不断前进。",
+                        author: "阿尔伯特·爱因斯坦",
+                        discipline: "物理学 · 相对论"
+                    },
+                    {
+                        text: "不要问国家能为你做什么，而要问你能为国家做什么。",
+                        author: "约翰·肯尼迪",
+                        discipline: "政治学 · 领导力"
+                    }
+                ];
+                this.history = JSON.parse(localStorage.getItem('quoteHistory')) || [];
+                this.init();
+            }
+            
+            init() {
+                this.setDailyQuote();
+                this.scheduleDailyUpdate();
+            }
+            
+            setDailyQuote() {
+                const today = new Date().toDateString();
+                const lastQuoteDate = localStorage.getItem('lastQuoteDate');
+                
+                // 如果是新的一天或者是第一次访问，选择新格言
+                if (lastQuoteDate !== today) {
+                    this.selectNewQuote();
+                    localStorage.setItem('lastQuoteDate', today);
+                } else {
+                    // 恢复今天的格言
+                    this.restoreTodayQuote();
+                }
+            }
+            
+            selectNewQuote() {
+                const usedQuotes = this.history.map(h => h.quoteIndex);
+                const availableQuotes = this.quotes
+                    .map((quote, index) => ({ ...quote, index }))
+                    .filter(quote => !usedQuotes.includes(quote.index));
+                
+                let selectedQuote;
+                if (availableQuotes.length === 0) {
+                    // 如果所有格言都用过了，重新开始
+                    selectedQuote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
+                    this.history = [];
+                } else {
+                    selectedQuote = availableQuotes[Math.floor(Math.random() * availableQuotes.length)];
+                }
+                
+                // 保存到历史
+                this.history.unshift({
+                    quoteIndex: selectedQuote.index,
+                    date: new Date().toISOString(),
+                    text: selectedQuote.text,
+                    author: selectedQuote.author,
+                    discipline: selectedQuote.discipline
+                });
+                
+                // 只保留最近30天的历史
+                if (this.history.length > 30) {
+                    this.history = this.history.slice(0, 30);
+                }
+                
+                localStorage.setItem('quoteHistory', JSON.stringify(this.history));
+                this.displayQuote(selectedQuote);
+            }
+            
+            restoreTodayQuote() {
+                const todayQuote = this.history[0];
+                if (todayQuote) {
+                    this.displayQuote({
+                        text: todayQuote.text,
+                        author: todayQuote.author,
+                        discipline: todayQuote.discipline
+                    });
+                } else {
+                    this.selectNewQuote();
+                }
+            }
+            
+            displayQuote(quote) {
+                document.getElementById('dailyQuote').textContent = quote.text;
+                document.getElementById('quoteAuthor').textContent = quote.author;
+                document.getElementById('quoteDiscipline').textContent = quote.discipline;
+            }
+            
+            scheduleDailyUpdate() {
+                // 计算到明天00:00的时间
+                const now = new Date();
+                const tomorrow = new Date(now);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(0, 0, 0, 0);
+                
+                const timeUntilMidnight = tomorrow - now;
+                
+                setTimeout(() => {
+                    this.selectNewQuote();
+                    // 然后每24小时更新一次
+                    setInterval(() => {
+                        this.selectNewQuote();
+                    }, 24 * 60 * 60 * 1000);
+                }, timeUntilMidnight);
+            }
+            
+            
+            showHistory() {
+                const modal = document.createElement('div');
+                modal.className = 'history-modal';
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    backdrop-filter: blur(10px);
+                    z-index: 1000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 2rem;
+                `;
+                
+                const content = document.createElement('div');
+                content.className = 'history-content glass-morphism';
+                content.style.cssText = `
+                    max-width: 600px;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    padding: 2rem;
+                    border-radius: 20px;
+                    position: relative;
+                    background: var(--color-bg-secondary);
+                    border: none;
+                `;
+                
+                let historyHtml = '<div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; background: var(--gradient-absurd); color: white; margin: -2rem -2rem 2rem -2rem; border-radius: 20px 20px 0 0;"><h3 style="margin: 0; font-size: var(--text-xl); font-weight: var(--font-bold);">格言历史 📜</h3><button class="close-history" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; border-radius: 50%; transition: all 0.2s ease;" onmouseover="this.style.background=\'rgba(255, 255, 255, 0.2)\'" onmouseout="this.style.background=\'none\'">×</button></div>';
+                
+                this.history.forEach((item, index) => {
+                    const date = new Date(item.date);
+                    const dateStr = date.toLocaleDateString('zh-CN', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    historyHtml += `
+                        <div class="history-item glass-morphism" style="margin-bottom: 1.5rem; padding: 1.5rem; border-radius: 16px; position: relative; overflow: hidden; background: var(--color-bg-primary);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <div style="font-size: var(--text-sm); color: var(--color-text-muted); font-weight: var(--font-medium);">${dateStr}</div>
+                            </div>
+                            <blockquote style="font-size: var(--text-lg); font-style: italic; margin-bottom: 1rem; color: var(--color-text-primary); line-height: 1.6; font-weight: var(--font-medium);">"${item.text}"</blockquote>
+                            <div style="font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--font-medium);">
+                                <strong style="color: var(--color-text-primary);">${item.author}</strong> · ${item.discipline}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                content.innerHTML = historyHtml;
+                
+                modal.appendChild(content);
+                document.body.appendChild(modal);
+                
+                // 关闭功能
+                const closeModal = () => {
+                    document.body.removeChild(modal);
+                };
+                
+                // 绑定标题栏关闭按钮
+                const closeBtn = content.querySelector('.close-history');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', closeModal);
+                }
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+            }
+        }
+
+        // 时间格式化系统
+        class TimeFormatter {
+            constructor() {
+                this.locale = 'zh-CN';
+                this.now = new Date();
+                this.updateNow();
+            }
+
+            // 定期更新当前时间
+            updateNow() {
+                setInterval(() => {
+                    this.now = new Date();
+                }, 60000); // 每分钟更新一次
+            }
+
+            // 主要时间格式化方法
+            format(timestamp) {
+                const targetDate = new Date(timestamp);
+                const diffInSeconds = Math.floor((this.now - targetDate) / 1000);
+                
+                // 即时反馈（2分钟内）
+                if (diffInSeconds < 120) {
+                    return {
+                        display: '刚刚',
+                        type: 'instant',
+                        needsUpdate: diffInSeconds < 60 // 60秒内需要频繁更新
+                    };
+                }
+                
+                // 分钟级（2分钟 - 1小时）
+                if (diffInSeconds < 3600) {
+                    const minutes = Math.floor(diffInSeconds / 60);
+                    return {
+                        display: `${minutes}分钟前`,
+                        type: 'minutes',
+                        needsUpdate: true
+                    };
+                }
+                
+                // 小时级（1小时 - 24小时）
+                if (diffInSeconds < 86400) {
+                    const hours = Math.floor(diffInSeconds / 3600);
+                    return {
+                        display: `${hours}小时前`,
+                        type: 'hours', 
+                        needsUpdate: true
+                    };
+                }
+                
+                // 天级（1天 - 7天）
+                if (diffInSeconds < 604800) {
+                    const days = Math.floor(diffInSeconds / 86400);
+                    if (days === 1) {
+                        return {
+                            display: '昨天',
+                            type: 'yesterday',
+                            needsUpdate: this.isNewDay(targetDate)
+                        };
+                    } else {
+                        return {
+                            display: `${days}天前`,
+                            type: 'days',
+                            needsUpdate: this.isNewDay(targetDate)
+                        };
+                    }
+                }
+                
+                // 周级（1周 - 4周）
+                if (diffInSeconds < 2419200) {
+                    const weeks = Math.floor(diffInSeconds / 604800);
+                    return {
+                        display: `${weeks}周前`,
+                        type: 'weeks',
+                        needsUpdate: this.isNewWeek(targetDate)
+                    };
+                }
+                
+                // 月级（1月 - 12月）
+                if (diffInSeconds < 31536000) {
+                    const months = Math.floor(diffInSeconds / 2592000);
+                    return {
+                        display: `${months}月前`,
+                        type: 'months',
+                        needsUpdate: this.isNewMonth(targetDate)
+                    };
+                }
+                
+                // 年度显示
+                return {
+                    display: this.formatAbsoluteDate(targetDate),
+                    type: 'absolute',
+                    needsUpdate: false
+                };
+            }
+
+            // 辅助方法：判断是否是新的一天
+            isNewDay(targetDate) {
+                const targetDay = targetDate.getDate();
+                const currentDay = this.now.getDate();
+                return targetDay !== currentDay;
+            }
+
+            // 辅助方法：判断是否是新的一周
+            isNewWeek(targetDate) {
+                const targetWeek = this.getWeekNumber(targetDate);
+                const currentWeek = this.getWeekNumber(this.now);
+                return targetWeek !== currentWeek;
+            }
+
+            // 辅助方法：判断是否是新的一月
+            isNewMonth(targetDate) {
+                const targetMonth = targetDate.getMonth();
+                const currentMonth = this.now.getMonth();
+                return targetMonth !== currentMonth;
+            }
+
+            // 获取周数
+            getWeekNumber(date) {
+                const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+                const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+                return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+            }
+
+            // 绝对日期格式化
+            formatAbsoluteDate(date) {
+                const options = {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                };
+                return date.toLocaleDateString(this.locale, options);
+            }
+
+            // 详细时间格式化（用于鼠标悬停提示）
+            formatDetailedTime(timestamp) {
+                const date = new Date(timestamp);
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                };
+                return date.toLocaleDateString(this.locale, options);
+            }
+        }
+
+        // 音乐播放器系统
+        class MusicPlayer {
+            constructor() {
+                console.log('🎵 初始化音乐播放器...');
+                this.audio = null;
+                this.isPlaying = false;
+                this.currentTrack = 0;
+                this.tracks = [];
+                this.musicLibraryPath = '音乐库/';
+                this.lastUpdateCheck = localStorage.getItem('musicLastUpdateCheck') || null;
+                this.updateInterval = 7 * 24 * 60 * 60 * 1000; // 7天的毫秒数
+                this.init();
+            }
+            
+            init() {
+                console.log('🎵 开始初始化音乐播放器...');
+                this.loadMusicLibrary();
+                this.createAudio();
+                this.bindEvents();
+                this.scheduleLibraryUpdate();
+                this.autoPlay();
+                console.log('✅ 音乐播放器初始化完成');
+            }
+            
+            loadMusicLibrary() {
+                console.log('🎵 加载音乐库...');
+                // 从localStorage加载缓存的音乐列表
+                const cachedTracks = localStorage.getItem('musicTracks');
+                if (cachedTracks) {
+                    this.tracks = JSON.parse(cachedTracks);
+                    console.log('✅ 从缓存加载音乐库:', this.tracks);
+                } else {
+                    // 默认音乐列表 - 优先使用本地音乐文件
+                    this.tracks = [
+                        {
+                            name: '《向快乐出发》-鼓舞人心-摇滚',
+                            local: '音乐库/《向快乐出发》-鼓舞人心-摇滚.mp3',
+                            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
+                        },
+                        {
+                            name: '《打破标准的灵魂咏叹》-鼓舞人心-R&B',
+                            local: '音乐库/《打破标准的灵魂咏叹》-鼓舞人心-R&B.mp3',
+                            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
+                        }
+                    ];
+                    this.saveMusicLibrary();
+                    console.log('✅ 使用默认音乐库:', this.tracks);
+                }
+            }
+            
+            saveMusicLibrary() {
+                localStorage.setItem('musicTracks', JSON.stringify(this.tracks));
+            }
+            
+            scheduleLibraryUpdate() {
+                const now = new Date();
+                const lastCheck = this.lastUpdateCheck ? new Date(this.lastUpdateCheck) : null;
+                
+                // 检查是否需要更新音乐库
+                if (!lastCheck || (now - lastCheck) >= this.updateInterval) {
+                    this.updateMusicLibrary();
+                } else {
+                    // 计算下次更新时间（7天后的凌晨1点）
+                    const nextUpdate = this.calculateNextUpdate();
+                    const timeUntilUpdate = nextUpdate - now;
+                    
+                    if (timeUntilUpdate > 0) {
+                        setTimeout(() => {
+                            this.updateMusicLibrary();
+                        }, timeUntilUpdate);
+                    }
+                }
+            }
+            
+            calculateNextUpdate() {
+                const now = new Date();
+                const nextUpdate = new Date(now);
+                nextUpdate.setDate(now.getDate() + 7);
+                nextUpdate.setHours(1, 0, 0, 0); // 凌晨1点
+                return nextUpdate;
+            }
+            
+            updateMusicLibrary() {
+                console.log('开始更新音乐库...');
+                
+                // 模拟从服务器获取音乐库更新
+                // 在实际应用中，这里应该调用API获取最新的音乐文件列表
+                this.simulateMusicLibraryUpdate();
+                
+                // 更新检查时间
+                this.lastUpdateCheck = new Date().toISOString();
+                localStorage.setItem('musicLastUpdateCheck', this.lastUpdateCheck);
+                
+                // 安排下次更新
+                const nextUpdate = this.calculateNextUpdate();
+                const timeUntilUpdate = nextUpdate - new Date();
+                setTimeout(() => {
+                    this.updateMusicLibrary();
+                }, timeUntilUpdate);
+            }
+            
+            simulateMusicLibraryUpdate() {
+                // 模拟音乐库更新 - 在实际应用中应该从服务器获取
+                const newTracks = [
+                    '《向快乐出发》-鼓舞人心-摇滚.mp3',
+                    '《打破标准的灵魂咏叹》-鼓舞人心-R&B.mp3'
+                ];
+                
+                // 检查是否有新音乐
+                const hasNewMusic = newTracks.some(track => !this.tracks.includes(track));
+                
+                if (hasNewMusic) {
+                    this.tracks = newTracks;
+                    this.saveMusicLibrary();
+                    console.log('音乐库已更新，发现新音乐');
+                    this.showMusicUpdateNotification();
+                } else {
+                    console.log('音乐库检查完成，无新音乐');
+                }
+            }
+            
+            showMusicUpdateNotification() {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 2rem;
+                    right: 2rem;
+                    background: var(--gradient-absurd);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 12px;
+                    font-size: var(--text-sm);
+                    font-weight: var(--font-medium);
+                    z-index: 1002;
+                    animation: musicUpdateSlideIn 0.5s ease-out;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                `;
+                notification.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">🎵</span>
+                        <span>音乐库已更新</span>
+                    </div>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 3000);
+            }
+            
+            createAudio() {
+                console.log('🎵 创建音频对象...');
+                this.audio = new Audio();
+                this.audio.loop = true;
+                this.audio.volume = 0.3;
+                this.audio.preload = 'auto';
+                
+                // 添加错误处理
+                this.audio.addEventListener('error', (e) => {
+                    console.error('❌ 音乐播放错误:', e);
+                    this.handleAudioError();
+                });
+                
+                this.audio.addEventListener('loadstart', () => {
+                    console.log('🎵 开始加载音乐...');
+                });
+                
+                this.audio.addEventListener('canplay', () => {
+                    console.log('✅ 音乐可以播放');
+                });
+                
+                console.log('✅ 音频对象创建完成');
+            }
+            
+            handleAudioError() {
+                console.log('🎵 音频播放错误，尝试下一首音乐...');
+                this.nextTrack();
+            }
+            
+            showErrorNotification(message) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 2rem;
+                    right: 2rem;
+                    background: linear-gradient(135deg, #ef4444, #dc2626);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 12px;
+                    font-size: var(--text-sm);
+                    font-weight: var(--font-medium);
+                    z-index: 1002;
+                    animation: musicUpdateSlideIn 0.5s ease-out;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                `;
+                notification.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">❌</span>
+                        <span>${message}</span>
+                    </div>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 3000);
+            }
+            
+            bindEvents() {
+                console.log('🎵 绑定音乐播放器事件...');
+                const musicBtn = document.getElementById('musicBtn');
+                if (musicBtn) {
+                    console.log('✅ 找到音乐播放器按钮');
+                    musicBtn.addEventListener('click', (e) => {
+                        console.log('🎵 音乐播放器按钮被点击');
+                        e.preventDefault();
+                        this.togglePlay();
+                    });
+                } else {
+                    console.error('❌ 未找到音乐播放器按钮 (musicBtn)');
+                    this.showErrorNotification('音乐播放器按钮未找到');
+                }
+                
+                // 音频事件监听
+                if (this.audio) {
+                    this.audio.addEventListener('loadstart', () => {
+                        console.log('🎵 开始加载音频');
+                    });
+                    
+                    this.audio.addEventListener('canplay', () => {
+                        console.log('🎵 音频可以播放');
+                    });
+                    
+                    this.audio.addEventListener('error', (e) => {
+                        console.error('❌ 音频加载失败:', e);
+                        this.handleAudioError();
+                    });
+                }
+            }
+            
+            autoPlay() {
+                // 页面加载后自动播放
+                console.log('🎵 准备自动播放音乐...');
+                setTimeout(() => {
+                    if (this.tracks.length > 0) {
+                        console.log('🎵 开始自动播放');
+                        this.play();
+                    } else {
+                        console.log('🎵 没有音乐可播放，跳过自动播放');
+                    }
+                }, 2000);
+            }
+            
+            togglePlay() {
+                console.log('🎵 togglePlay被调用，当前状态:', this.isPlaying);
+                if (this.isPlaying) {
+                    this.pause();
+                } else {
+                    this.play();
+                }
+            }
+            
+            play() {
+                console.log('🎵 play方法被调用');
+                if (this.tracks.length === 0) {
+                    console.log('🎵 没有可播放的音乐');
+                    this.showMusicNotification('❌ 没有可播放的音乐');
+                    return;
+                }
+                
+                const track = this.tracks[this.currentTrack];
+                let audioSrc;
+                
+                // 处理新的音频文件格式
+                if (typeof track === 'string') {
+                    // 兼容旧格式
+                    audioSrc = this.musicLibraryPath + track;
+                } else if (track.local) {
+                    // 新格式：优先使用本地文件
+                    audioSrc = track.local;
+                } else if (track.url) {
+                    // 备选：使用在线URL
+                    audioSrc = track.url;
+                } else {
+                    console.error('🎵 无效的音频文件格式:', track);
+                    this.nextTrack();
+                    return;
+                }
+                
+                this.audio.src = audioSrc;
+                console.log('🎵 尝试播放音乐:', audioSrc);
+                
+                this.audio.play().then(() => {
+                    this.isPlaying = true;
+                    this.updateButtonState();
+                    this.startVisualEffect();
+                    const trackName = typeof track === 'string' ? track : track.name;
+                    this.showMusicNotification(`🎵 正在播放: ${trackName}`);
+                    console.log('✅ 音乐播放成功');
+                }).catch(error => {
+                    console.error('❌ 播放失败:', error);
+                    this.showMusicNotification('❌ 播放失败，尝试下一首');
+                    this.nextTrack();
+                });
+            }
+            
+            pause() {
+                this.audio.pause();
+                this.isPlaying = false;
+                this.updateButtonState();
+                this.stopVisualEffect();
+                
+                // 显示暂停提示
+                this.showMusicNotification('⏸️ 音乐已暂停');
+            }
+            
+            nextTrack() {
+                if (this.tracks.length === 0) {
+                    console.log('🎵 没有可播放的音乐');
+                    return;
+                }
+                
+                this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
+                const track = this.tracks[this.currentTrack];
+                const trackName = typeof track === 'string' ? track : track.name;
+                console.log('🎵 切换到下一首音乐:', trackName);
+                
+                if (this.isPlaying) {
+                    this.play();
+                }
+            }
+            
+            updateButtonState() {
+                const musicBtn = document.getElementById('musicBtn');
+                if (this.isPlaying) {
+                    musicBtn.classList.add('playing');
+                    musicBtn.innerHTML = '⏸️';
+                    musicBtn.title = '音乐播放中 - 点击暂停';
+                } else {
+                    musicBtn.classList.remove('playing');
+                    musicBtn.innerHTML = '🎵';
+                    musicBtn.title = '点击播放音乐';
+                }
+            }
+            
+            startVisualEffect() {
+                // 添加页面音乐视觉效果
+                document.body.classList.add('music-playing');
+            }
+            
+            stopVisualEffect() {
+                document.body.classList.remove('music-playing');
+            }
+            
+            showMusicNotification(message) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--gradient-absurd);
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    z-index: 1002;
+                    animation: musicNotification 2s ease-out forwards;
+                `;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 2000);
+            }
+        }
+
+        // 天气和阴历系统
+        class WeatherLunarSystem {
+            constructor() {
+                this.weatherData = null;
+                this.lunarData = null;
+                this.init();
+            }
+            
+            init() {
+                this.loadWeatherData();
+                this.loadLunarData();
+                this.createWeatherParticles();
+            }
+            
+            loadWeatherData() {
+                // 模拟天气数据（实际应用中应该调用天气API）
+                const weatherConditions = [
+                    { icon: '☀️', temp: '22°C', desc: '晴朗' },
+                    { icon: '⛅', temp: '18°C', desc: '多云' },
+                    { icon: '🌧️', temp: '15°C', desc: '小雨' },
+                    { icon: '❄️', temp: '5°C', desc: '雪' },
+                    { icon: '🌤️', temp: '25°C', desc: '晴转多云' }
+                ];
+                
+                this.weatherData = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+                this.updateWeatherDisplay();
+            }
+            
+            loadLunarData() {
+                // 计算阴历日期
+                const today = new Date();
+                const lunarDate = this.getLunarDate(today);
+                this.lunarData = lunarDate;
+                this.updateLunarDisplay();
+            }
+            
+            getLunarDate(date) {
+                // 简化的阴历计算（实际应用中应该使用专业的阴历库）
+                const lunarMonths = [
+                    '正月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '冬月', '腊月'
+                ];
+                
+                const lunarDays = [
+                    '初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十',
+                    '十一', '十二', '十三', '十四', '十五', '十六', '十七', '十八', '十九', '二十',
+                    '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'
+                ];
+                
+                // 简化的阴历计算（这里使用模拟数据）
+                const month = Math.floor(Math.random() * 12);
+                const day = Math.floor(Math.random() * 30);
+                
+                return {
+                    month: lunarMonths[month],
+                    day: lunarDays[day],
+                    full: `${lunarMonths[month]}${lunarDays[day]}`
+                };
+            }
+            
+            updateWeatherDisplay() {
+                if (this.weatherData) {
+                    document.getElementById('weatherIcon').textContent = this.weatherData.icon;
+                    document.getElementById('weatherTemp').textContent = this.weatherData.temp;
+                    document.getElementById('weatherDesc').textContent = this.weatherData.desc;
+                }
+            }
+            
+            updateLunarDisplay() {
+                if (this.lunarData) {
+                    document.getElementById('lunarDate').innerHTML = `
+                        <span class="lunar-text">农历${this.lunarData.full}</span>
+                    `;
+                }
+            }
+            
+            createWeatherParticles() {
+                const container = document.getElementById('weatherParticles');
+                const particleCount = 15;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'weather-particle';
+                    
+                    // 随机位置和动画延迟
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    const delay = Math.random() * 6;
+                    const duration = 4 + Math.random() * 4;
+                    
+                    particle.style.left = `${left}%`;
+                    particle.style.top = `${top}%`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.animationDuration = `${duration}s`;
+                    
+                    container.appendChild(particle);
+                }
+            }
+        }
+
+        // 滚动监听系统
+        class ScrollObserver {
+            constructor() {
+                this.bottomSection = document.getElementById('bottomSection');
+                this.init();
+            }
+            
+            init() {
+                this.bindScrollEvent();
+            }
+            
+            bindScrollEvent() {
+                window.addEventListener('scroll', () => {
+                    this.checkScrollPosition();
+                });
+            }
+            
+            checkScrollPosition() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 当滚动到页面底部附近时显示提示
+                if (scrollTop + windowHeight >= documentHeight - 100) {
+                    this.bottomSection.classList.add('visible');
+                } else {
+                    this.bottomSection.classList.remove('visible');
+                }
+            }
+        }
+
+        // 移动端优化系统
+        class MobileOptimizer {
+            constructor() {
+                this.isMobile = this.detectMobile();
+                this.init();
+            }
+            
+            detectMobile() {
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                       window.innerWidth <= 768;
+            }
+            
+            init() {
+                if (this.isMobile) {
+                    this.optimizeForMobile();
+                    this.addTouchGestures();
+                    this.optimizePerformance();
+                }
+            }
+            
+            optimizeForMobile() {
+                // 禁用移动端双击缩放
+                document.addEventListener('touchstart', (e) => {
+                    if (e.touches.length > 1) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+                
+                // 防止iOS Safari的橡皮筋效果
+                document.addEventListener('touchmove', (e) => {
+                    if (e.target.closest('.record-panel') || e.target.closest('.history-content')) {
+                        return;
+                    }
+                    e.preventDefault();
+                }, { passive: false });
+                
+                // 优化视口设置
+                this.setViewportMeta();
+            }
+            
+            setViewportMeta() {
+                let viewport = document.querySelector('meta[name="viewport"]');
+                if (!viewport) {
+                    viewport = document.createElement('meta');
+                    viewport.name = 'viewport';
+                    document.head.appendChild(viewport);
+                }
+                viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
+            }
+            
+            addTouchGestures() {
+                // 添加滑动关闭面板功能
+                this.addSwipeToClose();
+                
+                // 添加下拉刷新功能
+                this.addPullToRefresh();
+            }
+            
+            addSwipeToClose() {
+                let startY = 0;
+                let currentY = 0;
+                let isDragging = false;
+                
+                const recordPanel = document.getElementById('recordPanel');
+                
+                recordPanel.addEventListener('touchstart', (e) => {
+                    startY = e.touches[0].clientY;
+                    isDragging = true;
+                }, { passive: true });
+                
+                recordPanel.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    
+                    currentY = e.touches[0].clientY;
+                    const deltaY = currentY - startY;
+                    
+                    if (deltaY > 50) {
+                        // 向下滑动超过50px，关闭面板
+                        const thoughtRecorder = window.thoughtRecorder;
+                        if (thoughtRecorder) {
+                            thoughtRecorder.closeRecordPanel();
+                        }
+                        isDragging = false;
+                    }
+                }, { passive: true });
+                
+                recordPanel.addEventListener('touchend', () => {
+                    isDragging = false;
+                }, { passive: true });
+            }
+            
+            addPullToRefresh() {
+                let startY = 0;
+                let isPulling = false;
+                
+                document.addEventListener('touchstart', (e) => {
+                    if (window.scrollY === 0) {
+                        startY = e.touches[0].clientY;
+                        isPulling = true;
+                    }
+                }, { passive: true });
+                
+                document.addEventListener('touchmove', (e) => {
+                    if (!isPulling || window.scrollY > 0) return;
+                    
+                    const currentY = e.touches[0].clientY;
+                    const deltaY = currentY - startY;
+                    
+                    if (deltaY > 100) {
+                        // 下拉刷新
+                        this.refreshContent();
+                        isPulling = false;
+                    }
+                }, { passive: true });
+                
+                document.addEventListener('touchend', () => {
+                    isPulling = false;
+                }, { passive: true });
+            }
+            
+            refreshContent() {
+                // 显示刷新提示
+                const refreshToast = document.createElement('div');
+                refreshToast.style.cssText = `
+                    position: fixed;
+                    top: 2rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: var(--gradient-absurd);
+                    color: white;
+                    padding: 0.8rem 1.5rem;
+                    border-radius: 20px;
+                    font-size: var(--text-sm);
+                    z-index: 1000;
+                    animation: refreshToast 2s ease-out forwards;
+                `;
+                refreshToast.textContent = '🔄 正在刷新...';
+                document.body.appendChild(refreshToast);
+                
+                // 刷新内容
+                setTimeout(() => {
+                    if (window.thoughtRecorder) {
+                        window.thoughtRecorder.renderRecords();
+                    }
+                    if (window.quoteManager) {
+                        window.quoteManager.setDailyQuote();
+                    }
+                    if (window.weatherSystem) {
+                        window.weatherSystem.loadWeatherData();
+                        window.weatherSystem.loadLunarData();
+                    }
+                    
+                    setTimeout(() => {
+                        if (document.body.contains(refreshToast)) {
+                            document.body.removeChild(refreshToast);
+                        }
+                    }, 1000);
+                }, 500);
+            }
+            
+            optimizePerformance() {
+                // 减少移动端粒子数量
+                const particleContainer = document.getElementById('particleCanvas');
+                if (particleContainer) {
+                    const particles = particleContainer.querySelectorAll('.particle');
+                    if (particles.length > 15) {
+                        for (let i = 15; i < particles.length; i++) {
+                            particles[i].remove();
+                        }
+                    }
+                }
+                
+                // 优化动画性能
+                this.optimizeAnimations();
+                
+                // 添加性能监控
+                this.monitorPerformance();
+            }
+            
+            optimizeAnimations() {
+                // 在移动端减少复杂动画
+                const style = document.createElement('style');
+                style.textContent = `
+                    @media (max-width: 768px) {
+                        .random-float {
+                            animation: none;
+                        }
+                        
+                        .weather-particle {
+                            animation-duration: 8s;
+                        }
+                        
+                        .particle {
+                            animation-duration: 8s;
+                        }
+                    }
+                    
+                    @media (prefers-reduced-motion: reduce) {
+                        .random-float, .weather-particle, .particle, .weather-icon {
+                            animation: none;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            monitorPerformance() {
+                // 监控页面性能
+                if ('performance' in window) {
+                    window.addEventListener('load', () => {
+                        setTimeout(() => {
+                            const perfData = performance.getEntriesByType('navigation')[0];
+                            if (perfData && perfData.loadEventEnd - perfData.loadEventStart > 3000) {
+                                console.warn('页面加载较慢，已进行移动端优化');
+                            }
+                        }, 1000);
+                    });
+                }
+            }
+        }
+
+        // 初始化应用
+        // 更多按钮功能
+        function initMoreButton() {
+            const moreBtn = document.getElementById('moreBtn');
+            let moreMenu = null;
+            
+            moreBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                if (moreMenu) {
+                    moreMenu.remove();
+                    moreMenu = null;
+                    return;
+                }
+                
+                // 创建更多菜单
+                moreMenu = document.createElement('div');
+                moreMenu.className = 'more-menu';
+                moreMenu.innerHTML = `
+                    <button class="more-menu-item" onclick="showQuoteHistory()">
+                        <span class="menu-emoji">📜</span>
+                        <span class="menu-text">格言历史</span>
+                    </button>
+                    <button class="more-menu-item" onclick="toggleTheme()">
+                        <span class="menu-emoji">🌙</span>
+                        <span class="menu-text">深色模式</span>
+                    </button>
+                    <button class="more-menu-item" onclick="showHiddenThoughts()">
+                        <span class="menu-emoji">🌸</span>
+                        <span class="menu-text">秘密</span>
+                    </button>
+                `;
+                
+                // 定位菜单
+                const rect = moreBtn.getBoundingClientRect();
+                moreMenu.style.position = 'fixed';
+                moreMenu.style.bottom = `${window.innerHeight - rect.top + 10}px`;
+                moreMenu.style.right = `${window.innerWidth - rect.right}px`;
+                
+                document.body.appendChild(moreMenu);
+                
+                // 点击外部关闭菜单
+                const closeMenu = (e) => {
+                    if (!moreMenu.contains(e.target) && !moreBtn.contains(e.target)) {
+                        moreMenu.remove();
+                        moreMenu = null;
+                        document.removeEventListener('click', closeMenu);
+                    }
+                };
+                
+                setTimeout(() => {
+                    document.addEventListener('click', closeMenu);
+                }, 100);
+            });
+        }
+        
+        // 全局函数
+        function showQuoteHistory() {
+            if (window.quoteManager) {
+                window.quoteManager.showHistory();
+            }
+        }
+        
+        function toggleTheme() {
+            if (window.themeManager) {
+                window.themeManager.toggleTheme();
+            }
+        }
+        
+        function showHiddenThoughts() {
+            if (window.thoughtRecorder) {
+                window.thoughtRecorder.showHiddenThoughts();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 初始化移动端优化
+            const mobileOptimizer = new MobileOptimizer();
+            
+            // 初始化粒子系统
+            const particleContainer = document.getElementById('particleCanvas');
+            new ParticleSystem(particleContainer);
+            
+            // 初始化思考记录系统
+            window.thoughtRecorder = new ThoughtRecorder();
+            
+            
+            // 初始化主题管理
+            window.themeManager = new ThemeManager();
+            
+            // 初始化格言系统
+            window.quoteManager = new QuoteManager();
+            
+            // 初始化滚动监听
+            new ScrollObserver();
+            
+            // 初始化音乐播放器
+            new MusicPlayer();
+            
+            // 初始化天气和阴历系统
+            window.weatherSystem = new WeatherLunarSystem();
+            
+            // 初始化更多按钮
+            initMoreButton();
+        });
+        /* genAI_main_end */
+    </script>
+</body>
+</html>
