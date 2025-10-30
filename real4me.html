@@ -1837,7 +1837,7 @@
         <button class="more-button" id="moreBtn">⋯</button>
         
         <!-- 音乐播放器按钮 -->
-        <button class="music-button" id="musicBtn">🎵</button>
+        <button class="music-button" id="musicBtn" title="点击播放音乐">🎵</button>
         
         <!-- 记录按钮 -->
         <button class="record-button pulsing" id="recordBtn">✍️</button>
@@ -3529,7 +3529,6 @@
                 this.createAudio();
                 this.bindEvents();
                 this.scheduleLibraryUpdate();
-                this.autoPlay();
                 console.log('✅ 音乐播放器初始化完成');
             }
             
@@ -3771,18 +3770,6 @@
                 }
             }
             
-            autoPlay() {
-                // 页面加载后自动播放
-                console.log('🎵 准备自动播放音乐...');
-                setTimeout(() => {
-                    if (this.tracks.length > 0) {
-                        console.log('🎵 开始自动播放');
-                        this.play();
-                    } else {
-                        console.log('🎵 没有音乐可播放，跳过自动播放');
-                    }
-                }, 2000);
-            }
             
             togglePlay() {
                 console.log('🎵 togglePlay被调用，当前状态:', this.isPlaying);
