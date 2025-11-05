@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>职业发展路径 - 从执行者到多面手</title>
+    <title>谌思萌 - 产品运营专家简历</title>
     <style>
         * {
             margin: 0;
@@ -11,329 +11,537 @@
             box-sizing: border-box;
         }
 
+        /* 专业配色方案 - 现代科技风格 */
+        :root {
+            /* 主色系 - 白色基底 */
+            --primary-color: #FFFFFF;
+            --primary-light: #F8F9FA;
+            --primary-dark: #E9ECEF;
+            
+            /* 品牌色 - 暖橙色 */
+            --brand-color: #FF6B35;
+            --brand-light: #FF8A65;
+            --brand-dark: #E55A2B;
+            
+            /* 强调色 - 深蓝色 */
+            --accent-color: #1A5276;
+            --accent-light: #2E86AB;
+            --accent-dark: #154360;
+            
+            /* 背景色 - 白色主题 */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-dark: #E9ECEF;
+            
+            /* 文字颜色 */
+            --text-primary: #1A5276;
+            --text-secondary: #2C3E50;
+            --text-light: #95A5A6;
+            --text-white: #FFFFFF;
+            
+            /* 渐变背景 */
+            --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%);
+            --gradient-secondary: linear-gradient(135deg, #1A5276 0%, #2E86AB 100%);
+            --gradient-accent: linear-gradient(135deg, #FF6B35 0%, #1A5276 100%);
+            
+            
+            /* 字号标准 - 现代专业风格 */
+            --font-size-name: 3rem;      /* 姓名 - 2.5rem-3.5rem */
+            --font-size-subtitle: 1.75rem; /* 职位标题/一句话介绍 - 1.5rem-2rem */
+            --font-size-project: 1.375rem; /* 项目标题 - 1.25rem-1.5rem */
+            --font-size-content: 1rem;    /* 项目描述 - 1rem */
+            --font-size-skill: 0.875rem;  /* 技能标签 - 0.875rem */
+            --font-size-section: 1.5rem; /* 章节标题 */
+            --font-size-small: 0.875rem; /* 辅助信息 */
+        }
+
         body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(26, 82, 118, 0.05) 0%, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: var(--font-size-content);
             min-height: 100vh;
-            color: #333;
-            line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px 20px;
         }
 
         .header {
-            text-align: center;
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            padding: 60px 40px;
+            border-radius: 20px;
             margin-bottom: 40px;
-            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
 
         .header h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: var(--font-size-name);
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+            color: var(--text-white);
         }
 
-        .header p {
-            font-size: 1.3em;
+        .header .subtitle {
+            font-size: var(--font-size-subtitle);
+            opacity: 0.95;
+            margin-bottom: 25px;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+            color: var(--text-white);
+        }
+
+        .header .contact {
+            font-size: var(--font-size-content);
             opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            color: var(--text-white);
+        }
+
+        .header-tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header-tags .tag {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: var(--font-size-skill);
+            font-weight: 600;
+            border: 2px solid var(--brand-color);
+            transition: all 0.3s ease;
+        }
+
+        .header-tags .tag:hover {
+            background: var(--brand-color);
+            color: var(--text-white);
+            transform: translateY(-2px);
         }
 
         .section {
-            background: white;
-            border-radius: 20px;
+            background: var(--bg-primary);
+            border-radius: 15px;
             padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(26, 82, 118, 0.1);
+            border: 1px solid var(--bg-dark);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        /* 马卡龙色系模块配色 */
+        .section:nth-child(2) {
+            background: linear-gradient(135deg, rgba(168, 230, 207, 0.1) 0%, rgba(200, 240, 224, 0.05) 100%);
+            border: 2px solid var(--primary-light);
+        }
+
+        .section:nth-child(3) {
+            background: linear-gradient(135deg, rgba(212, 181, 232, 0.1) 0%, rgba(229, 200, 240, 0.05) 100%);
+            border: 2px solid var(--secondary-light);
+        }
+
+        .section:nth-child(4) {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1) 0%, rgba(255, 200, 209, 0.05) 100%);
+            border: 2px solid var(--accent-light);
+        }
+
+        .section:nth-child(5) {
+            background: linear-gradient(135deg, rgba(168, 230, 207, 0.08) 0%, rgba(212, 181, 232, 0.05) 100%);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section:nth-child(6) {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.12) 0%, rgba(168, 230, 207, 0.08) 100%);
+            border: 2px solid var(--accent-color);
+        }
+
+        .section-title {
+            font-size: var(--font-size-section);
+            color: var(--brand-color);
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-dark));
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(255, 182, 193, 0.3);
+        }
+
+        /* 双线能力发展样式 */
+        .dual-capability {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .capability-line {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 30px;
             position: relative;
             overflow: hidden;
         }
 
-        .section::before {
+        .personal-line {
+            border-left: 6px solid var(--primary-color);
+            background: linear-gradient(135deg, rgba(168, 230, 207, 0.1) 0%, rgba(200, 240, 224, 0.05) 100%);
+        }
+
+        .management-line {
+            border-left: 6px solid var(--accent-color);
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1) 0%, rgba(255, 200, 209, 0.05) 100%);
+        }
+
+        .line-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+
+        .line-icon {
+            font-size: 2.5em;
+        }
+
+        .line-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .line-subtitle {
+            font-size: 1em;
+            color: #6c757d;
+            margin-left: auto;
+        }
+
+        .capability-grid {
+            display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .capability-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .capability-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
         }
 
-        .section:hover {
+        .card-1::before { background: linear-gradient(135deg, #FF6B35, #FF8A65); }
+        .card-2::before { background: linear-gradient(135deg, #FFD93D, #FFE066); }
+        .card-3::before { background: linear-gradient(135deg, #4ECDC4, #7EDDD6); }
+        .card-4::before { background: linear-gradient(135deg, #A78BFA, #C4B5FD); }
+        .card-5::before { background: linear-gradient(135deg, #FF9A9E, #FECFEF); }
+        .card-6::before { background: linear-gradient(135deg, #A8E6CF, #C8F0E0); }
+        .card-7::before { background: linear-gradient(135deg, #FFB6C1, #FFC8D1); }
+        .card-8::before { background: linear-gradient(135deg, #FFD93D, #FFE066); }
+
+        .capability-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-        .section-title {
-            font-size: 2.2em;
-            color: #2c3e50;
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 15px;
-        }
-
-        .personal-traits {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 1024px) {
-            .personal-traits {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .personal-traits {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .trait-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #3498db;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .trait-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12, #9b59b6, #1abc9c, #e67e22);
-        }
-
-        .trait-card:nth-child(1)::before { background: #3498db; }
-        .trait-card:nth-child(2)::before { background: #e74c3c; }
-        .trait-card:nth-child(3)::before { background: #f39c12; }
-        .trait-card:nth-child(4)::before { background: #9b59b6; }
-        .trait-card:nth-child(5)::before { background: #1abc9c; }
-        .trait-card:nth-child(6)::before { background: #e67e22; }
-
-        .trait-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .trait-title {
-            font-size: 1.4em;
-            color: #2c3e50;
+        .card-icon {
+            font-size: 2em;
             margin-bottom: 15px;
-            font-weight: bold;
         }
 
-        .trait-description {
-            color: #7f8c8d;
-            line-height: 1.8;
+        .card-title {
+            font-size: var(--font-size-project);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: var(--font-size-content);
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .card-metrics {
+            font-size: var(--font-size-skill);
+            color: var(--text-light);
+            font-weight: 500;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 12px;
+            border-radius: 12px;
+            text-align: center;
         }
 
         .career-timeline {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .career-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, #3498db, #e74c3c);
-            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .timeline-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
             position: relative;
-            margin-bottom: 50px;
-            width: 45%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-            padding-right: 30px;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 55%;
-            text-align: left;
-            padding-left: 30px;
+            overflow: hidden;
+            border-left: 6px solid #667eea;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #3498db;
-            border-radius: 50%;
-            top: 20px;
-            z-index: 2;
-        }
-
-        .timeline-item:nth-child(odd)::before {
-            right: -10px;
-        }
-
-        .timeline-item:nth-child(even)::before {
-            left: -10px;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 2px solid #ecf0f1;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12, #9b59b6, #1abc9c, #e67e22);
         }
 
-        .timeline-content:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        .current-role::before { background: linear-gradient(90deg, var(--primary-color), var(--primary-light)); }
+        .leadership-role::before { background: linear-gradient(90deg, var(--accent-color), var(--accent-light)); }
+        .senior-role::before { background: linear-gradient(90deg, var(--secondary-color), var(--secondary-light)); }
+        .growth-role::before { background: linear-gradient(90deg, var(--primary-light), var(--accent-color)); }
+        .foundation-role::before { background: linear-gradient(90deg, var(--accent-dark), var(--accent-color)); }
+        .education-role::before { background: linear-gradient(90deg, var(--secondary-light), var(--primary-light)); }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .timeline-title {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-weight: bold;
+        .timeline-period {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 12px;
+            font-weight: 500;
         }
 
         .timeline-company {
-            color: #3498db;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
         .timeline-role {
-            color: #e74c3c;
+            color: #667eea;
             font-size: 1.1em;
-            margin-bottom: 15px;
-            font-weight: 500;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
 
-        .keywords {
+        .timeline-keywords {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .keyword {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: var(--text-white);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: var(--font-size-xxs);
             font-weight: 500;
+            box-shadow: 0 3px 10px rgba(255, 182, 193, 0.4);
+            white-space: nowrap;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
         .timeline-description {
-            color: #7f8c8d;
-            line-height: 1.8;
-            margin-bottom: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: var(--font-size-xs);
+            margin-bottom: 20px;
         }
 
-        .key-achievements {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #27ae60;
+        .timeline-achievements {
+            background: rgba(255, 182, 193, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
         }
 
-        .key-achievements h4 {
-            color: #27ae60;
+        .achievement-item {
+            color: var(--text-primary);
+            font-size: var(--font-size-xs);
             margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .key-achievements ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .key-achievements li {
-            color: #2c3e50;
-            margin-bottom: 8px;
-            padding-left: 20px;
+            padding-left: 10px;
             position: relative;
         }
 
-        .key-achievements li::before {
-            content: '✓';
+        .achievement-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .achievement-item::before {
+            content: '•';
             position: absolute;
             left: 0;
-            color: #27ae60;
+            color: var(--accent-color);
             font-weight: bold;
         }
 
-        .development-path {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-        }
-
-        .path-title {
-            font-size: 2.5em;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .path-stages {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        /* 职业发展路径可视化样式 - 专业配色 */
+        .career-path-visual {
+            display: flex;
+            flex-direction: column;
             gap: 30px;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            border: 1px solid var(--bg-dark);
+            overflow: visible;
         }
 
-        @media (max-width: 768px) {
-            .path-stages {
-                grid-template-columns: 1fr;
-            }
+        .path-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: visible;
+        }
+
+        /* 水平箭头 - 行内连接 */
+        .path-stage:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--brand-color);
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        /* L形箭头 - 行间连接（从第一行最后一个到第二行第一个） */
+        .path-row:first-child .path-stage:last-child::before {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            width: 30px;
+            height: 2px;
+            background: var(--brand-color);
+            transform: translateY(-50%);
+        }
+
+        .path-row:first-child .path-stage:last-child::after {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            width: 2px;
+            height: 60px;
+            background: var(--brand-color);
+            transform: translateY(-50%);
+        }
+
+        .path-row:last-child .path-stage:first-child::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            width: 30px;
+            height: 2px;
+            background: var(--brand-color);
+            transform: translateY(-50%);
+        }
+
+        .path-row:last-child .path-stage:first-child::after {
+            content: '→';
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--brand-color);
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 10;
         }
 
         .path-stage {
-            background: rgba(255,255,255,0.1);
+            background: var(--bg-primary);
+            border-radius: 12px;
             padding: 25px;
-            border-radius: 15px;
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: all 0.3s ease;
+            border: 2px solid var(--bg-dark);
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            flex: 1;
+            min-width: 200px;
+            z-index: 1;
         }
 
         .path-stage::before {
@@ -342,55 +550,199 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
         }
-
-        .path-stage:nth-child(1)::before { background: #3498db; }
-        .path-stage:nth-child(2)::before { background: #e74c3c; }
-        .path-stage:nth-child(3)::before { background: #f39c12; }
-        .path-stage:nth-child(4)::before { background: #9b59b6; }
 
         .path-stage:hover {
             transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+            border-color: var(--brand-color);
         }
 
-        .stage-number {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #f39c12;
+        .path-stage:hover::before {
+            opacity: 0.05;
         }
+
+        @media (max-width: 768px) {
+            .path-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            /* 隐藏所有箭头 */
+            .path-stage::after,
+            .path-stage::before {
+                display: none;
+            }
+        }
+
 
         .stage-title {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-            font-weight: 600;
+            font-size: var(--font-size-project);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
         }
 
-        .stage-description {
-            font-size: 0.95em;
-            opacity: 0.9;
-            line-height: 1.6;
+        .stage-desc {
+            font-size: var(--font-size-content);
+            color: var(--text-secondary);
+            line-height: 1.5;
+            word-break: keep-all;
+            hyphens: none;
+            min-width: 180px;
         }
 
-        .current-explorations {
-            background: #f8f9fa;
+        /* 时间线阶段样式 */
+        .timeline-stage {
+            font-size: var(--font-size-sm);
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            padding: 6px 12px;
+            background: rgba(184, 160, 130, 0.15);
             border-radius: 15px;
-            padding: 30px;
-            margin-top: 30px;
+            display: inline-block;
+            border: 2px solid var(--accent-light);
         }
 
-        .exploration-grid {
+        .timeline-theme {
+            font-size: var(--font-size-xs);
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(184, 160, 130, 0.15) 0%, rgba(201, 184, 150, 0.08) 100%);
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 2px 8px rgba(184, 160, 130, 0.2);
+        }
+
+        .skills-pyramid {
+            margin-top: 20px;
+        }
+
+        .skill-layer {
+            margin-bottom: 25px;
+        }
+
+        .layer-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .core-layer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .core-layer .layer-title {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.3);
+        }
+
+        .core-skill {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .skill-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .skill-description {
+            font-size: 1em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .skill-metrics {
+            font-size: 0.9em;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .support-layer {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .support-skills {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
         }
 
-        @media (max-width: 1024px) {
+        .support-skill {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #3498db;
+        }
+
+        .support-skill .skill-name {
+            font-size: 1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .support-skill .skill-desc {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        .base-layer {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .base-skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .base-skill {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 0.85em;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+            transition: all 0.2s ease;
+        }
+
+        .base-skill:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-1px);
+        }
+
             .exploration-grid {
+            display: grid;
                 grid-template-columns: repeat(2, 1fr);
-            }
+            gap: 25px;
+            margin-top: 30px;
         }
 
         @media (max-width: 768px) {
@@ -400,14 +752,15 @@
         }
 
         .exploration-item {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #9b59b6;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .exploration-item::before {
@@ -416,142 +769,380 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
         }
 
-        .exploration-item:nth-child(1)::before { background: #9b59b6; }
-        .exploration-item:nth-child(2)::before { background: #e74c3c; }
-        .exploration-item:nth-child(3)::before { background: #f39c12; }
+        .explore-1::before { background: linear-gradient(90deg, #667eea, #764ba2); }
+        .explore-2::before { background: linear-gradient(90deg, #f39c12, #e67e22); }
+        .explore-3::before { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+        .explore-4::before { background: linear-gradient(90deg, #9b59b6, #8e44ad); }
 
         .exploration-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .exploration-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
         }
 
         .exploration-title {
             font-size: 1.3em;
+            font-weight: 700;
             color: #2c3e50;
             margin-bottom: 15px;
-            font-weight: bold;
         }
 
         .exploration-description {
-            color: #7f8c8d;
-            line-height: 1.8;
+            color: #6c757d;
+            line-height: 1.7;
+            font-size: 0.95em;
+            margin-bottom: 20px;
         }
 
-        .skills-matrix {
+        .exploration-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tag {
+            background: rgba(184, 160, 130, 0.15);
+            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: var(--font-size-xxs);
+            font-weight: 500;
+            white-space: nowrap;
+            border: 1px solid var(--accent-light);
+        }
+
+        /* 生态体系可视化样式 - 竖向矩形图 */
+        .ecosystem-visual {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(212, 181, 232, 0.1) 0%, rgba(255, 182, 193, 0.05) 100%);
+            border-radius: 20px;
+            border: 2px solid var(--secondary-light);
+            box-shadow: 0 6px 20px rgba(212, 181, 232, 0.15);
+        }
+
+        .ecosystem-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .ecosystem-title {
+            font-size: var(--font-size-md);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .ecosystem-subtitle {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+        }
+
+        .ecosystem-center {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: 15px;
+            border: 2px solid var(--accent-light);
+            box-shadow: 0 3px 10px rgba(255, 182, 193, 0.2);
+        }
+
+        .center-icon {
+            font-size: 2em;
+            margin-bottom: 6px;
+        }
+
+        .center-title {
+            font-size: var(--font-size-sm);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .center-desc {
+            font-size: var(--font-size-xxs);
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        .ecosystem-branches {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            width: 100%;
         }
 
         @media (max-width: 768px) {
-            .skills-matrix {
+            .ecosystem-branches {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 480px) {
-            .skills-matrix {
+            .ecosystem-branches {
                 grid-template-columns: 1fr;
             }
         }
 
-        .skill-category {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
+        .branch {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(168, 230, 207, 0.15);
+            transition: all 0.3s ease;
+            border: 1px solid var(--primary-light);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .skill-category:nth-child(1) { 
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        .skill-category:nth-child(2) { 
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        .skill-category:nth-child(3) { 
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        .skill-category:nth-child(4) { 
-            background: linear-gradient(135deg, #27ae60, #229954);
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        .skill-category:nth-child(5) { 
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        .skill-category:nth-child(6) { 
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        .branch:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(168, 230, 207, 0.25);
+            border-color: var(--primary-color);
         }
 
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .skill-category h4 {
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            letter-spacing: 0.5px;
-        }
-
-        .skill-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .skill-list li {
+        .branch-icon {
+            font-size: 1.8em;
             margin-bottom: 8px;
-            padding: 8px 12px;
-            background: rgba(255,255,255,0.25);
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 500;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: background 0.3s ease;
         }
 
-        .skill-list li:hover {
-            background: rgba(255,255,255,0.35);
+        .branch-title {
+            font-size: var(--font-size-project);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .branch-desc {
+            font-size: var(--font-size-content);
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .branch-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .feature {
+            background: rgba(255, 182, 193, 0.15);
+            color: var(--accent-color);
+            padding: 3px 6px;
+            border-radius: 8px;
+            font-size: var(--font-size-skill);
+            font-weight: 500;
+            border: 1px solid var(--accent-light);
+        }
+
+        /* 能力雷达图样式 */
+        .capability-radar {
+            margin-top: 30px;
+        }
+
+        .radar-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .radar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         @media (max-width: 768px) {
-            .timeline-item {
+            .radar-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .radar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .radar-label {
+            font-size: 1em;
+            font-weight: 600;
+            color: #2c3e50;
+            min-width: 60px;
+        }
+
+        .radar-bar {
+            flex: 1;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .radar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-dark));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            box-shadow: 0 2px 8px rgba(184, 160, 130, 0.3);
+        }
+
+        .radar-score {
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            color: var(--accent-color);
+            min-width: 40px;
+        }
+
+        .edit-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--brand-color);
+            border: 1px solid var(--brand-color);
+            color: var(--text-white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: var(--font-size-skill);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        .section:hover .edit-button {
+            opacity: 1;
+        }
+
+        .edit-button:hover {
+            background: var(--brand-dark);
+            transform: translateY(-2px);
+        }
+
+        .edit-mode {
+            border: 2px solid var(--brand-color);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
+        }
+
+        .edit-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-primary);
+            border: 2px solid var(--brand-color);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 500px;
+            max-width: 80vw;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .edit-panel h3 {
+            color: var(--brand-color);
+            margin-bottom: 20px;
+            font-size: var(--font-size-section);
+            text-align: center;
+        }
+
+        .edit-textarea {
                 width: 100%;
-                left: 0 !important;
-                text-align: left !important;
-                padding-left: 30px !important;
-                padding-right: 0 !important;
-            }
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid var(--bg-dark);
+            border-radius: 10px;
+            font-size: var(--font-size-content);
+            line-height: 1.5;
+            resize: vertical;
+            font-family: inherit;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
 
-            .timeline-item::before {
-                left: -10px !important;
-            }
+        .edit-textarea:focus {
+            outline: none;
+            border-color: var(--brand-color);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.2);
+        }
 
-            .career-timeline::before {
-                left: 20px;
-            }
+        .edit-controls {
+            margin-top: 20px;
+            text-align: center;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
 
+        .edit-controls button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: var(--font-size-content);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .save-btn {
+            background: var(--brand-color);
+            color: var(--text-white);
+        }
+
+        .save-btn:hover {
+            background: var(--brand-dark);
+            transform: translateY(-2px);
+        }
+
+        .cancel-btn {
+            background: var(--text-light);
+            color: var(--text-white);
+        }
+
+        .cancel-btn:hover {
+            background: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        .edit-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+
+        @media (max-width: 768px) {
             .header h1 {
                 font-size: 2.2em;
             }
@@ -559,330 +1150,408 @@
             .section {
                 padding: 25px;
             }
+
+            .exploration-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>职业发展路径</h1>
-            <p>从财务管理专业到AI行业专家的成长轨迹<br>探索自我兴趣，构建多维度能力，实现从执行者到多面手的蜕变</p>
+            <h1>🚀 谌思萌</h1>
+            <div class="subtitle">AI社交游乐园构建者 · 多元互动产品专家</div>
+            <div class="contact">女/30岁/上海大学本科/188-1821-5714/betterme_ssm@126.com</div>
+            <div class="header-tags">
+                <span class="tag">8年产品经验</span>
+                <span class="tag">3年团队管理</span>
+                <span class="tag">AI社交创新</span>
+                <span class="tag">0-1产品孵化</span>
+            </div>
         </div>
 
-        <!-- 个人特征分析 -->
+        <!-- 核心能力双线发展 -->
         <div class="section">
-            <h2 class="section-title">核心个人特征</h2>
-            <div class="personal-traits">
-                <div class="trait-card">
-                    <div class="trait-title">🎯 战略思维</div>
-                    <div class="trait-description">具备从宏观到微观的升维思考能力，能够从历史趋势分析未来发展方向，在复杂环境中做出战略决策。</div>
+            <h2 class="section-title">核心能力双线发展</h2>
+            <div class="dual-capability">
+                <!-- 个人能力线 -->
+                <div class="capability-line personal-line">
+                    <div class="line-header">
+                        <div class="line-title">🎯 个人能力足够强</div>
+                        <div class="line-subtitle">从执行者到专家的能力跃升</div>
                 </div>
-                <div class="trait-card">
-                    <div class="trait-title">🔄 快速学习</div>
-                    <div class="trait-description">从财务管理跨界到演艺、产品、AI等多个领域，展现强大的学习适应能力和跨界整合能力。</div>
+                    <div class="capability-grid">
+                        <div class="capability-card card-1">
+                            <div class="card-title">📊 数据驱动决策</div>
+                            <div class="card-desc">从财务管理专业到产品数据洞察，建立完整的数据分析体系</div>
+                            <div class="card-metrics">次日留存40%→60%+ | 日活60min→90min+</div>
                 </div>
-                <div class="trait-card">
-                    <div class="trait-title">👥 团队领导</div>
-                    <div class="trait-description">相信多元化团队的价值，善于根据个人特性安排业务，建立指令式执行和护栏式探索的合作模式。</div>
+                        <div class="capability-card card-2">
+                            <div class="card-title">🚀 0-1产品孵化</div>
+                            <div class="card-desc">主导7850、碰爪等APP孵化，从概念到50W+用户的完整闭环</div>
+                            <div class="card-metrics">用户规模50W+ | MAU 10W+ | 次日留存60%+</div>
                 </div>
-                <div class="trait-card">
-                    <div class="trait-title">🚀 创新驱动</div>
-                    <div class="trait-description">持续探索前沿技术，从短视频到AI社交，始终站在行业创新的前沿，推动产品0-1的孵化。</div>
+                        <div class="capability-card card-3">
+                            <div class="card-title">🤖 AI技术前沿</div>
+                            <div class="card-desc">推动AI文/图生图、语音分析在社交场景落地，探索多人多AI创新模式</div>
+                            <div class="card-metrics">AI渗透率20% | 互动转化+15% | 单聊时长翻倍</div>
                 </div>
-                <div class="trait-card">
-                    <div class="trait-title">📊 数据洞察</div>
-                    <div class="trait-description">具备强大的数据分析能力，能够从用户行为数据中洞察需求，指导产品迭代和商业决策。</div>
-                </div>
-                <div class="trait-card">
-                    <div class="trait-title">💡 价值创造</div>
-                    <div class="trait-description">始终关注用户价值与企业价值的双重实现，在快速变化的市场中找到平衡点，创造可持续的商业价值。</div>
+                        <div class="capability-card card-4">
+                            <div class="card-title">💡 战略思维</div>
+                            <div class="card-desc">从宏观市场分析到具体落地执行，具备完整的升维思考能力</div>
+                            <div class="card-metrics">多类型APP孵化 | 战略制定 | 趋势预测</div>
                 </div>
             </div>
         </div>
 
-        <!-- 职业发展时间线 -->
+                <!-- 管理能力线 -->
+                <div class="capability-line management-line">
+                    <div class="line-header">
+                        <div class="line-title">👥 灵活有效管理能力</div>
+                        <div class="line-subtitle">从个人贡献者到团队领导者的管理跃升</div>
+                    </div>
+                    <div class="capability-grid">
+                        <div class="capability-card card-5">
+                            <div class="card-title">🎭 多元化团队建设</div>
+                            <div class="card-desc">相信多元化团队价值，根据个人特性安排业务，建立指令式执行与护栏式探索</div>
+                            <div class="card-metrics">15人团队管理 | 资源优化配置 | 组织效能提升</div>
+                </div>
+                        <div class="capability-card card-6">
+                            <div class="card-title">⚡ 快速试错迭代</div>
+                            <div class="card-desc">建立快速试错和迭代机制，围绕关键验证目标抓核心路径</div>
+                            <div class="card-metrics">最小化产品试跑 | 快速验证 | 敏捷响应</div>
+                        </div>
+                        <div class="capability-card card-7">
+                            <div class="card-title">🔄 产运结合</div>
+                            <div class="card-desc">从运营角度看拉新、维护、促活、留存，实现用户价值与企业价值双重实现</div>
+                            <div class="card-metrics">用户增长策略 | 运营优化 | 价值平衡</div>
+                        </div>
+                        <div class="capability-card card-8">
+                            <div class="card-title">🌟 团队活力激发</div>
+                            <div class="card-desc">充分撬动团队活力，建立激励机制，提升业务响应速度</div>
+                            <div class="card-metrics">团队活力提升 | 业务响应加速 | 创新驱动</div>
+                    </div>
+                </div>
+                        </div>
+                        </div>
+                    </div>
+
+        <!-- 职业发展路径图 -->
         <div class="section">
-            <h2 class="section-title">职业发展时间线</h2>
-            <div class="career-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-company">大学</div>
-                        <div class="timeline-title">财务管理专业</div>
-                        <div class="timeline-description">建立财务分析基础，培养数据敏感度和商业思维</div>
-                    </div>
+            <h2 class="section-title">🚀 职业发展路径图：从单薄执行到全面主导的多面手</h2>
+            
+            <!-- 职业发展路径展示 - AI社交游乐园主题 -->
+            <div class="career-path-visual">
+                <!-- 第一行：3个模块 -->
+                <div class="path-row">
+                    <!-- 模块1：财务管理基础 -->
+                    <div class="path-stage">
+                        <div class="stage-title">📊 财务管理基础</div>
+                        <div class="stage-desc">数据敏感度 · 商业思维 · 结构化分析</div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-company">凤凰卫视</div>
-                        <div class="timeline-role">演艺-项目管理与运营</div>
-                        <div class="keywords">
-                            <span class="keyword">探索兴趣</span>
-                            <span class="keyword">文化演出</span>
-                            <span class="keyword">资源整合</span>
-                            <span class="keyword">商业变现</span>
+                    <!-- 模块2：凤凰卫视 -->
+                    <div class="path-stage">
+                        <div class="stage-title">🎬 凤凰卫视</div>
+                        <div class="stage-desc">兴趣探索 · 商业结合 · 资源整合</div>
                         </div>
-                        <div class="timeline-description">探索自我兴趣点，在文化演出领域建立资源整合能力，链接艺人、团队、宣发平台，实现商业价值创造。</div>
-                        <div class="key-achievements">
-                            <h4>关键成就</h4>
-                            <ul>
-                                <li>建立文化演出业务模式</li>
-                                <li>与网易音乐等平台建立协同</li>
-                                <li>实现从兴趣到商业的转化</li>
-                            </ul>
+
+                    <!-- 模块3：短视频产品 -->
+                    <div class="path-stage">
+                        <div class="stage-title">🎯 短视频产品</div>
+                        <div class="stage-desc">产品思维 · 数据驱动 · 用户价值</div>
                         </div>
                     </div>
+
+                <!-- 第二行：3个模块 -->
+                <div class="path-row">
+                    <!-- 模块4：直播高级产品 -->
+                    <div class="path-stage">
+                        <div class="stage-title">🔴 直播高级产品</div>
+                        <div class="stage-desc">模块精通 · 价值定位 · 反哺产品</div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-company">短视频行业</div>
-                        <div class="timeline-role">产品经理</div>
-                        <div class="keywords">
-                            <span class="keyword">产品思维</span>
-                            <span class="keyword">用户价值</span>
-                            <span class="keyword">数据驱动</span>
-                            <span class="keyword">千团大战</span>
+                    <!-- 模块5：多行业产品专家 -->
+                    <div class="path-stage">
+                        <div class="stage-title">🌐 多行业产品专家</div>
+                        <div class="stage-desc">全面主导 · 战略规划 · 团队管理</div>
                         </div>
-                        <div class="timeline-description">入门产品经理角色，学习产品思维，分析功能价值，建立数据反哺迭代的产品视角。</div>
-                        <div class="key-achievements">
-                            <h4>关键成就</h4>
-                            <ul>
-                                <li>建立产品经理核心能力</li>
-                                <li>参与千团答题大战项目</li>
-                                <li>掌握数据驱动产品迭代</li>
-                            </ul>
+
+                    <!-- 模块6：AI社交创新 -->
+                    <div class="path-stage">
+                        <div class="stage-title">🤖 AI社交创新</div>
+                        <div class="stage-desc">升维创新 · 未来探索 · 数字人格</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-company">直播行业</div>
-                        <div class="timeline-role">高级产品经理</div>
-                        <div class="keywords">
-                            <span class="keyword">模块负责</span>
-                            <span class="keyword">直播秀场</span>
-                            <span class="keyword">产品定位</span>
-                            <span class="keyword">价值分析</span>
                         </div>
-                        <div class="timeline-description">负责直播秀场模块，深入理解模块在APP内的定位、价值和发展前景，建立产品反哺能力。</div>
-                        <div class="key-achievements">
-                            <h4>关键成就</h4>
-                            <ul>
-                                <li>深度负责直播秀场产品</li>
-                                <li>建立模块价值分析能力</li>
-                                <li>提升产品反哺意识</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-company">多行业领域</div>
-                        <div class="timeline-role">专家产品+部门负责人</div>
-                        <div class="keywords">
-                            <span class="keyword">宏观分析</span>
-                            <span class="keyword">0-1孵化</span>
-                            <span class="keyword">战略制定</span>
-                            <span class="keyword">团队管理</span>
-                            <span class="keyword">产运结合</span>
-                        </div>
-                        <div class="timeline-description">主导多类型APP孵化，涵盖恋爱、陌生人、熟人社交，AI、元宇宙、地图、视频、音频等多元化产品，建立从宏观到微观的产品战略能力。</div>
-                        <div class="key-achievements">
-                            <h4>关键成就</h4>
-                            <ul>
-                                <li>主导多个APP的0-1孵化</li>
-                                <li>建立产品运营团队管理能力</li>
-                                <li>实现用户价值与企业价值双重实现</li>
-                                <li>建立快速试错和迭代机制</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-company">AI行业</div>
-                        <div class="timeline-role">AI陪伴/社交专家</div>
-                        <div class="keywords">
-                            <span class="keyword">AI陪伴</span>
-                            <span class="keyword">多人多AI</span>
-                            <span class="keyword">数字人格</span>
-                            <span class="keyword">线下打通</span>
-                            <span class="keyword">商业模式</span>
-                        </div>
-                        <div class="timeline-description">专注AI陪伴和社交领域，探索多人多AI的语音房、数字人格分身、AI与线下结合等前沿应用，建立AI+游戏的创新模式。</div>
-                        <div class="key-achievements">
-                            <h4>关键成就</h4>
-                            <ul>
-                                <li>探索AI社交的前沿应用</li>
-                                <li>建立多人多AI协作模式</li>
-                                <li>创新数字人格概念</li>
-                                <li>探索AI与线下的结合</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 能力发展路径 -->
-        <div class="development-path">
-            <h2 class="path-title">能力发展路径</h2>
-            <div class="path-stages">
-                <div class="path-stage">
-                    <div class="stage-number">1</div>
-                    <div class="stage-title">点 - 专业基础</div>
-                    <div class="stage-description">财务管理专业基础，建立数据分析和商业思维</div>
-                </div>
-                <div class="path-stage">
-                    <div class="stage-number">2</div>
-                    <div class="stage-title">线 - 技能拓展</div>
-                    <div class="stage-description">从财务管理到文化演出，探索兴趣与商业结合</div>
-                </div>
-                <div class="path-stage">
-                    <div class="stage-number">3</div>
-                    <div class="stage-title">面 - 产品思维</div>
-                    <div class="stage-description">建立产品经理能力，掌握用户价值与商业价值平衡</div>
-                </div>
-                <div class="path-stage">
-                    <div class="stage-number">4</div>
-                    <div class="stage-title">升维 - 战略领导</div>
-                    <div class="stage-description">从宏观到微观的战略思考，团队管理和创新孵化</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 当前探索 -->
+        <!-- 个人品牌生态体系 -->
         <div class="section">
-            <h2 class="section-title">当前个人探索</h2>
-            <div class="current-explorations">
-                <div class="exploration-grid">
-                    <div class="exploration-item">
-                        <div class="exploration-title">🎙️ 播客运营</div>
-                        <div class="exploration-description">通过播客固定自己的信息及知识框架，寻求更多元视角的思考输入，建立个人品牌和影响力。</div>
-                    </div>
-                    <div class="exploration-item">
-                        <div class="exploration-title">📱 小红书内容</div>
-                        <div class="exploration-description">日常单点问题的思考输出，记录个人成长轨迹，帮助他人获得启发，建立内容创作能力。</div>
-                    </div>
-                    <div class="exploration-item">
-                        <div class="exploration-title">💰 金融投资</div>
-                        <div class="exploration-description">利用AI进行金融市场投资，锻炼心性、情绪韧性，培养多元分析评估能力，实现财务自由。</div>
+            <h2 class="section-title">💡 个人品牌生态体系</h2>
+            
+            <!-- 生态体系可视化 - 竖向矩形图 -->
+            <div class="ecosystem-visual">
+                <div class="ecosystem-header">
+                    <div class="ecosystem-title">思维核心：分析、洞察、创新</div>
+                    <div class="ecosystem-subtitle">构建个人品牌生态的四大维度</div>
+                        </div>
+                
+                <div class="ecosystem-branches">
+                    <div class="branch branch-1">
+                        <div class="branch-title">🎙️ 播客深度输入</div>
+                        <div class="branch-desc">知识框架构建</div>
+                        <div class="branch-features">
+                            <span class="feature">结构化思考</span>
+                            <span class="feature">多元视角</span>
+                            <span class="feature">认知升级</span>
                     </div>
                 </div>
+                    
+                    <div class="branch branch-2">
+                        <div class="branch-title">💼 主业专业能力</div>
+                        <div class="branch-desc">产品与管理专家</div>
+                        <div class="branch-features">
+                            <span class="feature">产品战略</span>
+                            <span class="feature">团队领导</span>
+                            <span class="feature">创新孵化</span>
             </div>
+        </div>
+
+                    <div class="branch branch-3">
+                        <div class="branch-title">📚 小红书碎片输出</div>
+                        <div class="branch-desc">思考即时沉淀</div>
+                        <div class="branch-features">
+                            <span class="feature">单点解析</span>
+                            <span class="feature">经验方法</span>
+                            <span class="feature">利他分享</span>
+                </div>
+                </div>
+                    
+                    <div class="branch branch-4">
+                        <div class="branch-title">💹 AI金融投资</div>
+                        <div class="branch-desc">心性修炼场</div>
+                        <div class="branch-features">
+                            <span class="feature">情绪韧性</span>
+                            <span class="feature">多元分析</span>
+                            <span class="feature">风险决策</span>
+                </div>
+                </div>
+            </div>
+        </div>
+
         </div>
 
         <!-- 核心技能矩阵 -->
         <div class="section">
             <h2 class="section-title">核心技能矩阵</h2>
-            <div class="skills-matrix">
-                <div class="skill-category">
-                    <h4>🎯 战略思维</h4>
-                    <ul class="skill-list">
-                        <li>宏观市场分析</li>
-                        <li>趋势预测</li>
-                        <li>战略规划</li>
-                        <li>商业模式设计</li>
-                    </ul>
+            <div class="skills-pyramid">
+                <!-- 核心能力层 -->
+                <div class="skill-layer core-layer">
+                    <div class="layer-title">核心能力</div>
+                    <div class="core-skill">
+                        <div class="skill-name">产品运营战略</div>
+                        <div class="skill-description">8年产品经验，3年团队管理，深耕社交赛道，擅长0-1产品孵化及增长运营</div>
+                        <div class="skill-metrics">用户规模50W+ | MAU 10W+ | 次日留存60%+</div>
                 </div>
-                <div class="skill-category">
-                    <h4>👥 团队管理</h4>
-                    <ul class="skill-list">
-                        <li>多元化团队建设</li>
-                        <li>人才识别与培养</li>
-                        <li>协作模式设计</li>
-                        <li>激励机制建立</li>
-                    </ul>
                 </div>
-                <div class="skill-category">
-                    <h4>🚀 产品创新</h4>
-                    <ul class="skill-list">
-                        <li>0-1产品孵化</li>
-                        <li>用户需求洞察</li>
-                        <li>快速试错迭代</li>
-                        <li>技术前沿探索</li>
-                    </ul>
+                
+                <!-- 支撑能力层 -->
+                <div class="skill-layer support-layer">
+                    <div class="layer-title">支撑能力</div>
+                    <div class="support-skills">
+                        <div class="support-skill">
+                            <div class="skill-name">AI技术应用</div>
+                            <div class="skill-desc">AI文/图生图、语音分析在社交场景落地</div>
                 </div>
-                <div class="skill-category">
-                    <h4>📊 数据分析</h4>
-                    <ul class="skill-list">
-                        <li>用户行为分析</li>
-                        <li>商业数据洞察</li>
-                        <li>AI模型应用</li>
-                        <li>投资决策支持</li>
-                    </ul>
+                        <div class="support-skill">
+                            <div class="skill-name">数据分析洞察</div>
+                            <div class="skill-desc">用户行为分析，商业数据洞察，指导产品迭代</div>
                 </div>
-                <div class="skill-category">
-                    <h4>💡 价值创造</h4>
-                    <ul class="skill-list">
-                        <li>用户价值设计</li>
-                        <li>商业价值实现</li>
-                        <li>资源整合优化</li>
-                        <li>可持续发展</li>
-                    </ul>
+                        <div class="support-skill">
+                            <div class="skill-name">团队管理</div>
+                            <div class="skill-desc">15人团队管理，资源优化配置，组织效能提升</div>
                 </div>
-                <div class="skill-category">
-                    <h4>🔄 跨界整合</h4>
-                    <ul class="skill-list">
-                        <li>多领域知识融合</li>
-                        <li>技术商业结合</li>
-                        <li>线上线下打通</li>
-                        <li>创新模式探索</li>
-                    </ul>
+                    </div>
+                </div>
+                
+                <!-- 基础能力层 -->
+                <div class="skill-layer base-layer">
+                    <div class="layer-title">基础能力</div>
+                    <div class="base-skills">
+                        <div class="base-skill">用户增长策略</div>
+                        <div class="base-skill">内容运营</div>
+                        <div class="base-skill">商业化变现</div>
+                        <div class="base-skill">跨部门协作</div>
+                        <div class="base-skill">项目管理</div>
+                        <div class="base-skill">市场分析</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // 添加页面加载动画
         document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section');
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            
-            // 页面加载动画
-            sections.forEach((section, index) => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
+            // 为卡片添加悬停效果
+            document.querySelectorAll('.trait-card, .timeline-item, .base-skill, .exploration-item').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
                 
-                setTimeout(() => {
-                    section.style.transition = 'all 0.6s ease';
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }, index * 200);
-            });
-
-            // 时间线动画
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateX(0)';
-                    }
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
                 });
             });
 
-            timelineItems.forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = index % 2 === 0 ? 'translateX(-50px)' : 'translateX(50px)';
-                item.style.transition = 'all 0.6s ease';
-                observer.observe(item);
-            });
-        });
+            // 编辑功能
+            function addEditButtons() {
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'edit-button';
+                    editBtn.textContent = '编辑';
+                    editBtn.onclick = () => toggleEditMode(section);
+                    section.style.position = 'relative';
+                    section.appendChild(editBtn);
+                });
+            }
 
-        // 添加交互效果
-        document.querySelectorAll('.trait-card, .exploration-item').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
+            function toggleEditMode(section) {
+                const sectionTitle = section.querySelector('.section-title').textContent;
+                const sectionContent = getSectionContent(section);
+                
+                // 创建编辑面板
+                const overlay = document.createElement('div');
+                overlay.className = 'edit-overlay';
+                overlay.onclick = closeEditPanel;
+                
+                const panel = document.createElement('div');
+                panel.className = 'edit-panel';
+                panel.innerHTML = `
+                    <h3>编辑 ${sectionTitle}</h3>
+                    <textarea class="edit-textarea" placeholder="请输入内容，支持换行...">${sectionContent}</textarea>
+                    <div class="edit-controls">
+                        <button class="save-btn" onclick="saveSectionEdit('${sectionTitle}')">保存</button>
+                        <button class="cancel-btn" onclick="closeEditPanel()">取消</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(overlay);
+                document.body.appendChild(panel);
+                
+                // 聚焦到文本框
+                const textarea = panel.querySelector('.edit-textarea');
+                textarea.focus();
+                textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+            }
+
+            function getSectionContent(section) {
+                // 获取section中的所有文本内容
+                const content = [];
+                
+                // 获取所有描述性文本
+                const descriptions = section.querySelectorAll('.card-desc, .stage-desc, .branch-desc, .timeline-description, .exploration-description');
+                descriptions.forEach(desc => {
+                    if (desc.textContent.trim()) {
+                        content.push(desc.textContent.trim());
+                    }
+                });
+                
+                // 获取时间线内容
+                const timelineItems = section.querySelectorAll('.timeline-item');
+                timelineItems.forEach(item => {
+                    const title = item.querySelector('.timeline-title');
+                    const desc = item.querySelector('.timeline-description');
+                    if (title && desc) {
+                        content.push(`${title.textContent}: ${desc.textContent}`);
+                    }
+                });
+                
+                return content.join('\n\n');
+            }
+
+            function saveSectionEdit(sectionTitle) {
+                const panel = document.querySelector('.edit-panel');
+                const textarea = panel.querySelector('.edit-textarea');
+                const newContent = textarea.value;
+                
+                // 保存到localStorage
+                localStorage.setItem(`resume_${sectionTitle}`, newContent);
+                
+                // 更新页面内容
+                updateSectionContent(sectionTitle, newContent);
+                
+                // 关闭编辑面板
+                closeEditPanel();
+                
+                // 显示保存成功提示
+                showNotification('保存成功！', 'success');
+            }
+
+            function updateSectionContent(sectionTitle, newContent) {
+                // 这里可以根据需要更新页面内容
+                // 目前只是保存到localStorage，页面刷新后会从localStorage加载
+                console.log(`已保存 ${sectionTitle} 的内容:`, newContent);
+            }
+
+            function closeEditPanel() {
+                const overlay = document.querySelector('.edit-overlay');
+                const panel = document.querySelector('.edit-panel');
+                
+                if (overlay) overlay.remove();
+                if (panel) panel.remove();
+            }
+
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#28a745' : '#17a2b8'};
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 5px;
+                    z-index: 1000;
+                    font-size: 14px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                `;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+
+            // 从localStorage恢复保存的内容
+            function loadSavedContent() {
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => {
+                    const sectionTitle = section.querySelector('.section-title').textContent;
+                    const savedContent = localStorage.getItem(`resume_${sectionTitle}`);
+                    if (savedContent) {
+                        // 显示保存的内容提示
+                        const editBtn = section.querySelector('.edit-button');
+                        if (editBtn) {
+                            editBtn.style.background = 'var(--brand-dark)';
+                            editBtn.title = '已保存自定义内容';
+                        }
+                    }
+                });
+            }
+
+            // 初始化
+            addEditButtons();
+            loadSavedContent();
+
+            // 全局函数
+            window.saveSectionEdit = saveSectionEdit;
+            window.closeEditPanel = closeEditPanel;
         });
     </script>
 </body>
