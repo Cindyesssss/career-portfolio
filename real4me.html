@@ -1837,7 +1837,7 @@
         <button class="more-button" id="moreBtn">⋯</button>
         
         <!-- 音乐播放器按钮 -->
-        <button class="music-button" id="musicBtn">🎵</button>
+        <button class="music-button" id="musicBtn" title="点击播放音乐">🎵</button>
         
         <!-- 记录按钮 -->
         <button class="record-button pulsing" id="recordBtn">✍️</button>
@@ -3517,7 +3517,7 @@
                 this.isPlaying = false;
                 this.currentTrack = 0;
                 this.tracks = [];
-                this.musicLibraryPath = '音乐库/';
+                this.musicLibraryPath = './音乐库/';
                 this.lastUpdateCheck = localStorage.getItem('musicLastUpdateCheck') || null;
                 this.updateInterval = 7 * 24 * 60 * 60 * 1000; // 7天的毫秒数
                 this.init();
@@ -3529,7 +3529,6 @@
                 this.createAudio();
                 this.bindEvents();
                 this.scheduleLibraryUpdate();
-                this.autoPlay();
                 console.log('✅ 音乐播放器初始化完成');
             }
             
@@ -3545,12 +3544,27 @@
                     this.tracks = [
                         {
                             name: '《向快乐出发》-鼓舞人心-摇滚',
-                            local: '音乐库/《向快乐出发》-鼓舞人心-摇滚.mp3',
+                            local: './音乐库/《向快乐出发》-鼓舞人心-摇滚.mp3',
                             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
                         },
                         {
-                            name: '《打破标准的灵魂咏叹》-鼓舞人心-R&B',
-                            local: '音乐库/《打破标准的灵魂咏叹》-鼓舞人心-R&B.mp3',
+                            name: '《破？》-鼓舞人心-R&B',
+                            local: './音乐库/《破？》-鼓舞人心-R&B.mp3',
+                            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
+                        },
+                        {
+                            name: '《爱是光 也是伤疤》-想念-流行',
+                            local: './音乐库/《爱是光 也是伤疤》-想念-流行.mp3',
+                            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
+                        },
+                        {
+                            name: '《绽放》-鼓舞人心-后朋克',
+                            local: './音乐库/《绽放》-鼓舞人心-后朋克.mp3',
+                            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
+                        },
+                        {
+                            name: '《重构》-鼓舞人心-摇滚',
+                            local: './音乐库/《重构》-鼓舞人心-摇滚.mp3',
                             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
                         }
                     ];
@@ -3613,8 +3627,11 @@
             simulateMusicLibraryUpdate() {
                 // 模拟音乐库更新 - 在实际应用中应该从服务器获取
                 const newTracks = [
-                    '《向快乐出发》-鼓舞人心-摇滚.mp3',
-                    '《打破标准的灵魂咏叹》-鼓舞人心-R&B.mp3'
+                    './音乐库/《向快乐出发》-鼓舞人心-摇滚.mp3',
+                    './音乐库/《破？》-鼓舞人心-R&B.mp3',
+                    './音乐库/《爱是光 也是伤疤》-想念-流行.mp3',
+                    './音乐库/《绽放》-鼓舞人心-后朋克.mp3',
+                    './音乐库/《重构》-鼓舞人心-摇滚.mp3'
                 ];
                 
                 // 检查是否有新音乐
@@ -3753,18 +3770,6 @@
                 }
             }
             
-            autoPlay() {
-                // 页面加载后自动播放
-                console.log('🎵 准备自动播放音乐...');
-                setTimeout(() => {
-                    if (this.tracks.length > 0) {
-                        console.log('🎵 开始自动播放');
-                        this.play();
-                    } else {
-                        console.log('🎵 没有音乐可播放，跳过自动播放');
-                    }
-                }, 2000);
-            }
             
             togglePlay() {
                 console.log('🎵 togglePlay被调用，当前状态:', this.isPlaying);
