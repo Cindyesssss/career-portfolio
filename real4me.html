@@ -3922,7 +3922,11 @@
                     { icon: '🌤️', temp: '25°C', desc: '晴转多云' }
                 ];
                 
-                this.weatherData = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+                // 基于当天日期选择天气，确保同一天本地和线上显示一致
+                const today = new Date();
+                const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+                const weatherIndex = dayOfYear % weatherConditions.length;
+                this.weatherData = weatherConditions[weatherIndex];
                 this.updateWeatherDisplay();
             }
             
@@ -3947,9 +3951,10 @@
                     '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'
                 ];
                 
-                // 简化的阴历计算（这里使用模拟数据）
-                const month = Math.floor(Math.random() * 12);
-                const day = Math.floor(Math.random() * 30);
+                // 基于当前日期计算农历（简化算法，确保同一天本地和线上显示一致）
+                const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+                const month = dayOfYear % 12;
+                const day = (dayOfYear + date.getDate()) % 30;
                 
                 return {
                     month: lunarMonths[month],
