@@ -1255,6 +1255,11 @@
             transform: scale(0.95);
         }
 
+        /* 当播放器显示时，上传按钮上移，避免遮挡播放器 */
+        body.player-active .upload-fab {
+            bottom: calc(80px + max(var(--space-lg), env(safe-area-inset-bottom)) + var(--space-md));
+        }
+
         /* 上传音乐面板 */
         .modal-overlay {
             position: fixed;
@@ -1303,7 +1308,7 @@
             font-size: var(--text-title);
             font-weight: 500;
             line-height: 1.4;
-            color: var(--color-text-primary);
+            color: #2C2C2C; /* 明确指定深色文字，避免被全局变量覆盖 */
         }
 
         .close-button {
@@ -1311,7 +1316,7 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--color-text-secondary);
+            color: #5A5A5A; /* 明确指定灰色，避免被全局变量覆盖 */
             padding: var(--space-xs);
             border-radius: var(--radius-sm);
             transition: all var(--duration-fast) var(--ease-out);
@@ -1319,7 +1324,7 @@
 
         .close-button:hover {
             background: rgba(0,0,0,0.1);
-            color: var(--color-text-primary);
+            color: #2C2C2C; /* 明确指定深色，避免被全局变量覆盖 */
         }
 
         .panel-body {
@@ -1334,7 +1339,7 @@
             display: block;
             margin-bottom: var(--space-xs);
             font-weight: 600;
-            color: var(--color-text-primary);
+            color: #2C2C2C; /* 明确指定深色文字，避免被全局变量覆盖 */
         }
 
         .required::after {
@@ -1570,21 +1575,37 @@
             height: 40px;
             overflow: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .lyrics-line {
-            position: absolute;
             width: 100%;
             text-align: center;
-            opacity: 0.6;
+            opacity: 0;
             transition: all var(--duration-normal) var(--ease-out);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
         }
 
         .lyrics-line.active {
             opacity: 1;
             color: var(--color-accent);
             font-weight: 600;
-            transform: scale(1.05);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .lyrics-line.prev {
+            opacity: 0.3;
+            transform: translateY(-150%);
+        }
+
+        .lyrics-line.next {
+            opacity: 0.3;
+            transform: translateY(50%);
         }
 
         .player-controls {
@@ -1966,7 +1987,7 @@
     <!-- 歌曲展示区域 -->
     <section class="songs-section">
         <div class="section-header">
-            <h2 class="section-title">你就是灵感 灵感就是你</h2>
+            <h2 class="section-title">AI让脑中音符跳跃 你我共编灵魂共鸣</h2>
         </div>
         
         <!-- 布局选择器 -->
@@ -2211,94 +2232,765 @@
             { text: "这首歌的编曲太有想象力了，佩服！", author: "想象力丰富" }
         ];
 
-        // 预定义的音乐库 - 按创建时间倒序排列
+        // 预定义的音乐库 - 按创建时间倒序排列（共20首）
         const musicLibrary = [
             {
                 id: 'library-1',
-                name: '《月光窗台的琴音守望》',
-                description: '在月光下的窗台，琴音轻柔流淌，守望着内心的宁静与放松',
-                tags: ['放松', '爵士', '宁静'],
-                lyricsContent: '器乐曲，无歌词',
-                musicFile: 'audio/《月光窗台的琴音守望》-放松-爵士.mp3',
-                uploadDate: '2025-11-06T13:54:53',
+                name: '《空性》',
+                description: '通过佛家五蕴探索自我，在慵懒的爵士乐中感悟空性与十二因缘',
+                tags: ['慵懒', '爵士', '自我探索'],
+                customComments: [
+                    { text: "佛家五蕴的意境在爵士乐中徐徐展开，让人沉思", author: "禅意听者" },
+                    { text: "色受想行识，每个蕴都被旋律诠释得如此深邃", author: "佛学爱好者" },
+                    { text: "慵懒的爵士配上哲学思考，完美的心灵之旅", author: "灵魂探索者" }
+                ],
+                lyricsContent: `关键词标签：佛五蕴、自我探索、爵士
+
+(前奏)
+(主歌)
+色蕴在指尖的温度
+刹那间凝结成光束
+色声香味触法 
+你拆解万物的拼图
+藏进瞳孔的深处
+(副歌)
+你是五蕴的迷雾
+也是宇宙的刻度
+(主歌)
+受蕴在呼吸的起伏
+心跳声敲打着肋骨
+当涟漪的纹路 
+漫过我刹那的停驻
+谁在轻声地重复
+(副歌)
+我是空性的露珠
+也是十二因缘的书
+solo
+(主歌)
+想蕴在月光的碎布
+缝补着破碎的朝暮
+行蕴的漩涡中 
+倒映着星河的流速
+缠绕成星轨的束缚
+(副歌)
+你是五蕴的迷雾
+也是宇宙的刻度
+(主歌)
+识蕴在掌心的纹路
+勾勒出轮回的归途
+当尘埃落定后 
+触摸到时光的流速
+拼凑着因果的拼图
+(副歌)
+我是空性的露珠
+也是十二因缘的书
+(尾奏)`,
+                musicFile: 'audio/《空性》-慵懒-爵士.mp3',
+                uploadDate: '2025-11-07T15:45:29',
                 isLibrary: true
             },
             {
                 id: 'library-2',
+                name: '《同走这一程》',
+                description: '友谊与回忆交织，在流行乐中珍惜彼此陪伴走过的岁月',
+                tags: ['开心', '流行', '友谊'],
+                customComments: [
+                    { text: "掌心的温度，把寒夜都点亮，这歌词太温暖了", author: "温暖同行" },
+                    { text: "友谊主题写得真好，我们就是彼此的光和勋章", author: "挚友情深" },
+                    { text: "听着这首歌想起了和朋友一起走过的日子", author: "青春记忆" }
+                ],
+                lyricsContent: `关键词标签：友谊、回忆、流行
+
+(前奏)
+(主歌)
+晨光吻过咖啡香
+风铃轻摇旧时光
+褪色的照片里 
+藏着年少的莽撞
+时光推着我们 数着年轮生长
+pre-chorus
+候鸟掠过云层的伤
+纸飞机载着梦启航
+蒲公英把约定 
+撒向星河的彼方
+脚印深浅 都是岁月印章
+(副歌)
+掌心的温度 把寒夜都点亮
+荆棘路上 紧握彼此手掌
+当黎明刺破雾霭苍茫
+我们就是彼此的光
+interlude
+pre-chorus
+潮汐漫过沙滩的谎
+贝壳里回响着倔强
+月光把影子 
+缝成坚韧的翅膀
+霜雪落下 酿成琥珀琼浆
+(副歌)
+眼底的星芒 把深渊都照亮
+跌撞途中 笑着泪也滚烫
+当迷雾遮蔽来时方向
+我们就是彼此的勋章
+(尾奏)`,
+                musicFile: 'audio/《同走这一程》-开心-流行.mp3',
+                uploadDate: '2025-11-07T15:38:47',
+                isLibrary: true
+            },
+            {
+                id: 'library-3',
+                name: '《烟火散尽处的自由》',
+                description: '在放克节奏中读懂人生，烟火散尽后独行才是真正的归途',
+                tags: ['生气', '放克', '自由'],
+                customComments: [
+                    { text: "月光下独行才是人生的归途，这句话说到心坎里了", author: "独行者" },
+                    { text: "放克节奏中藏着人生哲理，听着过瘾", author: "人生感悟" },
+                    { text: "悲欢离合不过是光阴的馈赠，听哭了", author: "岁月同行" }
+                ],
+                lyricsContent: `关键词标签：自我、人生、放克
+
+(前奏)
+(主歌)
+看那人潮汹涌中擦肩又回眸
+看那人海浮沉里追逐或远走
+掌心的纹路刻着命运的褶皱
+岁月的褶皱藏着谁的哀愁
+(主歌)
+也曾为一场爱恨而奋不顾身
+也曾被一句承诺而辗转浮沉
+当烟火散尽才读懂这人间剧本
+悲欢离合不过是光阴的馈赠
+(间奏)
+(副歌)
+去听去听那晨光中万物在奔走
+去看去看那暮色里山川与河流
+你是你自己的光也是自由的尽头
+不必向谁追问永恒的理由
+(副歌)
+当落叶飘零时听见大地在轻诉
+当星河坠落时看见时光的刻度
+我们在故事里相遇又转身成迷雾
+月光下独行才是人生的归途
+(尾奏)`,
+                musicFile: 'audio/《烟火散尽处的自由》-生气-放克.mp3',
+                uploadDate: '2025-11-07T15:21:43',
+                isLibrary: true
+            },
+            {
+                id: 'library-4',
+                name: '《光影穿梭中的我》',
+                description: '在轻快流行中找到自己的节奏，每个站台都有光在等待',
+                tags: ['轻快', '流行', '自我'],
+                customComments: [
+                    { text: "别慌别慌走自己的圆，这句话太治愈了", author: "慢节奏生活" },
+                    { text: "每个站台都有光，给了我继续前行的勇气", author: "都市行者" },
+                    { text: "轻快的节奏配上温暖的歌词，完美", author: "音乐疗愈" }
+                ],
+                lyricsContent: `关键词标签：自我、向内、流行
+
+(前奏)
+(主歌)
+时针滴答转着圈 
+咖啡杯底沉淀
+你总说生活像秒针追赶
+脚步凌乱又蹒跚 
+节奏总被打乱
+别慌 别慌 走自己的圆
+(主歌)
+晨光暮色里穿梭 
+影子被拉得很薄
+掌心纹路刻着专属的坐标
+候鸟南飞有航道 
+潮汐涨落有预兆
+我知道 我知道 路在脚下绕
+(桥段)
+别管路灯多喧嚣
+你看星辰正破晓
+(主歌)
+地铁人群推搡着 
+霓虹模糊了方向
+站台广播催促着未知的远方
+有人奔跑有人彷徨 
+有人把答案藏
+我知道 我知道 
+每个站台都有光
+(尾奏)`,
+                musicFile: 'audio/《光影穿梭中的我》-轻快-流行.mp3',
+                uploadDate: '2025-11-07T14:24:41',
+                isLibrary: true
+            },
+            {
+                id: 'library-5',
+                name: '《风暴中与宇宙交换心跳》',
+                description: '在精力充沛的DJ节奏中，与宇宙交换心跳，感受生命的共鸣',
+                tags: ['精力充沛', 'DJ', '宇宙'],
+                customComments: [
+                    { text: "与宇宙交换心跳，这个意象太浪漫了", author: "星空漫步者" },
+                    { text: "DJ节奏强劲有力，听得热血沸腾", author: "能量爆发" },
+                    { text: "电流在脊椎里噼啪作响，画面感十足", author: "视觉音乐" }
+                ],
+                lyricsContent: `关键词标签：宇宙、共鸣、DJ
+
+(前奏)
+(主歌)
+时钟停在你抬头的方向
+玻璃墙倒映着霓虹摇晃
+影子在暴雨中忽短忽长
+橱窗里陈列着破碎的翅膀
+(主歌)
+指纹在雾里写满未知猜想
+地铁穿梭着十二种光
+我们用脚印折成纸船
+逆着海浪驶向星群生长
+(间奏)
+(副歌)
+潮汐漫过你温热的手掌
+极光吻过你结痂的伤疤
+霓虹在瞳孔深处流淌成河
+我们是银河里相撞的沙
+(副歌)
+风暴掠过你颤抖的眼眶
+流星刺穿我虚构的导航
+电流在脊椎里噼啪作响
+与宇宙交换心跳的形状
+(尾奏)`,
+                musicFile: 'audio/《风暴中与宇宙交换心跳》-精力充沛-DJ.mp3',
+                uploadDate: '2025-11-07T11:16:24',
+                isLibrary: true
+            },
+            {
+                id: 'library-6',
+                name: '《万物刍狗又如何！》',
+                description: '顺势而为，在浪潮中寻找方向，积极面对人生的每个转弯',
+                tags: ['轻快', '流行', '坚定'],
+                customComments: [
+                    { text: "天地不仁万物皆刍狗，洒脱豁达的人生态度", author: "道法自然" },
+                    { text: "顺势而为不奢求运气，这是真正的智慧", author: "人生导师" },
+                    { text: "让生命在流动中绽放，听完充满力量", author: "生命之光" }
+                ],
+                lyricsContent: `关键词标签：坚定、顺势而为、流行
+
+(前奏)
+(主歌)
+人生如长河奔流不息
+每个转弯都是未知谜题
+有阳光灿烂也有风雨
+多重想象在心中交替
+(副歌)
+顺势而为不奢求运气
+用力去闯去碰撞去与世界交战
+天地不仁万物皆刍狗
+我在浪潮中寻找方向
+(主歌)
+黑夜过后总有黎明
+跌倒爬起继续前行
+积极消极都是风景
+顺势而为才是真谛
+(副歌)
+顺势而为不奢求运气
+用力去闯去碰撞去与世界交战
+天地不仁万物皆刍狗
+我在浪潮中寻找方向
+(桥段)
+看清边界可为时全力以赴
+不可为时淡然转身
+顺应自然的智慧
+让生命在流动中绽放
+(尾奏)`,
+                musicFile: 'audio/《万物刍狗又如何！》-轻快-流行.mp3',
+                uploadDate: '2025-11-07T10:58:23',
+                isLibrary: true
+            },
+            {
+                id: 'library-7',
                 name: '《这无用的美多像面具遮住旧伤疤》',
-                description: '用美丽的面具遮掩内心的伤痕，在孤独中寻找自我的真实',
-                tags: ['孤独', '嘻哈', '治愈'],
-                lyricsContent: '器乐曲，无歌词',
+                description: '用美丽的面具遮掩内心的伤痕，在拉扯感中寻找真实的自我',
+                tags: ['孤独', '嘻哈', '社会与我'],
+                customComments: [
+                    { text: "无用的美像面具，写出了社会对女性的规训", author: "女性力量" },
+                    { text: "嘻哈节奏配上这样的社会反思，很有深度", author: "社会观察者" },
+                    { text: "过程比结果珍贵，这话说得太对了", author: "美学思考" }
+                ],
+                lyricsContent: `关键词标签：拉扯感、社会与我、嘻哈
+
+(前奏)
+你涂着口红在镜子前笑得多张扬
+这无用的美多像面具遮住旧伤疤
+你涂着口红在镜子前笑得多张扬
+这无用的美多像面具遮住旧伤疤
+(主歌)
+你甩动发尾的光 
+在橱窗前转个圈
+橱窗倒影在摇晃 
+像无声的电影片段
+霓虹映着你侧脸 
+口红印在玻璃杯沿
+朋友说这妆容好甜 
+可你眼神有点倦
+（副歌）
+你涂着口红在镜子前笑得多张扬
+这无用的美多像面具遮住旧伤疤
+你涂着口红在镜子前笑得多张扬
+这无用的美多像面具遮住旧伤疤
+(主歌)
+我们都爱这无用的美
+把岁月涂成糖霜滋味
+当唇彩染透指尖的灰
+才懂过程比结果珍贵
+你说要把世界装进行囊
+我却看见你锁起妆匣
+那些被社会定义的标准
+原来早住进你心门
+（副歌）
+你涂着口红在镜子前笑得多张扬
+这无用的美多像面具遮住旧伤疤
+你涂着口红在镜子前笑得多张扬
+这无用的美多像面具遮住旧伤疤
+(尾奏)`,
                 musicFile: 'audio/《这无用的美多像面具遮住旧伤疤》-孤独-嘻哈.mp3',
                 uploadDate: '2025-11-06T13:47:52',
                 isLibrary: true
             },
             {
-                id: 'library-3',
+                id: 'library-8',
                 name: '《迷雾灯塔下的繁花绽放》',
-                description: '即使在迷雾中，灯塔依然照亮前路，繁花依然绽放美丽',
-                tags: ['怀旧', '民谣', '希望'],
-                lyricsContent: '器乐曲，无歌词',
+                description: '在逐梦的路上，迷雾中的灯塔照亮伤疤，让希望绽放成繁花',
+                tags: ['怀旧', '民谣', '逐梦'],
+                customComments: [
+                    { text: "迷雾中不灭的灯塔，照亮每道伤疤，太励志了", author: "逐梦人" },
+                    { text: "用双手织就希望的繁花，民谣唱出了力量", author: "希望使者" },
+                    { text: "从伤疤到繁花，这个蜕变过程写得真好", author: "成长见证" }
+                ],
+                lyricsContent: `关键词标签：逐梦、成长、民谣
+
+(前奏)
+(主歌)
+脚印刻在时光的沙
+汗水凝成灯塔
+每一步都比上一步
+更靠近梦的家
+pre-chorus
+迷雾中不灭的灯塔
+照亮每道伤疤
+让温暖在掌心发芽
+长成参天枝桠
+(副歌)
+我要让世界看见我的回答
+用双手织就希望的繁花
+褪去茧的挣扎
+终将绽放成霞
+(副歌)
+看那星火燎原的刹那
+点燃整片朝霞
+当千万双手汇成画
+天地共披锦纱
+(主歌)
+拆掉昨日的旧篱笆
+种下明天的新芽
+用真心砌成砖瓦
+筑成永恒的家
+(尾奏)`,
                 musicFile: 'audio/《迷雾灯塔下的繁花绽放》-怀旧-民谣.mp3',
                 uploadDate: '2025-11-06T13:44:46',
                 isLibrary: true
             },
             {
-                id: 'library-4',
+                id: 'library-9',
                 name: '《A World Tour Filled with Sweet Encounters》',
-                description: '一场充满甜蜜邂逅的环球之旅，在浪漫的爵士乐中感受世界的美好',
+                description: '一场充满甜蜜邂逅的环球之旅，在浪漫的爵士乐中感受陪伴与遇见',
                 tags: ['浪漫', '爵士', '旅行'],
-                lyricsContent: '器乐曲，无歌词',
+                customComments: [
+                    { text: "英文歌词配爵士，浪漫的世界之旅", author: "Travel Lover" },
+                    { text: "I'll be the sun and moon, 这承诺太温柔了", author: "Romantic Soul" },
+                    { text: "甜蜜邂逅的主题，适合旅行时听", author: "旅行音乐" }
+                ],
+                lyricsContent: `关键词标签：人生旅程、陪伴与遇见、爵士
+
+(前奏)
+嘿咦耶咦耶
+(主歌)
+traveling alone in the world
+lonely you are
+but you can get your peace of mind
+by looking at the stars
+(主歌)
+traveling the world with me
+you'll see people
+you'll meet all kinds of people
+some of them will be sweet
+(副歌)
+you'll see the sun and the moon
+the stars and the sea
+you'll see the sky and the air
+you'll be on your way
+solo
+(副歌)
+i'll be the sun and the moon
+the stars and the sea
+i'll be the sky and the air
+i'll be on my way
+(尾奏)`,
                 musicFile: 'audio/《A World Tour Filled with Sweet Encounters》-浪漫-爵士.mp3',
                 uploadDate: '2025-11-06T13:43:32',
                 isLibrary: true
             },
             {
-                id: 'library-5',
+                id: 'library-10',
                 name: '《浓郁的 深厚的》',
-                description: '浓郁而深厚的情感，在沉思中感受Neo-soul的灵魂之声',
-                tags: ['沉思', 'Neo-soul', '灵魂'],
-                lyricsContent: '器乐曲，无歌词',
+                description: '浓郁而深厚的情感，在沉思中感受Neo-soul的灵魂之声，连接生命写下爱的篇章',
+                tags: ['沉思', 'Neo-soul', '生命色彩'],
+                customComments: [
+                    { text: "连接生命写下爱的篇章，Neo-soul的灵魂之作", author: "灵魂共鸣" },
+                    { text: "在孤独中找到你的目光，歌词太深情了", author: "深情听众" },
+                    { text: "陪伴的心才让生命圆满，说到心里了", author: "生命伴侣" }
+                ],
+                lyricsContent: `关键词标签：生命色彩、勇气与力量、Neo-soul
+
+[前奏]
+[主歌]
+街角的风轻拂着脸庞
+孤独如影随形在身旁
+夜色深沉像旧时的伤
+心中的话无人诉衷肠
+[主歌]
+灯火阑珊映出疲惫眼眸
+脚步踟蹰追寻梦的尽头
+人群之中擦肩而过停留
+一瞬温暖如冬雪的温柔
+[副歌]
+在孤独中找到你的目光
+像星辰闪耀驱散黑夜漫长
+彼此相拥不再害怕迷茫
+连接生命写下爱的篇章
+[主歌]
+雨滴轻落打湿记忆画面
+走过的路留下一片思念
+回忆里的笑容那么鲜艳
+陪伴的心才让生命圆满
+[副歌]
+在寂静中听见你的呼唤
+像清风吹开窗外的花瓣
+每段旅程都因你而璀璨
+牵着双手看未来的灿烂
+[尾奏]`,
                 musicFile: 'audio/《浓郁的 深厚的》-沉思-Neo-soul.mp3',
                 uploadDate: '2025-11-06T11:18:42',
                 isLibrary: true
             },
             {
-                id: 'library-6',
+                id: 'library-11',
                 name: '《一期一会》',
-                description: '珍惜每一次相遇，在孤独的摇滚中感受生命的独特意义',
-                tags: ['孤独', '摇滚', '珍惜'],
-                lyricsContent: '器乐曲，无歌词',
+                description: '珍惜每一次相遇，在孤独的摇滚中感受生命的独特意义，因缘际会不再后悔',
+                tags: ['孤独', '摇滚', '人生回忆'],
+                customComments: [
+                    { text: "因缘际会一期一会，珍惜每次相遇", author: "珍惜当下" },
+                    { text: "摇滚唱出了人生的无常与珍贵", author: "摇滚诗人" },
+                    { text: "你我呼吸里有过的相遇，太有共鸣了", author: "回忆收藏" }
+                ],
+                lyricsContent: `关键词标签：人生、回忆、摇滚
+
+(前奏)
+(主歌)
+人生多寂寞
+寂寞是风景
+风景里有你眼泪
+你是我唯一
+(主歌)
+生命的颜色
+颜色是回忆
+回忆里有我身影
+我在你心里
+(副歌)
+你我呼吸里
+有过的相遇
+那是我最美的记忆 
+在你心里
+我的生命里 因缘际会
+一期一会都是你 
+不再后悔
+(间奏)
+(桥段)
+我的生命里 因缘际会
+一期一会都是你 
+不再后悔
+(尾奏)`,
                 musicFile: 'audio/《一期一会》-孤独-摇滚.mp3',
                 uploadDate: '2025-11-06T11:12:29',
                 isLibrary: true
             },
             {
-                id: 'library-7',
+                id: 'library-12',
+                name: '《镜像》',
+                description: '在梦幻流行中探索他者与欲望，互为镜像也互为牢房',
+                tags: ['梦幻', '流行', '他者'],
+                customComments: [
+                    { text: "互为镜像互为牢房，这意象太震撼了", author: "意象爱好者" },
+                    { text: "他者与欲望的主题，梦幻流行玩得很深", author: "哲学音乐" },
+                    { text: "月光缝合被撕碎的伪装，歌词如诗", author: "诗意聆听" }
+                ],
+                lyricsContent: `关键词标签：他者、欲望、流行
+
+(前奏)
+(副歌)
+你在暗处凝望 
+我在月光下逃亡
+影子重叠的暗巷 
+心跳声敲打胸腔
+像未拆封的玻璃糖纸折射着微光
+指纹缠绕着彼此的形状
+(主歌)
+你说人性像橱窗 
+陈列着所有肮脏
+却在我瞳孔深处 
+种下柔软的蜜糖
+蝴蝶标本钉在墙上 
+玫瑰刺破手掌
+疼痛里开出带刺的芬芳
+(间奏)
+(副歌)
+我在迷雾中逃亡 
+你在暗处织网
+月光缝合着所有 
+被撕碎的伪装
+当镜子裂成千万片 
+每片都映着对方
+我们互为镜像 互为牢房
+(尾奏)`,
+                musicFile: 'audio/《镜像》-梦幻-流行.mp3',
+                uploadDate: '2025-10-31T16:14:34',
+                isLibrary: true
+            },
+            {
+                id: 'library-13',
+                name: '《不孤单音符》',
+                description: '在平静的爵士乐中，琴键黑白织成星海，每个音符都值得喝彩',
+                tags: ['平静', '爵士', '治愈'],
+                customComments: [
+                    { text: "琴键黑白织成星海，爵士的治愈力量", author: "琴键诗人" },
+                    { text: "每个音符都是尘埃飘向云端，好浪漫", author: "音符追梦" },
+                    { text: "黎明之前总会有光透进来，给我希望", author: "光之使者" }
+                ],
+                lyricsContent: `关键词标签：治愈、积极、爵士
+
+(前奏)
+(主歌)
+时钟滴答滴答 月光洒满窗台
+琴键黑白黑白 哼着老歌谣来
+黎明之前 黎明之前 
+总会有光透进来
+熬过这漫长的等待
+(主歌)
+别再被阴霾 别再被阴霾
+琴键黑白黑白 像命运在摇摆
+我把心事都谱成旋律 
+轻轻唱出来
+就算旋律简单也值得喝彩
+(桥段)
+琴键黑白黑白 织成了星海
+岁月蜿蜒蜿蜒 脚印生青苔
+(主歌)
+路灯忽明忽暗 琴谱散落桌案
+节拍器摇摇晃晃 
+数着夜的孤单
+不必追问答案 不必追问答案
+每个音符都是尘埃 
+飘向云端
+(尾奏)`,
+                musicFile: 'audio/《不孤单音符》-平静-爵士.mp3',
+                uploadDate: '2025-10-31T15:13:55',
+                isLibrary: true
+            },
+            {
+                id: 'library-14',
+                name: '《狂欢中消逝的焰火》',
+                description: '在摇滚中探索虚无与消费主义，派对越热闹心灵越空虚',
+                tags: ['孤独', '摇滚', '虚无'],
+                customComments: [
+                    { text: "越热闹越像空壳，消费主义的深刻反思", author: "清醒者" },
+                    { text: "在找的是焰火，摇滚唱出了虚无感", author: "存在主义" },
+                    { text: "这派对那派对，越快乐越不快乐，太真实", author: "社会镜子" }
+                ],
+                lyricsContent: `关键词标签：虚无、消费主义、摇滚
+
+(前奏)
+(主歌)
+一个派对 两个酒杯
+三个舞台 四处徘徊
+五场狂欢 六神无主
+七零八落 九又尘埃
+pre-chorus
+霓虹在闪烁 黑夜被刺破
+影子在重叠 笑声被淹没
+月光在倾斜 时钟在倒流
+心跳在倒数 倒数着沉默
+(副歌)
+这派对 那派对 
+越快乐越不快乐
+这躯壳 那躯壳 
+越热闹越像空壳
+灵魂被挥霍 快乐被上锁
+我在找的 是焰火 
+是焰火
+(副歌)
+这掌声 那掌声 
+越喧哗越像寂寞
+这灯光 那灯光 
+越绚烂越像枷锁
+人群在穿梭 回声在坠落
+谁在等的 是焰火 
+是焰火
+(尾奏)`,
+                musicFile: 'audio/《狂欢中消逝的焰火》-孤独-摇滚.mp3',
+                uploadDate: '2025-10-29T17:59:52',
+                isLibrary: true
+            },
+            {
+                id: 'library-15',
+                name: '《影子干杯》',
+                description: '在悲伤的爵士乐中，与影子碰杯，在空虚与孤独中寻找慰藉',
+                tags: ['悲伤', '爵士', '空虚'],
+                customComments: [
+                    { text: "与影子碰杯，孤独被爵士诠释得如此美", author: "孤独美学" },
+                    { text: "空虚在杯沿蔓延，这画面感太强了", author: "视觉诗人" },
+                    { text: "悲伤的爵士最适合深夜独饮时听", author: "深夜听众" }
+                ],
+                lyricsContent: `关键词标签：空虚、孤独、爵士
+
+(前奏)
+(主歌)
+当天平倾斜在无人问津的角落
+霓虹在眼底流淌着寂寞
+当天平倾斜在无人问津的角落
+玻璃杯折射着沉默
+(副歌)
+于是举杯 碰杯 干杯 
+狂欢派对
+于是举杯 碰杯 干杯 
+让月光来醉
+当酒杯盛满了谎言 
+当月光浸透疲惫
+我们在杯底找安慰
+solo
+(主歌)
+当午夜敲碎最后清醒的假设
+当快乐变成褪色的糖霜
+当午夜敲碎最后清醒的假设
+我们在醉意里找快乐
+(副歌)
+于是举杯 碰杯 干杯 
+醉到天明
+于是举杯 碰杯 干杯 
+任酒沫结冰
+当空虚在杯沿蔓延 
+当泡沫湮灭诺言
+我们与影子碰杯
+(尾奏)`,
+                musicFile: 'audio/《影子干杯》-悲伤-爵士.mp3',
+                uploadDate: '2025-10-29T17:54:58',
+                isLibrary: true
+            },
+            {
+                id: 'library-16',
                 name: '《绽放》',
-                description: '在后朋克的力量中绽放生命的光彩，鼓舞人心向前',
-                tags: ['鼓舞人心', '后朋克', '力量'],
-                lyricsContent: '器乐曲，无歌词',
+                description: '在逆境中成长，在后朋克的力量中绽放生命的光彩',
+                tags: ['鼓舞人心', '后朋克', '逆境成长'],
+                customComments: [
+                    { text: "所有的彷徨都是光的勋章，太励志了", author: "光之战士" },
+                    { text: "给自己打气让心跳跟上，后朋克的力量", author: "自我激励" },
+                    { text: "从深渊到银河中央，逆境成长的赞歌", author: "逆风绽放" }
+                ],
+                lyricsContent: `关键词标签：逆境、成长、朋克
+
+(前奏)
+(主歌)
+在深渊里仰望星芒
+脚步踉跄却仍在丈量
+每颗尘埃都在生长
+跌撞中听见回声嘹亮
+pre-chorus
+掌心纹路刻着方向
+荆棘里藏着光的形状
+汗水浸透每寸土壤
+把叹息都酿成了翅膀
+(副歌)
+给自己打气 让心跳跟上
+掌心攥紧 命运的微光
+穿过荆棘的屏障 
+脚印连成诗行
+所有的彷徨 都是光的勋章
+interlude
+pre-chorus
+月光吻过旧伤疤
+暗潮里浮沉着盛夏
+风穿过指缝喧哗
+把叹息都吹散成浪花
+(副歌)
+给自己打气 让心跳跟上
+掌心攥紧 命运的微光
+踏碎世俗的巨浪 
+脚印连成诗行
+所有的跌宕 
+都通往银河中央
+(尾奏)`,
                 musicFile: 'audio/《绽放》-鼓舞人心-后朋克.mp3',
                 uploadDate: '2025-10-29T15:01:06',
                 isLibrary: true
             },
             {
-                id: 'library-8',
+                id: 'library-17',
                 name: '《爱是光 也是伤疤》',
-                description: '爱是温暖的光芒，也是深深的伤疤，在想念中品味情感的复杂',
-                tags: ['想念', '流行', '情感'],
-                lyricsContent: '器乐曲，无歌词',
+                description: '爱是温暖的光芒也是深深的伤疤，在想念中让我们成为更好的自己',
+                tags: ['想念', '流行', '爱与成长'],
+                customComments: [
+                    { text: "爱让我们成为更好的自己，流行乐的温柔", author: "爱的力量" },
+                    { text: "像潮汐像年轮，爱的意象写得太美了", author: "意象诗人" },
+                    { text: "爱是光也是伤疤，矛盾中的成长", author: "成长印记" }
+                ],
+                lyricsContent: `关键词标签：爱与成长、抒情、蜕变
+
+(前奏)
+(主歌)
+月光在指尖 银河在缠绕
+爱是种本能 不需要预兆
+候鸟衔来四季 玫瑰开成心跳
+指向的方向 比爱情更重要
+(副歌)
+像潮汐漫过沙 像年轮刻枝桠
+所有拥抱的形状 
+都化作我的轮廓啊
+当星光落满发 当呼吸变沙哑
+爱是光 也是伤疤
+让我们成为更好的自己啊
+(间奏)
+(主歌)
+暴雨在摇晃 船锚在发烫
+爱是种回响 穿透了荒凉
+银河在掌心 蜿蜒成坐标
+指向的方向 有我们的心跳
+(副歌)
+像潮汐漫过沙 像年轮刻枝桠
+所有变形的模样 
+都是炽烈的爱啊
+当星光落满发 当呼吸变沙哑
+爱是光 也是伤疤
+让我们成为更好的自己啊
+(尾奏)`,
                 musicFile: 'audio/《爱是光 也是伤疤》-想念-流行.mp3',
                 uploadDate: '2025-10-26T23:10:37',
                 isLibrary: true
             },
             {
-                id: 'library-9',
-                name: '《破？》',
-                description: '通过对社会、文化等对人的行为反制、束缚、规训...的反思，希望自己能保持定力、持续挣脱、翱翔青空',
-                tags: ['鼓舞人心', 'R&B', '突破'],
-                lyricsContent: `(前奏)
+                id: 'library-18',
+                name: '《不破不立！》',
+                description: '拆解灵魂的残骸，撕碎社会的期待，在R&B中冲破束缚拥有自己的未来',
+                tags: ['鼓舞人心', 'R&B', '力量'],
+                customComments: [
+                    { text: "拒绝让外界声音淹没真实的我，R&B呐喊", author: "真我呐喊" },
+                    { text: "拆解灵魂撕碎期待，冲破束缚的宣言", author: "自由斗士" },
+                    { text: "灵魂就应该是独一无二的我，说得太对", author: "独特灵魂" }
+                ],
+                lyricsContent: `关键词标签：R&B、力量、冲破束缚
+
+(前奏)
 (主歌)
 拆解灵魂的残骸
 再绘生命的色彩
@@ -2325,26 +3017,66 @@ pre-chorus
 废墟上重构的路
 这是我向世界发出的号话
 (尾奏)`,
-                musicFile: 'audio/《破？》-鼓舞人心-R&B.mp3',
+                musicFile: 'audio/《不破不立！》-鼓舞人心-R&B.mp3',
                 uploadDate: '2025-10-26T15:22:10',
                 isLibrary: true
             },
             {
-                id: 'library-10',
+                id: 'library-19',
                 name: '《重构》',
-                description: '在摇滚的节奏中重构自我，鼓舞人心勇敢前行',
+                description: '重构属于自己的舞台，在摇滚的节奏中拆解世界的规则和期待',
                 tags: ['鼓舞人心', '摇滚', '重生'],
-                lyricsContent: '器乐曲，无歌词',
+                customComments: [
+                    { text: "重构属于我自己的舞台，摇滚的力量", author: "舞台主人" },
+                    { text: "不要被社会束缚你的光芒，硬摇滚宣言", author: "光芒四射" },
+                    { text: "每一天都是重生的奇迹，充满能量", author: "重生之力" }
+                ],
+                lyricsContent: `关键词标签：去行动、力量、Hard Rock
+
+(前奏)
+(主歌)
+每一次思考都在深夜醒来
+灵魂分裂又重组新的存在
+拆解世界的规则和期待
+重构属于我自己的舞台
+(副歌)
+不要被社会束缚你的光芒
+你的意义就是你的方向
+面对痛苦也要勇敢说声是
+人生需要自己亲手雕塑
+(主歌)
+复杂系统里我找到位置
+文化政治心理交织的网
+牵一发动全身的启示
+个体也能创造新的篇章
+(副歌)
+不要被社会束缚你的光芒
+你的意义就是你的方向
+面对痛苦也要勇敢说声是
+人生需要自己亲手雕塑
+(桥段)
+颅内的快乐在涌动不息
+串联起新的结构豁然开朗
+每一天都是重生的奇迹
+社会标准只是参考系
+(尾奏)`,
                 musicFile: 'audio/《重构》-鼓舞人心-摇滚.mp3',
                 uploadDate: '2025-10-26T09:38:37',
                 isLibrary: true
             },
             {
-                id: 'library-11',
+                id: 'library-20',
                 name: '《向快乐出发》',
-                description: '通过对社会、文化等对人的行为反制、束缚、规训...的反思，希望自己能保持定力、持续挣脱、翱翔青空',
+                description: '不要被社会束缚你的光芒，面对痛苦勇敢说声是，人生需要自己亲手雕塑',
                 tags: ['鼓舞人心', '摇滚', '快乐'],
-                lyricsContent: `(前奏)
+                customComments: [
+                    { text: "面对痛苦也要勇敢说声是，正能量爆棚", author: "勇气之声" },
+                    { text: "人生需要自己亲手雕塑，摇滚哲学", author: "人生雕塑师" },
+                    { text: "颅内的快乐在涌动不息，听得热血沸腾", author: "快乐涌动" }
+                ],
+                lyricsContent: `关键词标签：去行动、力量、Hard Rock
+
+(前奏)
 (主歌)
 每一次思考都在深夜醒来
 灵魂分裂又重组新的存在
@@ -2386,6 +3118,8 @@ pre-chorus
         let uploadedSongs = JSON.parse(localStorage.getItem('uploadedSongs')) || [];
         let currentSong = null;
         let audioPlayer = null;
+        let lyricsInterval = null;
+        let currentLyricsIndex = 0;
         
         // 文件输入元素引用 - 全局作用域
         let lyricsFile = null;
@@ -2939,7 +3673,12 @@ pre-chorus
         }
 
         // 随机获取3条评语
-        function getRandomComments() {
+        function getRandomComments(song) {
+            // 如果歌曲有自定义评语，优先使用
+            if (song && song.customComments && song.customComments.length > 0) {
+                return song.customComments;
+            }
+            // 否则从通用评语库中随机选择3条
             const shuffled = [...commentsDatabase].sort(() => 0.5 - Math.random());
             return shuffled.slice(0, 3);
         }
@@ -3001,6 +3740,81 @@ pre-chorus
         }
 
         // 渲染歌曲列表
+        // 辅助函数：提取副歌或pre-chorus部分
+        function extractChorusLyrics(lyricsContent) {
+            if (!lyricsContent) return '';
+            
+            const lines = lyricsContent.split('\n');
+            let chorusLines = [];
+            let inChorus = false;
+            let inPreChorus = false;
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                const lowerLine = line.toLowerCase();
+                
+                // 跳过关键词标签行
+                if (line.startsWith('关键词标签：') || line.startsWith('关键词标签:')) {
+                    continue;
+                }
+                
+                // 检测副歌开始
+                if (lowerLine === '(副歌)' || lowerLine === '[副歌]' || 
+                    lowerLine === '副歌' || lowerLine === 'chorus') {
+                    inChorus = true;
+                    inPreChorus = false;
+                    continue;
+                }
+                
+                // 检测pre-chorus开始
+                if (lowerLine === 'pre-chorus' || lowerLine === '(pre-chorus)' || 
+                    lowerLine === '[pre-chorus]') {
+                    inPreChorus = true;
+                    inChorus = false;
+                    continue;
+                }
+                
+                // 检测并跳过hook标记
+                if (lowerLine === 'hook' || lowerLine === '(hook)' || 
+                    lowerLine === '[hook]') {
+                    continue;
+                }
+                
+                // 检测其他段落标记（结束当前段）
+                if (lowerLine.match(/^[\(\[\【]?(前奏|主歌|间奏|桥段|尾奏|solo|interlude|verse|bridge|outro|intro)[\)\]\】]?$/i)) {
+                    if (inChorus || inPreChorus) {
+                        break; // 遇到下一个段落标记，停止收集
+                    }
+                    continue;
+                }
+                
+                // 收集副歌或pre-chorus的歌词
+                if ((inChorus || inPreChorus) && line && 
+                    !line.match(/^[\(\[\【].*[\)\]\】]$/)) { // 排除括号标记
+                    chorusLines.push(line);
+                    if (chorusLines.length >= 4) {
+                        break; // 收集4行后停止
+                    }
+                }
+            }
+            
+            // 如果没找到副歌或pre-chorus，提取前几行非标记内容
+            if (chorusLines.length === 0) {
+                chorusLines = lines
+                    .filter(line => {
+                        const trimmed = line.trim();
+                        // 过滤空行、关键词标签、段落标记
+                        return trimmed && 
+                               !trimmed.startsWith('关键词标签：') && 
+                               !trimmed.startsWith('关键词标签:') &&
+                               !trimmed.match(/^[\(\[\【]?(前奏|主歌|副歌|间奏|桥段|尾奏|solo|interlude|verse|chorus|bridge|outro|intro|pre-chorus)[\)\]\】]?$/i);
+                    })
+                    .slice(0, 4);
+            }
+            
+            return chorusLines.join('<br>');
+        }
+
         function renderSongs() {
             const songsGrid = document.getElementById('songsGrid');
             const emptyState = document.getElementById('emptyState');
@@ -3035,16 +3849,12 @@ pre-chorus
                 if (index === 1) vinylCard.classList.add('featured-card');
                 if (index === 2) vinylCard.classList.add('new-card');
 
-                // 提取歌词副歌部分（前4-6行），过滤括号内容
+                // 提取歌词副歌或pre-chorus部分
                 const lyricsContent = song.isLibrary && song.lyricsContent ? song.lyricsContent : song.description;
-                const lyricsLines = lyricsContent.split('\n')
-                    .filter(line => line.trim()) // 过滤空行
-                    .filter(line => !line.match(/^[（(].*[）)]$/)) // 过滤括号行
-                    .slice(0, 4);
-                const lyricsText = lyricsLines.join('<br>');
+                const lyricsText = extractChorusLyrics(lyricsContent);
 
-                // 获取随机评语
-                const randomComments = getRandomComments();
+                // 获取评语（优先使用歌曲的自定义评语）
+                const randomComments = getRandomComments(song);
 
                 vinylCard.innerHTML = `
                     <!-- 卡片上部 - 黑胶唱片区域 -->
@@ -3285,6 +4095,12 @@ pre-chorus
             // 更新播放器显示
             document.getElementById('playerSongName').textContent = song.name;
             
+            // 清除之前的歌词滚动定时器
+            if (lyricsInterval) {
+                clearInterval(lyricsInterval);
+                lyricsInterval = null;
+            }
+
             // 显示歌词内容（音乐库歌曲优先显示歌词，其他显示描述）
             const lyricsContent = song.isLibrary && song.lyricsContent ? song.lyricsContent : song.description;
             const lyricsLines = lyricsContent.split('\n').filter(line => line.trim());
@@ -3297,8 +4113,39 @@ pre-chorus
             
             document.getElementById('playerLyrics').innerHTML = lyricsHTML;
 
+            // 重置歌词索引
+            currentLyricsIndex = 0;
+
+            // 启动歌词滚动（每3秒切换一行）
+            if (lyricsLines.length > 1) {
+                lyricsInterval = setInterval(() => {
+                    const allLines = document.querySelectorAll('.lyrics-line');
+                    if (allLines.length === 0) return;
+
+                    // 移除所有active类
+                    allLines.forEach(line => {
+                        line.classList.remove('active', 'prev', 'next');
+                    });
+
+                    // 更新索引
+                    currentLyricsIndex = (currentLyricsIndex + 1) % allLines.length;
+
+                    // 添加active类到当前行
+                    allLines[currentLyricsIndex].classList.add('active');
+
+                    // 添加prev和next类（可选，用于显示上下文）
+                    if (currentLyricsIndex > 0) {
+                        allLines[currentLyricsIndex - 1].classList.add('prev');
+                    }
+                    if (currentLyricsIndex < allLines.length - 1) {
+                        allLines[currentLyricsIndex + 1].classList.add('next');
+                    }
+                }, 3000); // 每3秒切换一行歌词
+            }
+
             // 显示播放器
             document.getElementById('musicPlayer').classList.add('visible');
+            document.body.classList.add('player-active');
 
             // 播放音频
             audioPlayer.play().then(() => {
@@ -3313,6 +4160,12 @@ pre-chorus
             audioPlayer.addEventListener('ended', () => {
                 document.getElementById('playIcon').textContent = '▶';
                 document.querySelector(`[data-song-id="${song.id}"]`).classList.remove('playing');
+                
+                // 结束时清除歌词滚动
+                if (lyricsInterval) {
+                    clearInterval(lyricsInterval);
+                    lyricsInterval = null;
+                }
             });
         }
 
@@ -3322,6 +4175,12 @@ pre-chorus
                 audioPlayer.pause();
                 document.getElementById('playIcon').textContent = '▶';
                 document.querySelector(`[data-song-id="${currentSong.id}"]`).classList.remove('playing');
+                
+                // 暂停时清除歌词滚动
+                if (lyricsInterval) {
+                    clearInterval(lyricsInterval);
+                    lyricsInterval = null;
+                }
             }
         }
 
