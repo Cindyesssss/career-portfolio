@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -122,6 +123,7 @@
         /* 毛玻璃效果 */
         .glass-morphism {
             background: var(--color-bg-glass);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -130,6 +132,7 @@
         /* 深色模式下的毛玻璃效果优化 */
         [data-theme="dark"] .glass-morphism {
             background: rgba(26, 27, 37, 0.85);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
@@ -189,6 +192,7 @@
                 rgba(255, 255, 255, 0.1), 
                 rgba(255, 255, 255, 0.05)
             );
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -1212,6 +1216,7 @@
         @media (max-width: 768px) and (prefers-color-scheme: dark) {
             .glass-morphism {
                 background: rgba(26, 27, 37, 0.9);
+                -webkit-backdrop-filter: blur(20px);
                 backdrop-filter: blur(20px);
             }
             
@@ -1249,6 +1254,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
@@ -1281,6 +1287,7 @@
             align-items: center;
             justify-content: center;
             opacity: 0.8;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -1579,6 +1586,7 @@
             overflow: hidden;
             min-width: 140px;
             animation: moreMenuSlideIn 0.3s ease-out;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
 
@@ -3295,6 +3303,7 @@
                     width: 100%;
                     height: 100%;
                     background: rgba(0, 0, 0, 0.8);
+                    -webkit-backdrop-filter: blur(10px);
                     backdrop-filter: blur(10px);
                     z-index: 1000;
                     display: flex;
@@ -3922,13 +3931,13 @@
                     { icon: '🌤️', temp: '25°C', desc: '晴转多云' }
                 ];
                 
-                /* genAI_main_start */
-                // 基于当天日期选择天气，确保同一天本地和线上显示一致
+                // 基于当天日期选择天气，确保同一天本地和线上显示一致（使用UTC避免时区问题）
                 const today = new Date();
-                const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+                const startOfYear = Date.UTC(today.getFullYear(), 0, 1);
+                const todayUTC = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+                const dayOfYear = Math.floor((todayUTC - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
                 const weatherIndex = dayOfYear % weatherConditions.length;
                 this.weatherData = weatherConditions[weatherIndex];
-                /* genAI_main_end */
                 this.updateWeatherDisplay();
             }
             
@@ -3953,12 +3962,12 @@
                     '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'
                 ];
                 
-                /* genAI_main_start */
-                // 基于当前日期计算农历（简化算法，确保同一天本地和线上显示一致）
-                const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+                // 基于当前日期计算农历（简化算法，确保同一天本地和线上显示一致，使用UTC避免时区问题）
+                const startOfYear = Date.UTC(date.getFullYear(), 0, 1);
+                const dateUTC = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+                const dayOfYear = Math.floor((dateUTC - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
                 const month = dayOfYear % 12;
                 const day = (dayOfYear + date.getDate()) % 30;
-                /* genAI_main_end */
                 
                 return {
                     month: lunarMonths[month],
