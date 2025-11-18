@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garena - 设计作品展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #ff4655;
+            --secondary: #0f1923;
+            --accent: #1e2d3b;
+            --light: #ece8e1;
+            --dark: #0a0f14;
+        }
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* 导航栏样式 */
+        header {
+            background-color: rgba(15, 25, 35, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--primary), #ff8a00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 70, 85, 0.3);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        /* 欢迎区域样式 */
+        .welcome-section {
+            margin-top: 80px;
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,70,85,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .welcome-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), #ff8a00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(255, 70, 85, 0.3);
+            position: relative;
+        }
+        
+        .welcome-section p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #aaa;
+        }
+        /* 图片展示区域样式 */
+        .gallery-section {
+            padding: 80px 0;
+            background-color: var(--secondary);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        
+        .gallery-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 18px;
+            color: #ccc;
+            line-height: 1.8;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        .gallery-item {
+            background-color: var(--accent);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 70, 85, 0.2);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-bottom: 2px solid var(--primary);
+            background-color: #fff;
+        }
+        
+        .gallery-info {
+            padding: 20px;
+        }
+        
+        .gallery-item-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .gallery-item-desc {
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* 方案对比区域样式 */
+        .comparison-section {
+            padding: 80px 0;
+            background-color: var(--dark);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .comparison-item {
+            background-color: var(--accent);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .comparison-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 70, 85, 0.2);
+        }
+        
+        .comparison-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background-color: #fff;
+        }
+        
+        .comparison-info {
+            padding: 20px;
+        }
+        
+        .comparison-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .comparison-desc {
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* 页脚样式 */
+        footer {
+            background-color: var(--secondary);
+            padding: 60px 0 20px;
+            border-top: 1px solid rgba(255, 70, 85, 0.2);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-thanks {
+            font-size: 24px;
+            color: var(--light);
+        }
+        
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-contact i {
+            color: var(--primary);
+            font-size: 24px;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .welcome-section h1 {
+                font-size: 36px;
+            }
+            
+            .welcome-section p {
+                font-size: 16px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgNTAiPjxwYXRoIGZpbGw9IiNmZjQ2NTUiIGQ9Ik00MCAxMGgxMjBjNS41IDAgMTAgNC41IDEwIDEwdjIwYzAgNS41LTQuNSAxMC0xMCAxMEg0MGMtNS41IDAtMTAtNC41LTEwLTEwVjIwYzAtNS41IDQuNS0xMCAxMC0xMHoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNjAgMjVoMjB2MTBINjB6TTkwIDI1aDIwdjEwSDkweiIvPjwvc3ZnPg==" alt="Garena Logo">
+                    <span>GARENA</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#gallery">作品集</a></li>
+                    <li><a href="#comparison">方案对比</a></li>
+                    <li><a href="#footer">联系方式</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 欢迎区域 -->
+    <section class="welcome-section">
+        <div class="container">
+            <h1>嗨~你好呀！很高兴你能来</h1>
+            <p>欢迎来到我的设计作品展示平台，这里汇集了精心设计的创意作品</p>
+        </div>
+    </section>
+
+    <!-- 面具玩法展示区 -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">面具玩法设计</h2>
+            <p class="gallery-description">面具玩法：用户之间可互相偷「AI角色」面具、可佩戴到语音房里互动</p>
+            
+            <div class="gallery-grid">
+                <!-- 项目1 -->
+                <div class="gallery-item">
+                    <img src="garena图片/序号1.png" alt="面具tab" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">面具tab界面</h3>
+                        <p class="gallery-item-desc">看AI角色的设定、状态、所属等</p>
+                    </div>
+                </div>
+                
+                <!-- 项目2 -->
+                <div class="gallery-item">
+                    <img src="garena图片/序号2.png" alt="用户面具一览" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">用户面具一览</h3>
+                        <p class="gallery-item-desc">用户偷来的面具一览，突出面具的特征与价值</p>
+                    </div>
+                </div>
+                
+                <!-- 项目3 -->
+                <div class="gallery-item">
+                    <img src="garena图片/序号3.png" alt="面具贡献查看" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">面具贡献查看</h3>
+                        <p class="gallery-item-desc">用户对偷来的面具贡献查看，并引导去相应的语音房互动</p>
+                    </div>
+                </div>
+                
+                <!-- 项目4 -->
+                <div class="gallery-item">
+                    <img src="garena图片/序号4.png" alt="用户弱关系展示" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">用户弱关系展示</h3>
+                        <p class="gallery-item-desc">基于偷面具玩法的用户弱关系展示，突出以某个「面具」为支点与哪些人有关联</p>
+                    </div>
+                </div>
+                
+                <!-- 项目5 -->
+                <div class="gallery-item">
+                    <img src="garena图片/序号5.png" alt="创建专属面具" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">创建专属面具</h3>
+                        <p class="gallery-item-desc">引导创建专属自己的AI角色面具</p>
+                    </div>
+                </div>
+                
+                <!-- 项目6 -->
+                <div class="gallery-item">
+                    <img src="garena图片/序号6.png" alt="内容广场" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">内容广场</h3>
+                        <p class="gallery-item-desc">内容广场展示面具获得，引导去创建面具、去语音房聊</p>
+                    </div>
+                </div>
+                
+                <!-- 项目7 -->
+                <div class="gallery-item">
+                    <img src="garena图片/序号7.png" alt="PK互动" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">PK互动</h3>
+                        <p class="gallery-item-desc">多真人多AI智能体角色聚焦特定话题轮流发言，加强深度交流与内容质量</p>
+                    </div>
+                </div>
+                
+                <!-- 项目8 -->
+                <div class="gallery-item">
+                    <img src="garena图片/序号8.png" alt="PK语音房展示" class="gallery-image">
+                    <div class="gallery-info">
+                        <h3 class="gallery-item-title">PK语音房展示</h3>
+                        <p class="gallery-item-desc">用户选择感兴趣的房间参与</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 方案对比展示区 -->
+    <section class="comparison-section" id="comparison">
+        <div class="container">
+            <h2 class="section-title">方案设计对比</h2>
+            <p class="gallery-description">加强陌生人扩列的展示，包含玩法扩列与用户推荐扩列，通过绘制多种方案模拟实际效果</p>
+            
+            <div class="comparison-grid">
+                <!-- 方案1 -->
+                <div class="comparison-item">
+                    <img src="garena图片/方案一.png" alt="方案1" class="comparison-image">
+                    <div class="comparison-info">
+                        <h3 class="comparison-title">方案一：优先展示用户</h3>
+                        <p class="comparison-desc">卡片式展示；依托用户质量本身够高+推荐足够精确</p>
+                    </div>
+                </div>
+                
+                <!-- 方案2 -->
+                <div class="comparison-item">
+                    <img src="garena图片/方案二.png" alt="方案2" class="comparison-image">
+                    <div class="comparison-info">
+                        <h3 class="comparison-title">方案二：优先展示玩法</h3>
+                        <p class="comparison-desc">用户选择，让用户根据玩法偏好进行筛选</p>
+                    </div>
+                </div>
+                
+                <!-- 方案3 -->
+                <div class="comparison-item">
+                    <img src="garena图片/方案三.png" alt="方案3" class="comparison-image">
+                    <div class="comparison-info">
+                        <h3 class="comparison-title">方案三：优先展示玩法与推荐用户</h3>
+                        <p class="comparison-desc">列表展示，更高效筛选，拿捏不准时，有限放权给用户掌控</p>
+                    </div>
+                </div>
+                
+                <!-- 方案4 -->
+                <div class="comparison-item">
+                    <img src="garena图片/方案四.png" alt="方案4" class="comparison-image">
+                    <div class="comparison-info">
+                        <h3 class="comparison-title">方案四：基于玩法的扩列</h3>
+                        <p class="comparison-desc">强调基于玩法的扩列，让用户通过共同兴趣建立联系</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-thanks">感谢观看</div>
+                <div class="footer-contact">
+                    <i class="fas fa-phone"></i>
+                    <span>18818215714</span>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Garena Design Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 添加简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为图片项添加点击效果
+            const galleryItems = document.querySelectorAll('.gallery-item, .comparison-item');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // 平滑滚动
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
