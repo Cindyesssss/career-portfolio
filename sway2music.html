@@ -4099,7 +4099,7 @@ pre-chorus
                 clearInterval(lyricsInterval);
                 lyricsInterval = null;
             }
-
+            
             // 显示歌词内容（音乐库歌曲优先显示歌词，其他显示描述）
             const lyricsContent = song.isLibrary && song.lyricsContent ? song.lyricsContent : song.description;
             const lyricsLines = lyricsContent.split('\n').filter(line => line.trim());
